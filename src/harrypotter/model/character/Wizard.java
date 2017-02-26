@@ -9,8 +9,8 @@ public abstract class Wizard {
 	private String name;
 	private int defaultHp;
 	private int defaultIp;
-	private int hp;
-	private int ip;
+	private int hp = defaultHp;
+	private int ip = defaultIp;
 	private ArrayList<Spell> spells;
 	private ArrayList<Collectible> inventory;
 	private Point location;
