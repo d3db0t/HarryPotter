@@ -14,10 +14,11 @@ public abstract class Wizard {
 	private ArrayList<Spell> spells;
 	private ArrayList<Collectible> inventory;
 	private Point location;
-	private int traitCooldown;
+	private int traitCooldown = 0;
 	
 	public Wizard(String name){
 		this.name = name;
+		
 	}
 
 	public String getName() {
