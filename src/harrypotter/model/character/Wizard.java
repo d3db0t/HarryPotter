@@ -9,16 +9,18 @@ public abstract class Wizard {
 	private String name;
 	private int defaultHp;
 	private int defaultIp;
-	private int hp = defaultHp;
-	private int ip = defaultIp;
+	private int hp;
+	private int ip;
 	private ArrayList<Spell> spells;
 	private ArrayList<Collectible> inventory;
 	private Point location;
-	private int traitCooldown = 0;
+	private int traitCooldown;
 	
 	public Wizard(String name){
 		this.name = name;
-		
+		this.hp = defaultHp;
+		this.ip = defaultIp;
+		this.traitCooldown = 0;
 	}
 
 	public String getName() {
