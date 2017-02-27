@@ -32,7 +32,7 @@ public abstract class Task implements Champion{
     	   String [] result= currentLine.split(",");
     	   Potion p = new Potion(result[0],result[1]);
     	   //Insert in ArrayList
-    	   result.add(p);
+    	   potions.add(p);
     	}
     }
     public ArrayList <Champion> getChampions()
