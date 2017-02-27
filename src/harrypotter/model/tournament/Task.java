@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import harrypotter.model.character.Champion;
+import harrypotter.model.magic.Potion;
 import harrypotter.model.world.Cell;
 
 public abstract class Task implements Champion{
@@ -14,7 +15,7 @@ public abstract class Task implements Champion{
     private boolean traitActivated ;
     private ArrayList <Potion> potions ;
     
-    public Task(ArrayList<Champion> champions)
+    public Task(ArrayList<Champion> champions)throws IOException
     {
       this.champions = champions ;
       map = new Cell[10][10];
@@ -30,7 +31,7 @@ public abstract class Task implements Champion{
     	while ((currentLine = br.readLine()) != null)
     	{
     	   String [] result= currentLine.split(",");
-    	   Potion p = new Potion(result[0],result[1]);
+    	   Potion p = new Potion(result[0],Integer.parseInt(result[1]));
     	   //Insert in ArrayList
     	   potions.add(p);
     	}
@@ -67,7 +68,7 @@ public abstract class Task implements Champion{
     {
     	this.traitActivated = traitActivated ;
     }
-    public ArrayList<Potions> getPotions()
+    public ArrayList<Potion> getPotions()
     {
     	return potions;
     }
