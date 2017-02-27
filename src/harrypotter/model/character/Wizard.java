@@ -3,6 +3,7 @@ package harrypotter.model.character;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import harrypotter.model.magic.Collectible;
 import harrypotter.model.magic.Spell;
 
 public abstract class Wizard {
