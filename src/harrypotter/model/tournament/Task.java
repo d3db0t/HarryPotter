@@ -1,4 +1,7 @@
 package harrypotter.model.tournament;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import harrypotter.model.character.Champion;
 import harrypotter.model.world.Cell;
@@ -9,7 +12,7 @@ public abstract class Task implements Champion{
 	private Cell [][] map ;
     private int allowedMoves ;
     private boolean traitActivated ;
-    private ArrayList <Potions> potions ;
+    private ArrayList <Potion> potions ;
     
     public Task(ArrayList<Champion> champions)
     {
@@ -17,7 +20,20 @@ public abstract class Task implements Champion{
       map = new Cell[10][10];
       allowedMoves = 1 ;
       traitActivated = false ;
-      //CSV FILE TO BE ADDED HERE
+      loadPotions("Potions.csv");
+    }
+    private void loadPotions(String filePath)throws IOException
+    {
+    	String currentLine = "";
+    	FileReader fileReader= new FileReader(filePath);
+    	BufferedReader br = new BufferedReader(fileReader);
+    	while ((currentLine = br.readLine()) != null)
+    	{
+    	   String [] result= currentLine.split(",");
+    	   Potion p = new Potion(result[0],result[1]);
+    	   //Insert in ArrayList
+    	   result.add(p);
+    	}
     }
     public ArrayList <Champion> getChampions()
     {
