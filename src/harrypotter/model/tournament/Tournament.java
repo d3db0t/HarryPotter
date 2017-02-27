@@ -15,6 +15,11 @@ public class Tournament {
 		ArrayList<Champion> champions = new ArrayList<Champion>();
 		
 	}
+	
+	public static int parseInt(String str){
+		return Integer.parseInt(str);
+	}
+	
 
 	public ArrayList<Champion> getChampions() {
 		return champions;
