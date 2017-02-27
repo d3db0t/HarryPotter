@@ -8,4 +8,9 @@ public class Potion extends Collectible{
 		this.amount = amount;
 	}
 
+	public int getAmount() {
+		return amount;
+	}
+	
+
 }
