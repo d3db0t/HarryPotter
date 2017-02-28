@@ -3,7 +3,7 @@ package harrypotter.model.character;
 import harrypotter.model.world.Direction;
 
 public class SlytherinWizard extends Wizard implements Champion{
-	Direction traitDirection;
+	private Direction traitDirection;
 	
 	public SlytherinWizard(String name, Direction traitDirection){
 		super(name);
