@@ -25,6 +25,7 @@ public abstract class Task {
       map = new Cell[10][10];
       allowedMoves = 1 ;
       traitActivated = false ;
+      potions = new ArrayList<Potion>();
       loadPotions("Potions.csv");
     }
     private void loadPotions(String filePath)throws IOException
