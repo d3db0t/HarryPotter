@@ -105,4 +105,19 @@ public abstract class Task implements Champion{
     {
     	return c instanceof EmptyCell;
     }
+    public void addRandomPotions()
+    {
+    	for(int i = 0 ;i < 10;i++)
+    	{
+    		int a = (int) Math.random()*6;
+    		addPotionsToMap(a);
+    	}
+    }
+    private void addPotionsToMap(int a)
+    {
+    	int x = (int) Math.random()*10;
+    	int y = (int) Math.random()*10;
+    	if(isEmptyCell(map[x][y]))
+    		map[x][y] = new CollectibleCell(potions.get(a));
+    }
 }
