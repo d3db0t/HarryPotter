@@ -4,10 +4,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import harrypotter.model.character.Champion;
+import harrypotter.model.magic.Collectible;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.world.Cell;
+import harrypotter.model.world.ChampionCell;
+import harrypotter.model.world.CollectibleCell;
+import harrypotter.model.world.EmptyCell;
 
 public abstract class Task implements Champion{
 	private ArrayList <Champion> champions ;
