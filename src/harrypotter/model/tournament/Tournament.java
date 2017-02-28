@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import harrypotter.model.character.Champion;
 import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.HealingSpell;
 import harrypotter.model.magic.RelocatingSpell;
@@ -17,7 +18,7 @@ public class Tournament {
 	ThirdTask thirdTask;
 	
 	public Tournament() throws Exception{
-		ArrayList<Champion> champions = new ArrayList<Champion>();
+		champions = new ArrayList<Champion>();
 		loadSpells("Spells.csv");
 		
 	}
