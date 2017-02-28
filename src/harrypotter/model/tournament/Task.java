@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import harrypotter.model.character.Champion;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.world.Cell;
@@ -31,7 +33,7 @@ public abstract class Task implements Champion{
     	while ((currentLine = br.readLine()) != null)
     	{
     	   String [] result= currentLine.split(",");
-    	   Potion p = new Potion(result[0],Integer.parseInt(result[1]));
+    	   Potion p = new Potion(result[0],Tournament.parseInt(result[1]));
     	   //Insert in ArrayList
     	   potions.add(p);
     	}
@@ -71,5 +73,13 @@ public abstract class Task implements Champion{
     public ArrayList<Potion> getPotions()
     {
     	return potions;
+    }
+    public void shuffleChampions()
+    {
+    	Collections.shuffle(champions);
+    }
+    public void generateMap()
+    {
+    	
     }
 }
