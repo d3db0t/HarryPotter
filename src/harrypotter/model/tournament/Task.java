@@ -4,12 +4,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import harrypotter.model.character.Champion;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.world.Cell;
 
-public abstract class Task implements Champion{
+public abstract class Task {
 	private ArrayList <Champion> champions ;
 	private Champion currentChamp ;
 	private Cell [][] map ;
