@@ -101,4 +101,8 @@ public abstract class Task implements Champion{
     		}
     	}
     }
+    public boolean isEmptyCell(Cell c)
+    {
+    	return c instanceof EmptyCell;
+    }
 }
