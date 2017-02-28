@@ -80,6 +80,11 @@ public abstract class Task implements Champion{
     }
     public void generateMap()
     {
+    	generateMapWithEmptyCells();
+    	map[0][9] = (ChampionCell) champions.get(0);
+    	map[9][9] = (ChampionCell) champions.get(1);
+    	map[9][0] = (ChampionCell) champions.get(2);
+    	map[0][0] = (ChampionCell) champions.get(3);
     	
     }
 }
