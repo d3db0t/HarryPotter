@@ -33,7 +33,7 @@ public abstract class Task implements Champion{
     	while ((currentLine = br.readLine()) != null)
     	{
     	   String [] result= currentLine.split(",");
-    	   Potion p = new Potion(result[0],Integer.parseInt(result[1]));
+    	   Potion p = new Potion(result[0],Tournament.parseInt(result[1]));
     	   //Insert in ArrayList
     	   potions.add(p);
     	}
