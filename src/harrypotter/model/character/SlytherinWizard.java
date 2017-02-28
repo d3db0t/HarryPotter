@@ -11,5 +11,13 @@ public class SlytherinWizard extends Wizard implements Champion{
 		super.setDefaultIp(550);
 		this.traitDirection = traitDirection;
 	}
+	
+	public Direction getTraitDirection() {
+		return traitDirection;
+	}
+
+	public void setTraitDirection(Direction traitDirection) {
+		this.traitDirection = traitDirection;
+	}
 
 }
