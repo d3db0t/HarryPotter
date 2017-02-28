@@ -1,7 +1,7 @@
 package harrypotter.model.world;
 import harrypotter.model.character.Champion;
 
-public class ChampionCell extends Cell implements Champion{
+public class ChampionCell extends Cell{
     private Champion champ ;
     
     public ChampionCell(Champion champ)
