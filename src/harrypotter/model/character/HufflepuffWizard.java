@@ -7,5 +7,7 @@ public class HufflepuffWizard extends Wizard implements Champion{
 		super.setDefaultHp(1000);
 		super.setDefaultIp(450);
 	}
+	
+	public void useTrait(){};
 
 }

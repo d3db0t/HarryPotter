@@ -7,5 +7,7 @@ public class RavenclawWizard extends Wizard implements Champion{
 		super.setDefaultHp(750);
 		super.setDefaultIp(700);
 	}
+	
+	public void useTrait(){};
 
 }

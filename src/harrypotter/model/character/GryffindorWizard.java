@@ -7,5 +7,7 @@ public class GryffindorWizard extends Wizard implements Champion{
 		super.setDefaultHp(900);
 		super.setDefaultIp(500);
 	}
+	
+	public void useTrait(){};
 
 }

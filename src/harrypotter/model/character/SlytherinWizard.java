@@ -20,4 +20,6 @@ public class SlytherinWizard extends Wizard implements Champion{
 		this.traitDirection = traitDirection;
 	}
 
+	public void useTrait(){};
+
 }
