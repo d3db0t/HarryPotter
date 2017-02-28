@@ -92,4 +92,13 @@ public abstract class Task implements Champion{
     	map[0][0] = (ChampionCell) champions.get(3);
     	
     }
+    private void generateMapWithEmptyCells()
+    {
+    	for(int i = 0;i < 10;i++)
+    	{
+    		for(int j = 0;j < 10;j++){
+    			map[i][j] = new EmptyCell();
+    		}
+    	}
+    }
 }
