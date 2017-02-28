@@ -18,7 +18,7 @@ public class FirstTask extends Task{
 	}
 	
 	@Override
-	public void generateMap()
+	public void generateMap() throws IOException
 	{
 		super.generateMap();
 		addRandomPotions();
