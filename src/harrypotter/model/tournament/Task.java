@@ -86,7 +86,7 @@ public abstract class Task {
     	generateMapWithEmptyCells();
     	addChampionsToMap(champions.size());
     }
-    private void generateMapWithEmptyCells()
+    public void generateMapWithEmptyCells()
     {
     	for(int i = 0;i < 10;i++)
     	{
