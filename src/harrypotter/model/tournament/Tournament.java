@@ -19,6 +19,7 @@ public class Tournament {
 	
 	public Tournament() throws Exception{
 		champions = new ArrayList<Champion>();
+		spells = new ArrayList<Spell>();
 		loadSpells("Spells.csv");
 		
 	}
