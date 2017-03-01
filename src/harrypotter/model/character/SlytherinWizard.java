@@ -5,11 +5,11 @@ import harrypotter.model.world.Direction;
 public class SlytherinWizard extends Wizard implements Champion{
 	private Direction traitDirection;
 	
-	public SlytherinWizard(String name, Direction traitDirection){
+	public SlytherinWizard(String name){
 		super(name);
 		super.setDefaultHp(850);
 		super.setDefaultIp(550);
-		this.traitDirection = traitDirection;
+		
 	}
 	
 	public Direction getTraitDirection() {

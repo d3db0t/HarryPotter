@@ -4,9 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 import harrypotter.model.character.Champion;
-import harrypotter.model.magic.Collectible;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
@@ -27,6 +25,7 @@ public abstract class Task {
       map = new Cell[10][10];
       allowedMoves = 1 ;
       traitActivated = false ;
+      potions = new ArrayList<Potion>();
       loadPotions("Potions.csv");
     }
     private void loadPotions(String filePath)throws IOException
@@ -82,7 +81,7 @@ public abstract class Task {
     {
     	Collections.shuffle(champions);
     }
-    public void generateMap()
+    public void generateMap() throws IOException
     {
     	generateMapWithEmptyCells();
     	map[0][9] = (ChampionCell) champions.get(0);
@@ -118,5 +117,7 @@ public abstract class Task {
     	int y = (int) Math.random()*10;
     	if(isEmptyCell(map[x][y]))
     		map[x][y] = new CollectibleCell(potions.get(a));
+    	else
+    		addPotionsToMap(a);
     }
 }
