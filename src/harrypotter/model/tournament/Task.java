@@ -135,8 +135,8 @@ public abstract class Task {
     }
     private void addPotionsToMap(int a)
     {
-    	int x = (int) Math.random()*10;
-    	int y = (int) Math.random()*10;
+    	int x = (int) (Math.random()*10);
+    	int y = (int) (Math.random()*10);
     	if(isEmptyCell(map[x][y]))
     		map[x][y] = new CollectibleCell(potions.get(a));
     	else
