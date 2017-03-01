@@ -40,6 +40,7 @@ public abstract class Wizard {
 
 	public void setDefaultHp(int defaultHp) {
 		this.defaultHp = defaultHp;
+		this.hp = this.defaultHp;
 	}
 
 	public int getDefaultIp() {
@@ -48,6 +49,7 @@ public abstract class Wizard {
 
 	public void setDefaultIp(int defaultIp) {
 		this.defaultIp = defaultIp;
+		this.ip = this.defaultIp;
 	}
 
 	public int getHp() {
