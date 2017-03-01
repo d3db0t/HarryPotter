@@ -52,7 +52,7 @@ public class ThirdTask extends Task {
     			   super.getMap()[c][i] = new WallCell();
     			   break;
     		   case 6:
-    			   int hp =200 +(int) (Math.random()*300);
+    			   int hp = 200 + (int)(Math.random() * ((300 - 200) + 1));
     			   super.getMap()[c][i] = new ObstacleCell(new PhysicalObstacle(hp));
     			   break;
     		   case 7:
