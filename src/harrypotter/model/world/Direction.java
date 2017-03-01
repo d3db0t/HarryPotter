@@ -1,3 +1,4 @@
+//reconstructing
 package harrypotter.model.world;
 
 public enum Direction {
