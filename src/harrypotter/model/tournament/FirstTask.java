@@ -2,7 +2,6 @@ package harrypotter.model.tournament;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import harrypotter.model.character.Champion;
 import harrypotter.model.world.CollectibleCell;
 import harrypotter.model.world.ObstacleCell;

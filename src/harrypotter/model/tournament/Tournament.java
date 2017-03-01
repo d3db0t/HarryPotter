@@ -11,11 +11,11 @@ import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.magic.Spell;
 
 public class Tournament {
-	ArrayList<Champion> champions;
-	ArrayList<Spell> spells;
-	FirstTask firstTask;
-	SecondTask secondTask;
-	ThirdTask thirdTask;
+	private ArrayList<Champion> champions;
+	private ArrayList<Spell> spells;
+	private FirstTask firstTask;
+	private SecondTask secondTask;
+	private ThirdTask thirdTask;
 	
 	public Tournament() throws Exception{
 		champions = new ArrayList<Champion>();
