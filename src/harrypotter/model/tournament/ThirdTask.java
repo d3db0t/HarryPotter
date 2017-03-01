@@ -23,6 +23,7 @@ public class ThirdTask extends Task {
 	@Override
 	public void generateMap() throws IOException
 	{
+		super.generateMapWithEmptyCells();
 		readMap("task3map.csv");
 		super.addRandomPotions();
 	}
@@ -42,10 +43,20 @@ public class ThirdTask extends Task {
     			   super.getMap()[c][i] = new EmptyCell();
     			   break;
     		   case 1:
+    			   super.getMap()[c][i] = new ChampionCell(super.getChampions()
+    						.get(0));
+    			   break;
     		   case 2:
+    			   super.getMap()[c][i] = new ChampionCell(super.getChampions()
+    						.get(1));
+    			   break;
     		   case 3:
+    			   super.getMap()[c][i] = new ChampionCell(super.getChampions()
+    						.get(2));
+    			   break;
     		   case 4:
-    			   addChampionToMap(c,i,result[i]);
+    			   super.getMap()[c][i] = new ChampionCell(super.getChampions()
+    						.get(super.getChampions().size()-1));
     			   break;
     		   case 5:
     			   super.getMap()[c][i] = new WallCell();
@@ -64,14 +75,6 @@ public class ThirdTask extends Task {
     	   }
     	   c++;
     	}
-	}
-	private void addChampionToMap(int c,int i,String r)
-	{
-		if(super.getChampions().contains(r))
-		{
-			int x = super.getChampions().indexOf(r);
-			super.getMap()[c][i] = new ChampionCell(super.getChampions().get(x));
-		}
 	}
 	
 	
