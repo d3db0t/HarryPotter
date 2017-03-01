@@ -84,11 +84,7 @@ public abstract class Task {
     public void generateMap() throws IOException
     {
     	generateMapWithEmptyCells();
-    	map[0][9] = new ChampionCell(champions.get(0));
-    	map[9][9] = new ChampionCell(champions.get(1));
-    	map[9][0] = new ChampionCell(champions.get(2));
-    	map[0][0] = new ChampionCell(champions.get(3));
-    	
+    	addChampionsToMap(champions.size());
     }
     private void generateMapWithEmptyCells()
     {
@@ -97,6 +93,32 @@ public abstract class Task {
     		for(int j = 0;j < 10;j++){
     			map[i][j] = new EmptyCell();
     		}
+    	}
+    }
+    private void addChampionsToMap(int x)
+    {
+    	switch(x)
+    	{
+    	case 1 :
+        	map[9][0] = new ChampionCell(champions.get(0));
+        	break;
+    	case 2 :
+    		map[9][0] = new ChampionCell(champions.get(0));
+        	map[9][9] = new ChampionCell(champions.get(1));
+        	break;
+    	case 3 :
+    		map[9][0] = new ChampionCell(champions.get(0));
+        	map[9][9] = new ChampionCell(champions.get(1));
+        	map[0][9] = new ChampionCell(champions.get(2));
+        	break;
+    	case 4 :
+    		map[9][0] = new ChampionCell(champions.get(0));
+        	map[9][9] = new ChampionCell(champions.get(1));
+        	map[0][9] = new ChampionCell(champions.get(2));
+        	map[0][0] = new ChampionCell(champions.get(3));
+        	break;
+        default :
+        	break;
     	}
     }
     public boolean isEmptyCell(Cell c)
