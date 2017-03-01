@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import harrypotter.model.character.Champion;
 import harrypotter.model.world.Merperson;
 import harrypotter.model.world.ObstacleCell;
+import harrypotter.model.world.TreasureCell;
 
 
 public class SecondTask extends Task {
@@ -21,22 +22,38 @@ public class SecondTask extends Task {
 		super.generateMap();
 		super.addRandomPotions();
 		addMerpersons();
+		addTreasures();
 	}
-	public void addMerpersons()
+	private void addMerpersons()
 	{
 		for(int i = 0; i < 40 ;i++)
 		{
-		   int x = (int)Math.random()*10;
-		   int y = (int)Math.random()*10;
+		   int x = (int)(Math.random()*10);
+		   int y = (int)(Math.random()*10);
 		   if(!super.isEmptyCell(super.getMap()[x][y]))
 			  i--;
 		   else
 	 	   {   
-			 int hp =200 +(int) (Math.random()*300);
-			 int dmg = 100 + (int) (Math.random()*300);
+			 int hp = 200 + (int)(Math.random() * ((300 - 200) + 1));
+			 int dmg = 100 + (int)(Math.random() * ((300 - 100) + 1));
 			 super.getMap()[x][y] = new ObstacleCell(new Merperson(hp,dmg));
 	       }
 		 }
+	}
+	private void addTreasures()
+	{
+		for(int i = 0; i < super.getChampions().size() ;i++)
+		{
+		   int x = (int)(Math.random()*10);
+		   int y = (int)(Math.random()*10);
+		   if(!super.isEmptyCell(super.getMap()[x][y]))
+			  i--;
+		   else
+	 	   {   
+			 super.getMap()[x][y] = new TreasureCell(super.getChampions().get(i));
+	       }
+		 }
+		
 	}
 
 }
