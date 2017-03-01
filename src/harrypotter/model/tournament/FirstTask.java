@@ -34,8 +34,8 @@ public class FirstTask extends Task{
 	}
 	private void addPotionsToMap(int a)
 	{
-		int x = (int) Math.random()*10;
-    	int y = (int) Math.random()*10;
+		int x = (int) (Math.random()*10);
+    	int y = (int) (Math.random()*10);
     	
     	if(x == 4 && y == 4)
     		addPotionsToMap(a);
@@ -48,15 +48,15 @@ public class FirstTask extends Task{
 	{
 	   for(int i = 0; i < 40 ;i++)
 	   {
-		   int x = (int)Math.random()*10;
-		   int y = (int)Math.random()*10;
+		   int x = (int) (Math.random()*10);
+		   int y = (int) (Math.random()*10);
 		   if(x == 4 && y == 4)
 			   i--;
 		   else if(!super.isEmptyCell(super.getMap()[x][y]))
 			   i--;
 		   else
  		   {   
-			   int range =200 +(int) (Math.random()*300);
+			   int range = 200 + (int)(Math.random() * ((300 - 200) + 1));
 			   super.getMap()[x][y] = new ObstacleCell(new PhysicalObstacle(range));
 		   }
 	   }
