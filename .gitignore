@@ -1,11 +1,5 @@
 *.class
 
-# Eclipse project files
-.classpath
-.project
-.settings
-**/.settings
-
 # Compiled stuff
 build
 out
