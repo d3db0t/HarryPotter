@@ -22,6 +22,8 @@ public abstract class Wizard {
 		this.hp = defaultHp;
 		this.ip = defaultIp;
 		this.traitCooldown = 0;
+		this.spells = new ArrayList<Spell>();
+		this.inventory = new ArrayList<Collectible>();
 	}
 
 	public String getName() {
