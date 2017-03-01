@@ -1,4 +1,3 @@
-//reconstructing
 package harrypotter.model.magic;
 
 public abstract class Spell {

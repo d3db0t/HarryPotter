@@ -1,4 +1,3 @@
-//reconstructing
 package harrypotter.model.character;
 
 import java.awt.Point;

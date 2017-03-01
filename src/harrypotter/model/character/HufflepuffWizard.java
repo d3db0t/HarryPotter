@@ -1,4 +1,3 @@
-//reconstructing
 package harrypotter.model.character;
 
 public class HufflepuffWizard extends Wizard implements Champion{

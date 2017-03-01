@@ -1,4 +1,3 @@
-//reconstructing
 package harrypotter.model.world;
 
 public class Merperson extends Obstacle{

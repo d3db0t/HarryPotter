@@ -1,4 +1,3 @@
-//reconstructing
 package harrypotter.model.magic;
 
 public class HealingSpell extends Spell{
