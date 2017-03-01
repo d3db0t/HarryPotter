@@ -6,7 +6,7 @@ public class SlytherinWizard extends Wizard implements Champion{
 	private Direction traitDirection;
 	
 	public SlytherinWizard(String name){
-		super(name);
+		super(name,850,550);
 		super.setDefaultHp(850);
 		super.setDefaultIp(550);
 		

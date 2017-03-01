@@ -17,10 +17,10 @@ public abstract class Wizard {
 	private Point location;
 	private int traitCooldown;
 	
-	public Wizard(String name){
+	public Wizard(String name , int hp , int ip){
 		this.name = name;
-		this.hp = defaultHp;
-		this.ip = defaultIp;
+		this.hp = hp;
+		this.ip = ip;
 		this.traitCooldown = 0;
 		this.spells = new ArrayList<Spell>();
 		this.inventory = new ArrayList<Collectible>();
@@ -40,7 +40,6 @@ public abstract class Wizard {
 
 	public void setDefaultHp(int defaultHp) {
 		this.defaultHp = defaultHp;
-		this.hp = this.defaultHp;
 	}
 
 	public int getDefaultIp() {
@@ -49,7 +48,6 @@ public abstract class Wizard {
 
 	public void setDefaultIp(int defaultIp) {
 		this.defaultIp = defaultIp;
-		this.ip = this.defaultIp;
 	}
 
 	public int getHp() {
