@@ -84,10 +84,10 @@ public abstract class Task {
     public void generateMap() throws IOException
     {
     	generateMapWithEmptyCells();
-    	map[0][9] = (ChampionCell) champions.get(0);
-    	map[9][9] = (ChampionCell) champions.get(1);
-    	map[9][0] = (ChampionCell) champions.get(2);
-    	map[0][0] = (ChampionCell) champions.get(3);
+    	map[0][9] = new ChampionCell(champions.get(0));
+    	map[9][9] = new ChampionCell(champions.get(1));
+    	map[9][0] = new ChampionCell(champions.get(2));
+    	map[0][0] = new ChampionCell(champions.get(3));
     	
     }
     private void generateMapWithEmptyCells()
