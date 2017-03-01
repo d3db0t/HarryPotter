@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.Wizard;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CupCell;
 import harrypotter.model.world.EmptyCell;
@@ -44,9 +45,7 @@ public class ThirdTask extends Task {
     		   case 2:
     		   case 3:
     		   case 4:
-    			   super.getMap()[c][i] = new ChampionCell(
-    					   super.getChampions().get(
-    							   Tournament.parseInt(result[i])));
+    			   addChampionToMap(c,i,result[i]);
     			   break;
     		   case 5:
     			   super.getMap()[c][i] = new WallCell();
@@ -65,6 +64,14 @@ public class ThirdTask extends Task {
     	   }
     	   c++;
     	}
+	}
+	private void addChampionToMap(int c,int i,String r)
+	{
+		if(super.getChampions().contains(r))
+		{
+			int x = super.getChampions().indexOf(r);
+			super.getMap()[c][i] = new ChampionCell(super.getChampions().get(x));
+		}
 	}
 	
 	
