@@ -2,6 +2,8 @@ package harrypotter.model.tournament;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+
 import harrypotter.model.character.Champion;
 import harrypotter.model.world.CollectibleCell;
 import harrypotter.model.world.ObstacleCell;
@@ -28,14 +30,16 @@ public class FirstTask extends Task{
 	{
 		for(int i = 0 ;i < 10;i++)
     	{
-    		int a = (int) Math.random()*6;
+			Random n = new Random();
+    		int a = n.nextInt(super.getPotions().size());
     		addPotionsToMap(a);
     	}
 	}
 	private void addPotionsToMap(int a)
 	{
-		int x = (int) (Math.random()*10);
-    	int y = (int) (Math.random()*10);
+		Random n = new Random();
+		int x = n.nextInt(10);
+    	int y = n.nextInt(10);
     	
     	if(x == 4 && y == 4)
     		addPotionsToMap(a);
