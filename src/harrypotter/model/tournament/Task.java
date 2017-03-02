@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.Wizard;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
@@ -145,5 +146,10 @@ public abstract class Task {
     		map[x][y] = new CollectibleCell(potions.get(a));
     	else
     		addPotionsToMap(a);
+    }
+    public static boolean isAlive(Champion c){
+    	Wizard x = (Wizard) c;
+    	
+    	return x.getHp() != 0;
     }
 }
