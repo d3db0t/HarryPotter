@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import harrypotter.model.character.Champion;
-import harrypotter.model.character.Wizard;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CupCell;
 import harrypotter.model.world.EmptyCell;
@@ -43,20 +42,40 @@ public class ThirdTask extends Task {
     			   super.getMap()[c][i] = new EmptyCell();
     			   break;
     		   case 1:
-    			   super.getMap()[c][i] = new ChampionCell(super.getChampions()
-    						.get(0));
+    			   if(Task.isAlive(super.getChampions().get(0))){
+    				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
+    						   .get(0));
+    			   }
+    			   else{
+    				   super.getMap()[c][i] = new EmptyCell();
+    			   }
     			   break;
     		   case 2:
-    			   super.getMap()[c][i] = new ChampionCell(super.getChampions()
-    						.get(1));
+    			   if(Task.isAlive(super.getChampions().get(1))){
+    				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
+    						   .get(1));
+    			   }
+    			   else{
+    				   super.getMap()[c][i] = new EmptyCell();
+    			   }
     			   break;
     		   case 3:
-    			   super.getMap()[c][i] = new ChampionCell(super.getChampions()
-    						.get(2));
+    			   if(Task.isAlive(super.getChampions().get(2))){
+    				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
+    						   .get(2));
+    			   }
+    			   else{
+    				   super.getMap()[c][i] = new EmptyCell();
+    			   }
     			   break;
     		   case 4:
-    			   super.getMap()[c][i] = new ChampionCell(super.getChampions()
-    						.get(super.getChampions().size()-1));
+    			   if(Task.isAlive(super.getChampions().get(super.getChampions().size()-1))){
+    				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
+    						   .get(super.getChampions().size()-1));
+    			   }
+    			   else{
+    				   super.getMap()[c][i] = new EmptyCell();
+    			   }
     			   break;
     		   case 5:
     			   super.getMap()[c][i] = new WallCell();
