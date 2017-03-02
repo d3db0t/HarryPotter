@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
+
 import harrypotter.model.character.Champion;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.world.Cell;
@@ -129,14 +131,16 @@ public abstract class Task {
     {
     	for(int i = 0 ;i < 10;i++)
     	{
-    		int a = (int) Math.random()*6;
+    		Random n = new Random(); 
+    		int a = n.nextInt(getPotions().size());
     		addPotionsToMap(a);
     	}
     }
     private void addPotionsToMap(int a)
     {
-    	int x = (int) (Math.random()*10);
-    	int y = (int) (Math.random()*10);
+    	Random n = new Random();
+    	int x = n.nextInt(10);
+    	int y = n.nextInt(10);
     	if(isEmptyCell(map[x][y]))
     		map[x][y] = new CollectibleCell(potions.get(a));
     	else
