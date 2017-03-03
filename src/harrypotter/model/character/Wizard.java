@@ -17,19 +17,20 @@ public abstract class Wizard {
 	private Point location;
 	private int traitCooldown;
 	
-	public Wizard(String name , int hp , int ip){
-		this.name = name;
-		this.hp = hp;
-		this.ip = ip;
-		this.traitCooldown = 0;
-		this.spells = new ArrayList<Spell>();
-		this.inventory = new ArrayList<Collectible>();
-	}
 	public Wizard(String name)
 	{
 		this.name = name;
 		this.hp = this.defaultHp;
 		this.ip = this.defaultIp;
+		this.traitCooldown = 0;
+		this.spells = new ArrayList<Spell>();
+		this.inventory = new ArrayList<Collectible>();
+	}
+	
+	public Wizard(String name , int hp , int ip){
+		this.name = name;
+		this.hp = hp;
+		this.ip = ip;
 		this.traitCooldown = 0;
 		this.spells = new ArrayList<Spell>();
 		this.inventory = new ArrayList<Collectible>();
