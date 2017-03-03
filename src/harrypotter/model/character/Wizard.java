@@ -25,6 +25,15 @@ public abstract class Wizard {
 		this.spells = new ArrayList<Spell>();
 		this.inventory = new ArrayList<Collectible>();
 	}
+	public Wizard(String name)
+	{
+		this.name = name;
+		this.hp = this.defaultHp;
+		this.ip = this.defaultIp;
+		this.traitCooldown = 0;
+		this.spells = new ArrayList<Spell>();
+		this.inventory = new ArrayList<Collectible>();
+	}
 
 	public String getName() {
 		return name;
