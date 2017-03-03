@@ -42,7 +42,7 @@ public class ThirdTask extends Task {
     			   super.getMap()[c][i] = new EmptyCell();
     			   break;
     		   case 1:
-    			   if(Task.isAlive(super.getChampions().get(0))){
+    			   if(super.getChampions().size() >= 1){
     				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
     						   .get(0));
     			   }
@@ -51,7 +51,7 @@ public class ThirdTask extends Task {
     			   }
     			   break;
     		   case 2:
-    			   if(Task.isAlive(super.getChampions().get(1))){
+    			   if(super.getChampions().size() >= 2){
     				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
     						   .get(1));
     			   }
@@ -60,7 +60,7 @@ public class ThirdTask extends Task {
     			   }
     			   break;
     		   case 3:
-    			   if(Task.isAlive(super.getChampions().get(2))){
+    			   if(super.getChampions().size() >= 3){
     				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
     						   .get(2));
     			   }
@@ -69,7 +69,7 @@ public class ThirdTask extends Task {
     			   }
     			   break;
     		   case 4:
-    			   if(Task.isAlive(super.getChampions().get(super.getChampions().size()-1))){
+    			   if(super.getChampions().size() >= 4){
     				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
     						   .get(super.getChampions().size()-1));
     			   }
