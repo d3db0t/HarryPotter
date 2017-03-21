@@ -1,14 +1,26 @@
 package harrypotter.model.tournament;
 
+import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.Wizard;
 import harrypotter.model.world.Merperson;
+import harrypotter.model.world.Obstacle;
 import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.TreasureCell;
 
 
 public class SecondTask extends Task {
+	
+	ArrayList<Champion> winners;
+	
+	public ArrayList<Champion> getWinners() {
+		return winners;
+	}
+	public void setWinners(ArrayList<Champion> winners) {
+		this.winners = winners;
+	}
 	
 	public SecondTask(ArrayList<Champion> champions)throws IOException
 	{
