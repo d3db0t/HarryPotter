@@ -1,5 +1,6 @@
 package harrypotter.model.tournament;
 
+import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,6 +11,8 @@ import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.PhysicalObstacle;
 
 public class FirstTask extends Task{
+	private ArrayList<Point> markedCells;
+	private ArrayList<Champion> winners;
 	
 	public FirstTask(ArrayList<Champion> champions)throws IOException
 	{
@@ -17,7 +20,22 @@ public class FirstTask extends Task{
 		super.shuffleChampions();
 		generateMap();
 	}
-	
+	public ArrayList <Point> getMarkedCells()
+	{
+		return markedCells;
+	}
+	public void setMarkedCells(ArrayList <Point> markedCells)
+	{
+		this.markedCells = markedCells;
+	}
+	public ArrayList <Champion> getWinners()
+	{
+		return winners;
+	}
+	public void setWinners(ArrayList <Champion> winners)
+	{
+		this.winners = winners;
+	}
 	@Override
 	public void generateMap() throws IOException
 	{
