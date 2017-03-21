@@ -68,16 +68,22 @@ public class SecondTask extends Task {
 		
 	}
 	
-	public void encounterMerPerson(){ //for the currentChamp
-		Wizard c = (Wizard) this.getCurrentChamp();
+	public void encounterMerPerson()
+	{ //for the currentChamp
+		Wizard c = (Wizard) super.getCurrentChamp();
 		Point p  = c.getLocation();
 		ArrayList<Point> a = Task.getAdjacentCells(p);
-		for (int i = 0;i < a.size();i++){
+		for (int i = 0;i < a.size()-1;i++)
+		{
 			int x = (int) a.get(i).getX();
 			int y = (int) a.get(i).getY();
-			
-			if (this.getMap()[x][y] instanceof ObstacleCell ){
-				 
+			if (this.getMap()[x][y] instanceof ObstacleCell )
+			{
+			  ObstacleCell m =(ObstacleCell)this.getMap()[x][y];
+			  Merperson n = (Merperson)m.getObstacle();
+			  c.setHp(c.getHp()-n.getDamage());
+			  if(!super.isAlive(this.getCurrentChamp()))
+				  super.removeWizard(super.getCurrentChamp());
 			}
 		}
 	}
