@@ -9,13 +9,14 @@ import java.util.Random;
 
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.Wizard;
+import harrypotter.model.character.WizardListener;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
 import harrypotter.model.world.EmptyCell;
 
-public abstract class Task {
+public abstract class Task implements WizardListener{
 	private ArrayList <Champion> champions ;
 	private Champion currentChamp ;
 	private Cell [][] map ;

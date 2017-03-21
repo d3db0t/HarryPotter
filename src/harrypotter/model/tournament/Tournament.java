@@ -10,7 +10,7 @@ import harrypotter.model.magic.HealingSpell;
 import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.magic.Spell;
 
-public class Tournament {
+public class Tournament implements TaskListener{
 	private ArrayList<Champion> champions;
 	private ArrayList<Spell> spells;
 	private FirstTask firstTask;
