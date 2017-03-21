@@ -108,5 +108,14 @@ public class FirstTask extends Task{
 			return true;
 		return false;
 	}
+	public void fire()
+	{
+	  Wizard c = (Wizard) super.getCurrentChamp();
+	  Point p = c.getLocation();
+	  if(this.markedCells.get(0) == p || this.markedCells.get(1) == p)
+		  c.setHp(c.getHp()-150);
+	  if(!super.isAlive(this.getCurrentChamp()))
+		  super.removeWizard(super.getCurrentChamp());
+	}
 
 }
