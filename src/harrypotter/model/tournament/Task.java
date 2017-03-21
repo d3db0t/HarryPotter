@@ -150,8 +150,7 @@ public abstract class Task {
     }
     public static boolean isAlive(Champion c){
     	Wizard x = (Wizard) c;
-    	
-    	return x.getHp() != 0;
+    	return x.getHp() > 0;
     }
     
     public static ArrayList<Point> getAdjacentCells(Point p){ // Return {UP, Down, Right, Left, CurrentPoint}
