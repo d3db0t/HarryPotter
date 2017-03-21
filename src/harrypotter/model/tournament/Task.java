@@ -165,4 +165,8 @@ public abstract class Task {
     	a.add(p);
     	return a;
     }
+    public void removeWizard(Champion c)
+    {
+       champions.remove(c);
+    }
 }
