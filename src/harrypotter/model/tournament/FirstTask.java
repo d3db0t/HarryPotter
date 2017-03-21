@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.Wizard;
 import harrypotter.model.world.CollectibleCell;
 import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.PhysicalObstacle;
@@ -19,6 +20,8 @@ public class FirstTask extends Task{
 		super(champions);
 		super.shuffleChampions();
 		generateMap();
+		ArrayList<Point> markedCells = new ArrayList<Point>();
+		markCells();
 	}
 	public ArrayList <Point> getMarkedCells()
 	{
@@ -82,6 +85,28 @@ public class FirstTask extends Task{
 			   super.getMap()[x][y] = new ObstacleCell(new PhysicalObstacle(range));
 		   }
 	   }
+	}
+	public void markCells()
+	{
+		Wizard c = (Wizard) this.getCurrentChamp();
+		Point p = c.getLocation();
+		ArrayList<Point> possiblePositions = getAdjacentCells(p);
+		Random x = new Random();
+		int a = x.nextInt(5);
+		int b = x.nextInt(5);
+		while(a == b || isNull(a , possiblePositions) || isNull(b, possiblePositions))
+		{
+		  a = x.nextInt(5);
+		  b = x.nextInt(5);
+		}
+		this.markedCells.add(possiblePositions.get(a));
+	    this.markedCells.add(possiblePositions.get(b));
+	}
+	private boolean isNull(int a , ArrayList<Point> p)
+	{
+		if(p.get(a) == null)
+			return true;
+		return false;
 	}
 
 }
