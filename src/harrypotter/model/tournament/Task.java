@@ -1,4 +1,5 @@
 package harrypotter.model.tournament;
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -151,5 +152,17 @@ public abstract class Task {
     	Wizard x = (Wizard) c;
     	
     	return x.getHp() != 0;
+    }
+    
+    public static ArrayList<Point> getAdjacentCells(Point p){ // Return {UP, Down, Right, Left, CurrentPoint}
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	ArrayList<Point> a = new ArrayList<Point>();
+    	a.add(new Point(x, y-1));
+    	a.add(new Point(x, y+1));
+    	a.add(new Point(x+1, y));
+    	a.add(new Point(x-1, y));
+    	a.add(p);
+    	return a;
     }
 }
