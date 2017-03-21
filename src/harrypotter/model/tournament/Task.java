@@ -154,7 +154,7 @@ public abstract class Task {
     	return x.getHp() != 0;
     }
     
-    public ArrayList<Point> getAdjacentCells(Point p){ // Return {UP, Down, Right, Left, CurrentPoint}
+    public static ArrayList<Point> getAdjacentCells(Point p){ // Return {UP, Down, Right, Left, CurrentPoint}
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	ArrayList<Point> a = new ArrayList<Point>();
