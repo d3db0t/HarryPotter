@@ -16,6 +16,7 @@ public abstract class Wizard {
 	private ArrayList<Collectible> inventory;
 	private Point location;
 	private int traitCooldown;
+	private WizardListener listener;
 	
 	public Wizard(String name)
 	{
@@ -99,6 +100,13 @@ public abstract class Wizard {
 	public ArrayList<Collectible> getInventory() {
 		return inventory;
 	}
-	
+	public WizardListener getListener()
+	{
+		return listener;
+	}
+	public void setListener(WizardListener listener)
+	{
+		this.listener = listener;
+	}
 	
 }

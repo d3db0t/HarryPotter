@@ -8,6 +8,9 @@ public class RavenclawWizard extends Wizard implements Champion{
 		super.setDefaultIp(700);
 	}
 	
-	public void useTrait(){};
+	public void useTrait()
+	{
+	  super.getListener().onRavenclawTrait();
+	}
 
 }

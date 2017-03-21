@@ -8,6 +8,9 @@ public class HufflepuffWizard extends Wizard implements Champion{
 		super.setDefaultIp(450);
 	}
 	
-	public void useTrait(){};
+	public void useTrait()
+	{
+	  super.getListener().onHufflepuffTrait();	
+	}
 
 }

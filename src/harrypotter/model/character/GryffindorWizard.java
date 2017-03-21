@@ -8,6 +8,9 @@ public class GryffindorWizard extends Wizard implements Champion{
 		super.setDefaultIp(500);
 	}
 	
-	public void useTrait(){};
+	public void useTrait()
+	{
+	  super.getListener().onGryffindorTrait();	
+	}
 
 }
