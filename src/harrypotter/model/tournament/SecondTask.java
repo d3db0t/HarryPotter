@@ -67,5 +67,19 @@ public class SecondTask extends Task {
 		 }
 		
 	}
+	
+	public void encounterMerPerson(){ //for the currentChamp
+		Wizard c = (Wizard) this.getCurrentChamp();
+		Point p  = c.getLocation();
+		ArrayList<Point> a = Task.getAdjacentCells(p);
+		for (int i = 0;i < a.size();i++){
+			int x = (int) a.get(i).getX();
+			int y = (int) a.get(i).getY();
+			
+			if (this.getMap()[x][y] instanceof ObstacleCell ){
+				 
+			}
+		}
+	}
 
 }
