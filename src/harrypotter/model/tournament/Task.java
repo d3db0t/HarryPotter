@@ -261,5 +261,6 @@ public abstract class Task implements WizardListener{
     		Wizard w = (Wizard) c.getChamp();
     		w.setHp(w.getHp() - s.getDamageAmount());
     	}
+    	useSpell(s);
     }
 }

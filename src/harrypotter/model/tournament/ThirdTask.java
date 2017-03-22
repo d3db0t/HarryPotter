@@ -111,6 +111,7 @@ public class ThirdTask extends Task {
     			w.setHp(w.getHp() - s.getDamageAmount());
     		}
     	}
+    	super.useSpell(s);
     }
 	
 	
