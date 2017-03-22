@@ -112,6 +112,7 @@ public class ThirdTask extends Task {
     		}
     	}
     	super.useSpell(s);
+    	finalizeAction(); // To be implemented... ;)
     }
 	
 	

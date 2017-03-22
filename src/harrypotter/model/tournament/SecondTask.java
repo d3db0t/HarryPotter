@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.Wizard;
+import harrypotter.model.magic.DamagingSpell;
+import harrypotter.model.world.Cell;
+import harrypotter.model.world.ChampionCell;
+import harrypotter.model.world.Direction;
 import harrypotter.model.world.Merperson;
 import harrypotter.model.world.Obstacle;
 import harrypotter.model.world.ObstacleCell;
@@ -90,5 +94,11 @@ public class SecondTask extends Task {
 			}
 		}
 	}
+	
+	@Override
+	public void castDamagingSpell(DamagingSpell s, Direction d){
+    	super.castDamagingSpell(s, d);
+    	finalizeAction();
+    }
 
 }
