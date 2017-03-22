@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.world.CollectibleCell;
 import harrypotter.model.world.ObstacleCell;
@@ -112,5 +113,23 @@ public class FirstTask extends Task{
 	  if(!super.isAlive(this.getCurrentChamp()))
 		  super.removeWizard(super.getCurrentChamp());
 	}
+	@Override
+	public void finalizeAction(){
+    	Wizard w = (Wizard) this.getCurrentChamp();
+    	Point p  = w.getLocation();
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	if (x == 4 && y == 4){
+    		this.getWinners().add(super.getCurrentChamp());
+    		return;
+    	}
+    	if (w instanceof HufflepuffWizard){
+    		if(!(this.isTraitActivated())){
+    			fire();
+    		}
+    	}
+    	else fire();
+    	endTurn(); // To be implemented... ;)
+    }
 
 }
