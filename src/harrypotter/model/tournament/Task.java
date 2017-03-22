@@ -186,4 +186,6 @@ public abstract class Task implements WizardListener{
 	{
 		return p.get(a) == null;
 	}
+    
+    public abstract void finalizeAction();
 }
