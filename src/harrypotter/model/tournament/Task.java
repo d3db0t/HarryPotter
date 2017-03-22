@@ -10,6 +10,7 @@ import java.util.Random;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.character.WizardListener;
+import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Cell;
@@ -17,6 +18,7 @@ import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
 import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
+import harrypotter.model.world.ObstacleCell;
 
 public abstract class Task implements WizardListener{
 	private ArrayList <Champion> champions ;
@@ -243,5 +245,21 @@ public abstract class Task implements WizardListener{
     	s.setCoolDown(s.getDefaultCooldown());
     	Wizard w = (Wizard) this.getCurrentChamp();
     	w.setIp(w.getIp() - s.getCost());
+    }
+    
+    public void castDamagingSpell(DamagingSpell s, Direction d){
+    	Point p = directionToPoint(d, this.getCurrentChamp());
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	Cell cl = this.getMap()[x][y];
+    	if (cl instanceof ObstacleCell){
+    		ObstacleCell o = (ObstacleCell) cl;
+    		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
+    	}
+    	else if (cl instanceof ChampionCell){
+    		ChampionCell c = (ChampionCell) cl;
+    		Wizard w = (Wizard) c.getChamp();
+    		w.setHp(w.getHp() - s.getDamageAmount());
+    	}
     }
 }
