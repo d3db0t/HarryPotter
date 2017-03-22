@@ -202,6 +202,7 @@ public abstract class Task implements WizardListener{
 	}
     
     public abstract void finalizeAction();
+    
     private void restoreStats()
     {
     	for(int i = 0 ; i < champions.size() ; i++)
