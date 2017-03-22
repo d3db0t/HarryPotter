@@ -11,6 +11,7 @@ import harrypotter.model.character.Champion;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.character.WizardListener;
 import harrypotter.model.magic.Potion;
+import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
@@ -23,6 +24,7 @@ public abstract class Task implements WizardListener{
     private int allowedMoves ;
     private boolean traitActivated ;
     private ArrayList <Potion> potions ;
+    private TaskListener listener;
     
     public Task(ArrayList<Champion> champions)throws IOException
     {
@@ -32,6 +34,7 @@ public abstract class Task implements WizardListener{
       traitActivated = false ;
       potions = new ArrayList<Potion>();
       loadPotions("Potions.csv");
+      restoreStats();
     }
     private void loadPotions(String filePath)throws IOException
     {
@@ -81,6 +84,14 @@ public abstract class Task implements WizardListener{
     public ArrayList<Potion> getPotions()
     {
     	return potions;
+    }
+    public TaskListener getTaskListener()
+    {
+    	return listener;
+    }
+    public void setTaskListener(TaskListener listener)
+    {
+    	this.listener = listener;
     }
     public void shuffleChampions()
     {
@@ -186,4 +197,25 @@ public abstract class Task implements WizardListener{
 	{
 		return p.get(a) == null;
 	}
+    private void restoreStats()
+    {
+    	for(int i = 0 ; i < champions.size() ; i++)
+    	{
+    		Wizard c = (Wizard) champions.get(i);
+    		c.setHp(c.getDefaultHp());
+    		c.setIp(c.getDefaultIp());
+    		c.setTraitCooldown(0);
+    		restoreSpells(c);
+    		this.allowedMoves = 0;
+    		this.traitActivated = false;
+    	}
+    }
+    private void restoreSpells(Wizard c)
+    {
+    	for(int j = 0 ; j < c.getSpells().size() ; j++)
+    	{
+    		Spell a = c.getSpells().get(j);
+    		a.setCoolDown(0);
+    	}
+    }
 }
