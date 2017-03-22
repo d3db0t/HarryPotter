@@ -1,12 +1,18 @@
 package harrypotter.model.tournament;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.HufflepuffWizard;
+import harrypotter.model.character.Wizard;
+import harrypotter.model.magic.DamagingSpell;
+import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CupCell;
+import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
 import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.PhysicalObstacle;
@@ -83,6 +89,29 @@ public class ThirdTask extends Task {
     	   c++;
     	}
 	}
+	
+	@Override
+	public void castDamagingSpell(DamagingSpell s, Direction d){
+    	Point p = directionToPoint(d, this.getCurrentChamp());
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	Cell cl = this.getMap()[x][y];
+    	if (cl instanceof ObstacleCell){
+    		ObstacleCell o = (ObstacleCell) cl;
+    		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
+    	}
+    	else if (cl instanceof ChampionCell){
+    		ChampionCell c = (ChampionCell) cl;
+    		Wizard w = (Wizard) c.getChamp();
+    		if (w instanceof HufflepuffWizard){
+    			int halfdamage = s.getDamageAmount() / 2;
+    			w.setHp(w.getHp() - halfdamage);
+    		}
+    		else{
+    			w.setHp(w.getHp() - s.getDamageAmount());
+    		}
+    	}
+    }
 	
 	
 
