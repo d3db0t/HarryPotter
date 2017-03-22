@@ -75,6 +75,9 @@ public class SecondTask extends Task {
 		ArrayList<Point> a = Task.getAdjacentCells(p);
 		for (int i = 0;i < a.size()-1;i++)
 		{
+			if (super.isNull(i, a)){
+				continue;
+			}
 			int x = (int) a.get(i).getX();
 			int y = (int) a.get(i).getY();
 			if (this.getMap()[x][y] instanceof ObstacleCell )
