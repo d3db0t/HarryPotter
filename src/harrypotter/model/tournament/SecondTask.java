@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.world.Merperson;
 import harrypotter.model.world.Obstacle;
@@ -89,6 +90,26 @@ public class SecondTask extends Task {
 				  super.removeWizard(super.getCurrentChamp());
 			}
 		}
+	}
+	@Override
+	public void finalizeAction()
+	{
+		Wizard c = (Wizard) super.getCurrentChamp();
+		Point p = c.getLocation();
+		int x = (int) p.getX();
+    	int y = (int) p.getY();
+		if(this.getMap()[x][y] instanceof TreasureCell)
+		{
+			this.getWinners().add(super.getCurrentChamp());
+    		return;
+		}
+		if (c instanceof HufflepuffWizard)
+		{
+    		if(!(this.isTraitActivated()))
+    			encounterMerPerson();
+    	}
+    	else encounterMerPerson();
+    	endTurn();
 	}
 
 }
