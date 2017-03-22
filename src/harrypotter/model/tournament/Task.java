@@ -165,6 +165,13 @@ public abstract class Task implements WizardListener{
     	a.add(p);
     	return a;
     }
+    
+    public static boolean insideBoundary(Point p){ // Checks if point is inside the map boundaries
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	return !(y < 0 || y > 9 || x < 0 || x > 9);
+    }
+    
     public void removeWizard(Champion c)
     {
        champions.remove(c);
