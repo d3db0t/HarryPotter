@@ -239,4 +239,9 @@ public abstract class Task implements WizardListener{
     	return  directionToPoint(d, this.getCurrentChamp());
     }
     
+    public void useSpell(Spell s){
+    	s.setCoolDown(s.getDefaultCooldown());
+    	Wizard w = (Wizard) this.getCurrentChamp();
+    	w.setIp(w.getIp() - s.getCost());
+    }
 }
