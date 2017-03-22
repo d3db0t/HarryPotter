@@ -15,6 +15,7 @@ import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
+import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
 
 public abstract class Task implements WizardListener{
@@ -220,4 +221,22 @@ public abstract class Task implements WizardListener{
     		a.setCoolDown(0);
     	}
     }
+    
+    public static Point directionToPoint(Direction d, Champion c){
+    	Wizard w           = (Wizard) c;
+    	ArrayList<Point> a = getAdjacentCells(w.getLocation());
+    	Point p            = w.getLocation();
+    	switch(d){
+    	case FORWARD : p =  a.get(0); break;
+    	case BACKWARD: p =  a.get(1); break;
+    	case RIGHT   : p =  a.get(2); break;
+    	case LEFT    : p =  a.get(3); break;
+    	}
+    	return p;
+    }
+    
+    public Point getTargetPoint(Direction d){
+    	return  directionToPoint(d, this.getCurrentChamp());
+    }
+    
 }
