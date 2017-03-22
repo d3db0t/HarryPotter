@@ -181,4 +181,9 @@ public abstract class Task implements WizardListener{
     {
        champions.remove(c);
     }
+    
+    public static boolean isNull(int a , ArrayList<Point> p)
+	{
+		return p.get(a) == null;
+	}
 }

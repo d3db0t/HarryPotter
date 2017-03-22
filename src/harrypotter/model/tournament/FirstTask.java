@@ -94,7 +94,7 @@ public class FirstTask extends Task{
 		Random x = new Random();
 		int a = x.nextInt(5);
 		int b = x.nextInt(5);
-		while(a == b || isNull(a , possiblePositions) || isNull(b, possiblePositions))
+		while(a == b || super.isNull(a , possiblePositions) || super.isNull(b, possiblePositions))
 		{
 		  a = x.nextInt(5);
 		  b = x.nextInt(5);
@@ -102,12 +102,7 @@ public class FirstTask extends Task{
 		this.markedCells.add(possiblePositions.get(a));
 	    this.markedCells.add(possiblePositions.get(b));
 	}
-	private boolean isNull(int a , ArrayList<Point> p)
-	{
-		if(p.get(a) == null)
-			return true;
-		return false;
-	}
+	
 	public void fire()
 	{
 	  Wizard c = (Wizard) super.getCurrentChamp();
