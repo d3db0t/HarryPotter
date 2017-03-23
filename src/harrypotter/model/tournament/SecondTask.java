@@ -117,7 +117,8 @@ public class SecondTask extends Task {
     			super.setTraitActivated(false);
     	}
     	else encounterMerPerson();
-    	endTurn();
+    	if(super.getAllowedMoves() == 0)
+    	   endTurn(); // To be implemented... ;
 	}
 	@Override
 	public void moveForward()

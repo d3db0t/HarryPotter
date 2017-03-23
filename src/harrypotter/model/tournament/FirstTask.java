@@ -141,7 +141,9 @@ public class FirstTask extends Task{
     			super.setTraitActivated(false);
     	}
     	else fire();
-    	endTurn(); // To be implemented... ;)
+    	if(super.getAllowedMoves() == 0)
+    	   endTurn(); // To be implemented... ;
+    		
     }
 	
 	@Override
