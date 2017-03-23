@@ -113,6 +113,8 @@ public class SecondTask extends Task {
 		{
     		if(!(this.isTraitActivated()))
     			encounterMerPerson();
+    		else
+    			super.setTraitActivated(false);
     	}
     	else encounterMerPerson();
     	endTurn();

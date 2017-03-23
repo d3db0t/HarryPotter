@@ -131,10 +131,14 @@ public class FirstTask extends Task{
     		return;
     	}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
-    	if (w instanceof HufflepuffWizard){
-    		if(!(this.isTraitActivated())){
+    	if (w instanceof HufflepuffWizard)
+    	{
+    		if(!(this.isTraitActivated()))
+    		{
     			fire();
     		}
+    		else 
+    			super.setTraitActivated(false);
     	}
     	else fire();
     	endTurn(); // To be implemented... ;)
