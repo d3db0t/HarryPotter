@@ -230,37 +230,29 @@ public abstract class Task implements WizardListener{
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	if(c.getTraitCooldown() == 0 && this.allowedMoves > 0)
+    	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(0));
-    	else
-    		c.setTraitCooldown(c.getTraitCooldown()-1);
     }
     public void moveBackward()
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	if(c.getTraitCooldown() == 0 && this.allowedMoves > 0)
+    	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(1));
-    	else
-    		c.setTraitCooldown(c.getTraitCooldown()-1);
     }
     public void moveRight()
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	if(c.getTraitCooldown() == 0 && this.allowedMoves > 0)
+    	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(2));
-    	else
-    		c.setTraitCooldown(c.getTraitCooldown()-1);
     }
     public void moveLeft()
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	if(c.getTraitCooldown() == 0 && this.allowedMoves > 0)
+    	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(3));
-    	else
-    		c.setTraitCooldown(c.getTraitCooldown()-1);
     }
     private void makeMove(Point a)
     {
