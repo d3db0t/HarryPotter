@@ -118,15 +118,19 @@ public class FirstTask extends Task{
 		  super.removeWizard(super.getCurrentChamp());
 	}
 	@Override
-	public void finalizeAction(){
+	public void finalizeAction()
+	{
     	Wizard w = (Wizard) this.getCurrentChamp();
     	Point p  = w.getLocation();
     	int x = (int) p.getX();
     	int y = (int) p.getY();
-    	if (x == 4 && y == 4){
+    	if (x == 4 && y == 4)
+    	{
     		this.getWinners().add(super.getCurrentChamp());
+    		super.removeWizard(super.getCurrentChamp());
     		return;
     	}
+	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
     	if (w instanceof HufflepuffWizard){
     		if(!(this.isTraitActivated())){
     			fire();
@@ -137,7 +141,32 @@ public class FirstTask extends Task{
     }
 	
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d){
+	public void moveForward()
+	{
+		super.moveForward();
+		finalizeAction();
+	}
+	@Override
+	public void moveBackward()
+	{
+		super.moveBackward();
+		finalizeAction();
+	}
+	@Override
+	public void moveRight()
+	{
+		super.moveRight();
+		finalizeAction();
+	}
+	@Override
+	public void moveLeft()
+	{
+		super.moveLeft();
+		finalizeAction();
+	}
+	@Override
+	public void castDamagingSpell(DamagingSpell s, Direction d)
+	{
     	super.castDamagingSpell(s, d);
     	finalizeAction();
     }

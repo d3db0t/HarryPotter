@@ -91,6 +91,30 @@ public class ThirdTask extends Task {
 	}
 	
 	@Override
+	public void moveForward()
+	{
+		super.moveForward();
+		finalizeAction();
+	}
+	@Override
+	public void moveBackward()
+	{
+		super.moveBackward();
+		finalizeAction();
+	}
+	@Override
+	public void moveRight()
+	{
+		super.moveRight();
+		finalizeAction();
+	}
+	@Override
+	public void moveLeft()
+	{
+		super.moveLeft();
+		finalizeAction();
+	}
+	@Override
 	public void castDamagingSpell(DamagingSpell s, Direction d){
     	Point p = directionToPoint(d, this.getCurrentChamp());
     	int x = (int) p.getX();

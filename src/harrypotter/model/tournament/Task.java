@@ -16,9 +16,11 @@ import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
+import harrypotter.model.world.CupCell;
 import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
 import harrypotter.model.world.ObstacleCell;
+import harrypotter.model.world.TreasureCell;
 
 public abstract class Task implements WizardListener{
 	private ArrayList <Champion> champions ;
@@ -224,7 +226,64 @@ public abstract class Task implements WizardListener{
     		a.setCoolDown(0);
     	}
     }
-    
+    public void moveForward()
+    {
+    	Wizard c = (Wizard) this.currentChamp;
+    	Point p = c.getLocation();
+    	makeMove(getAdjacentCells(p).get(0));
+    }
+    public void moveBackward()
+    {
+    	Wizard c = (Wizard) this.currentChamp;
+    	Point p = c.getLocation();
+    	makeMove(getAdjacentCells(p).get(1));
+    }
+    public void moveRight()
+    {
+    	Wizard c = (Wizard) this.currentChamp;
+    	Point p = c.getLocation();
+    	makeMove(getAdjacentCells(p).get(2));
+    }
+    public void moveLeft()
+    {
+    	Wizard c = (Wizard) this.currentChamp;
+    	Point p = c.getLocation();
+    	makeMove(getAdjacentCells(p).get(3));
+    }
+    private void makeMove(Point a)
+    {
+    	if(a == null)
+    		return;
+    	Wizard c = (Wizard) this.currentChamp;
+    	Point b = c.getLocation();
+    	int e = (int) b.getX();
+    	int f = (int) b.getY();
+    	int x = (int) a.getX();
+    	int y = (int) a.getY();
+    	Cell new1 = this.map[x][y];
+		Cell old = this.map[e][f];
+    	if(new1 instanceof EmptyCell)
+    	{
+    		old = new EmptyCell();
+    		c.setLocation(a);
+    	}
+    	else if(new1 instanceof CollectibleCell)
+    	{
+    		c.getInventory().add(((CollectibleCell) new1).getCollectible());
+    		old = new EmptyCell();
+    		c.setLocation(a);
+    	}
+    	else if(new1 instanceof TreasureCell)
+    	{
+    		old = new EmptyCell();
+    		c.setLocation(a);
+    	}
+    	else if(new1 instanceof CupCell)
+    	{
+    		old = new EmptyCell();
+    		c.setLocation(a);
+    	}
+    }
     public static Point directionToPoint(Direction d, Champion c){
     	Wizard w           = (Wizard) c;
     	ArrayList<Point> a = getAdjacentCells(w.getLocation());

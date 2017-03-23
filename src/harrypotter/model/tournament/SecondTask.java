@@ -105,8 +105,10 @@ public class SecondTask extends Task {
 		if(this.getMap()[x][y] instanceof TreasureCell)
 		{
 			this.getWinners().add(super.getCurrentChamp());
+			super.removeWizard(super.getCurrentChamp());
     		return;
 		}
+	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
 		if (c instanceof HufflepuffWizard)
 		{
     		if(!(this.isTraitActivated()))
@@ -114,6 +116,30 @@ public class SecondTask extends Task {
     	}
     	else encounterMerPerson();
     	endTurn();
+	}
+	@Override
+	public void moveForward()
+	{
+		super.moveForward();
+		finalizeAction();
+	}
+	@Override
+	public void moveBackward()
+	{
+		super.moveBackward();
+		finalizeAction();
+	}
+	@Override
+	public void moveRight()
+	{
+		super.moveRight();
+		finalizeAction();
+	}
+	@Override
+	public void moveLeft()
+	{
+		super.moveLeft();
+		finalizeAction();
 	}
 	
 	@Override
