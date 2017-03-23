@@ -8,7 +8,11 @@ import java.util.Random;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
+import harrypotter.model.magic.DamagingSpell;
+import harrypotter.model.world.Cell;
+import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
+import harrypotter.model.world.Direction;
 import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.PhysicalObstacle;
 
@@ -130,6 +134,12 @@ public class FirstTask extends Task{
     	}
     	else fire();
     	endTurn(); // To be implemented... ;)
+    }
+	
+	@Override
+	public void castDamagingSpell(DamagingSpell s, Direction d){
+    	super.castDamagingSpell(s, d);
+    	finalizeAction();
     }
 
 }

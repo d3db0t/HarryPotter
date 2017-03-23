@@ -10,12 +10,15 @@ import java.util.Random;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.character.WizardListener;
+import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
+import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
+import harrypotter.model.world.ObstacleCell;
 
 public abstract class Task implements WizardListener{
 	private ArrayList <Champion> champions ;
@@ -199,6 +202,7 @@ public abstract class Task implements WizardListener{
 	}
     
     public abstract void finalizeAction();
+    
     private void restoreStats()
     {
     	for(int i = 0 ; i < champions.size() ; i++)
@@ -219,5 +223,45 @@ public abstract class Task implements WizardListener{
     		Spell a = c.getSpells().get(j);
     		a.setCoolDown(0);
     	}
+    }
+    
+    public static Point directionToPoint(Direction d, Champion c){
+    	Wizard w           = (Wizard) c;
+    	ArrayList<Point> a = getAdjacentCells(w.getLocation());
+    	Point p            = w.getLocation();
+    	switch(d){
+    	case FORWARD : p =  a.get(0); break;
+    	case BACKWARD: p =  a.get(1); break;
+    	case RIGHT   : p =  a.get(2); break;
+    	case LEFT    : p =  a.get(3); break;
+    	}
+    	return p;
+    }
+    
+    public Point getTargetPoint(Direction d){
+    	return  directionToPoint(d, this.getCurrentChamp());
+    }
+    
+    public void useSpell(Spell s){
+    	s.setCoolDown(s.getDefaultCooldown());
+    	Wizard w = (Wizard) this.getCurrentChamp();
+    	w.setIp(w.getIp() - s.getCost());
+    }
+    
+    public void castDamagingSpell(DamagingSpell s, Direction d){
+    	Point p = directionToPoint(d, this.getCurrentChamp());
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	Cell cl = this.getMap()[x][y];
+    	if (cl instanceof ObstacleCell){
+    		ObstacleCell o = (ObstacleCell) cl;
+    		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
+    	}
+    	else if (cl instanceof ChampionCell){
+    		ChampionCell c = (ChampionCell) cl;
+    		Wizard w = (Wizard) c.getChamp();
+    		w.setHp(w.getHp() - s.getDamageAmount());
+    	}
+    	useSpell(s);
     }
 }
