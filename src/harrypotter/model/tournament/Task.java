@@ -305,18 +305,22 @@ public abstract class Task implements WizardListener{
     	return p;
     }
     
-    public Point getTargetPoint(Direction d){
+    public Point getTargetPoint(Direction d)
+    {
     	return  directionToPoint(d, this.getCurrentChamp());
     }
     
-    public void useSpell(Spell s){
+    public void useSpell(Spell s)
+    {
     	s.setCoolDown(s.getDefaultCooldown());
     	Wizard w = (Wizard) this.getCurrentChamp();
     	w.setIp(w.getIp() - s.getCost());
+    	this.allowedMoves = this.allowedMoves - 1;
     }
     
-    public void castDamagingSpell(DamagingSpell s, Direction d){
-    	Point p = directionToPoint(d, this.getCurrentChamp());
+    public void castDamagingSpell(DamagingSpell s, Direction d)
+    {
+    	Point p = getTargetPoint(d);
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	Cell cl = this.getMap()[x][y];
