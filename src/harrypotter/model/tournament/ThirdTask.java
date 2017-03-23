@@ -139,6 +139,8 @@ public class ThirdTask extends Task {
     	if (cl instanceof ObstacleCell){
     		ObstacleCell o = (ObstacleCell) cl;
     		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
+    		if(o.getObstacle().getHp() <= 0)
+    			this.getMap()[x][y] = new EmptyCell();
     	}
     	else if (cl instanceof ChampionCell){
     		ChampionCell c = (ChampionCell) cl;
@@ -149,6 +151,11 @@ public class ThirdTask extends Task {
     		}
     		else{
     			w.setHp(w.getHp() - s.getDamageAmount());
+    		}
+    		if(!isAlive(c.getChamp()))
+    		{
+    			this.getMap()[x][y] = new EmptyCell();
+    			removeWizard(c.getChamp());
     		}
     	}
     	super.useSpell(s);

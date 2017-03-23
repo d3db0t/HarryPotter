@@ -328,11 +328,18 @@ public abstract class Task implements WizardListener{
     	if (cl instanceof ObstacleCell){
     		ObstacleCell o = (ObstacleCell) cl;
     		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
+    		if(o.getObstacle().getHp() <= 0)
+    			this.map[x][y] = new EmptyCell();
     	}
     	else if (cl instanceof ChampionCell){
     		ChampionCell c = (ChampionCell) cl;
     		Wizard w = (Wizard) c.getChamp();
     		w.setHp(w.getHp() - s.getDamageAmount());
+    		if(!isAlive(c.getChamp()))
+    		{
+    			this.map[x][y] = new EmptyCell();
+    			removeWizard(c.getChamp());
+    		}
     	}
     	useSpell(s);
     }
