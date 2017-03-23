@@ -16,6 +16,7 @@ import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
 import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.PhysicalObstacle;
+import harrypotter.model.world.TreasureCell;
 import harrypotter.model.world.WallCell;
 
 public class ThirdTask extends Task {
@@ -89,7 +90,21 @@ public class ThirdTask extends Task {
     	   c++;
     	}
 	}
-	
+	@Override
+	public void finalizeAction()
+	{
+		Wizard c = (Wizard) super.getCurrentChamp();
+		Point p = c.getLocation();
+		int x = (int) p.getX();
+    	int y = (int) p.getY();
+		if(this.getMap()[x][y] instanceof CupCell)
+		{
+    		super.getTaskListener().onFinishingThirdTask(this.getCurrentChamp());
+    		return;
+		}
+	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
+    	endTurn();
+	}
 	@Override
 	public void moveForward()
 	{
