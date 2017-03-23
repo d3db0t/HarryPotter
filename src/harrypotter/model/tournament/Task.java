@@ -12,6 +12,7 @@ import harrypotter.model.character.Wizard;
 import harrypotter.model.character.WizardListener;
 import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.Potion;
+import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
@@ -334,5 +335,39 @@ public abstract class Task implements WizardListener{
     		w.setHp(w.getHp() - s.getDamageAmount());
     	}
     	useSpell(s);
+    }
+    
+    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r)
+    {
+    	Point current = getTargetPoint(d);
+    	Point next = getExactPosition(getTargetPoint(t),t,r);
+    	int x = (int) next.getX();
+    	int y = (int) next.getY();
+    	int a = (int) current.getX();
+    	int b = (int) current.getY();
+    	if(insideBoundary(next))
+    	{
+    		Cell n = this.map[x][y];
+    		Cell c = this.map[a][b];
+    		if(n instanceof EmptyCell && !(c instanceof TreasureCell) && !(c instanceof CupCell))
+    		{
+    			this.map[x][y] = c;
+    			this.map[a][b] = n;
+    		}
+    	}
+    	useSpell(s);
+    }
+    private Point getExactPosition(Point p , Direction t ,int range)
+    {   
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	switch(t)
+    	{
+    	 case FORWARD : x = x - range; break;
+    	 case BACKWARD: x = x + range; break;
+    	 case RIGHT   : y = y + range; break;
+    	 case LEFT    : y = y - range; break;
+    	}
+    	return new Point(x,y);
     }
 }
