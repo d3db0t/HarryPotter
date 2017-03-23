@@ -313,7 +313,7 @@ public abstract class Task implements WizardListener{
     
     public void useSpell(Spell s)
     {
-    	s.setCoolDown(s.getDefaultCooldown());
+    	s.setCoolDown(s.getDefaultCooldown()+1);
     	Wizard w = (Wizard) this.getCurrentChamp();
     	w.setIp(w.getIp() - s.getCost());
     	this.allowedMoves = this.allowedMoves - 1;
@@ -376,5 +376,40 @@ public abstract class Task implements WizardListener{
     	 case LEFT    : y = y - range; break;
     	}
     	return new Point(x,y);
+    }
+    //Add here HealingSpell
+    
+    public void endTurn()
+    {
+    	Wizard c = (Wizard) this.currentChamp;
+    	decrementTraitCooldown(c);
+    	decrementSpellsCooldown(c);
+    	setNextChamp();
+    	this.allowedMoves = 1;
+    	this.traitActivated = false;
+    }
+    private static void decrementTraitCooldown(Wizard c)
+    {
+    	if(c.getTraitCooldown() > 0)
+    		c.setTraitCooldown(c.getTraitCooldown()-1);
+    }
+    private static void decrementSpellsCooldown(Wizard c)
+    {
+    	ArrayList <Spell> spells = c.getSpells();
+    	for(int i = 0 ; i < spells.size() ; i++)
+    	{
+    		if(spells.get(i).getCoolDown() > 0)
+    			spells.get(i).setCoolDown(spells.get(i).getCoolDown()-1);
+    	}
+    }
+    private void setNextChamp()
+    {
+    	int i = champions.indexOf(this.currentChamp)+1;
+        if(i == champions.size())
+    	{
+    		this.currentChamp = champions.get(0);
+        }
+    	else
+    		this.currentChamp = champions.get(i);
     }
 }

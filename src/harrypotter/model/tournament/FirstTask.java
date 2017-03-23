@@ -127,8 +127,9 @@ public class FirstTask extends Task{
     	int y = (int) p.getY();
     	if (x == 4 && y == 4)
     	{
-    		this.getWinners().add(super.getCurrentChamp());
+    		this.winners.add(super.getCurrentChamp());
     		super.removeWizard(super.getCurrentChamp());
+    		endTurn();
     		return;
     	}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
@@ -182,5 +183,13 @@ public class FirstTask extends Task{
     {
     	super.castRelocatingSpell(s, d, t, r);
     	finalizeAction();
+    }
+    @Override
+    public void endTurn()
+    {
+    	if(super.getChampions().size() != 0)
+    		super.endTurn();
+    	else
+    		super.getTaskListener().onFinishingFirstTask(this.winners);
     }
 }

@@ -107,6 +107,7 @@ public class SecondTask extends Task {
 		{
 			this.getWinners().add(super.getCurrentChamp());
 			super.removeWizard(super.getCurrentChamp());
+			endTurn();
     		return;
 		}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
@@ -156,6 +157,14 @@ public class SecondTask extends Task {
      {
 	    super.castRelocatingSpell(s, d, t, r);
 	    finalizeAction();
+	 }
+	 @Override
+	 public void endTurn()
+	 {
+	    if(super.getChampions().size() != 0)
+	      super.endTurn();
+	    else
+	      super.getTaskListener().onFinishingSecondTask(this.winners);
 	 }
 
 }
