@@ -230,25 +230,37 @@ public abstract class Task implements WizardListener{
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	makeMove(getAdjacentCells(p).get(0));
+    	if(c.getTraitCooldown() == 0 && this.allowedMoves > 0)
+    		makeMove(getAdjacentCells(p).get(0));
+    	else
+    		c.setTraitCooldown(c.getTraitCooldown()-1);
     }
     public void moveBackward()
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	makeMove(getAdjacentCells(p).get(1));
+    	if(c.getTraitCooldown() == 0 && this.allowedMoves > 0)
+    		makeMove(getAdjacentCells(p).get(1));
+    	else
+    		c.setTraitCooldown(c.getTraitCooldown()-1);
     }
     public void moveRight()
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	makeMove(getAdjacentCells(p).get(2));
+    	if(c.getTraitCooldown() == 0 && this.allowedMoves > 0)
+    		makeMove(getAdjacentCells(p).get(2));
+    	else
+    		c.setTraitCooldown(c.getTraitCooldown()-1);
     }
     public void moveLeft()
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	makeMove(getAdjacentCells(p).get(3));
+    	if(c.getTraitCooldown() == 0 && this.allowedMoves > 0)
+    		makeMove(getAdjacentCells(p).get(3));
+    	else
+    		c.setTraitCooldown(c.getTraitCooldown()-1);
     }
     private void makeMove(Point a)
     {
@@ -266,22 +278,26 @@ public abstract class Task implements WizardListener{
     	{
     		old = new EmptyCell();
     		c.setLocation(a);
+    		this.allowedMoves = this.allowedMoves - 1;
     	}
     	else if(new1 instanceof CollectibleCell)
     	{
     		c.getInventory().add(((CollectibleCell) new1).getCollectible());
     		old = new EmptyCell();
     		c.setLocation(a);
+    		this.allowedMoves = this.allowedMoves - 1;
     	}
     	else if(new1 instanceof TreasureCell)
     	{
     		old = new EmptyCell();
     		c.setLocation(a);
+    		this.allowedMoves = this.allowedMoves - 1;
     	}
     	else if(new1 instanceof CupCell)
     	{
     		old = new EmptyCell();
     		c.setLocation(a);
+    		this.allowedMoves = this.allowedMoves - 1;
     	}
     }
     public static Point directionToPoint(Direction d, Champion c){
