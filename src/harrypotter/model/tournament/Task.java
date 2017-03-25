@@ -413,4 +413,11 @@ public abstract class Task implements WizardListener{
     	else
     		this.currentChamp = champions.get(i);
     }
+    
+    public void usePotion(Potion p)
+    {
+    	Wizard c = (Wizard) this.currentChamp;
+    	int ip = p.getAmount();
+    	c.setIp(c.getIp()+ip);
+    }
 }

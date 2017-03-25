@@ -66,7 +66,12 @@ public abstract class Wizard {
 	}
 
 	public void setHp(int hp) {
-		this.hp = hp;
+		if(hp > this.defaultHp)
+			this.hp = this.defaultHp;
+		else if(hp < 0)
+			this.hp = 0;
+		else
+			this.hp = hp;
 	}
 
 	public int getIp() {
@@ -74,7 +79,12 @@ public abstract class Wizard {
 	}
 
 	public void setIp(int ip) {
-		this.ip = ip;
+		if(ip > this.defaultIp)
+			this.ip = this.defaultIp;
+		else if(ip < 0)
+			this.ip = 0;
+		else
+			this.ip = ip;
 	}
 
 	public Point getLocation() {
