@@ -420,4 +420,12 @@ public abstract class Task implements WizardListener{
     	int ip = p.getAmount();
     	c.setIp(c.getIp()+ip);
     }
+    
+    public void onGryffindorTrait()
+    {
+    	Wizard c = (Wizard) this.currentChamp;
+    	this.allowedMoves = 2;
+    	this.traitActivated = true;
+    	c.setTraitCooldown(5);
+    }
 }
