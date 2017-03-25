@@ -330,6 +330,7 @@ public abstract class Task implements WizardListener{
     		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
     		if(o.getObstacle().getHp() <= 0)
     			this.map[x][y] = new EmptyCell();
+        	useSpell(s);
     	}
     	else if (cl instanceof ChampionCell){
     		ChampionCell c = (ChampionCell) cl;
@@ -340,8 +341,8 @@ public abstract class Task implements WizardListener{
     			this.map[x][y] = new EmptyCell();
     			removeWizard(c.getChamp());
     		}
+        	useSpell(s);
     	}
-    	useSpell(s);
     }
     
     public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r)
@@ -361,8 +362,8 @@ public abstract class Task implements WizardListener{
     			this.map[x][y] = c;
     			this.map[a][b] = n;
     		}
+        	useSpell(s);
     	}
-    	useSpell(s);
     }
     private Point getExactPosition(Point p , Direction t ,int range)
     {   
