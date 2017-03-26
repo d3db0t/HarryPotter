@@ -35,6 +35,7 @@ public class SecondTask extends Task {
 	{
 		super(champions);
 		super.shuffleChampions();
+		this.treasuresLocation = new ArrayList<Point>();
 		generateMap();
 	}
 	@Override
@@ -208,9 +209,7 @@ public class SecondTask extends Task {
     }
 	
 	public void addChampsTreasureLocation(int x, int y){
-		Point p = new Point();
-		p.x     = x;
-		p.y     = y;
+		Point p = new Point(x,y);
 		this.treasuresLocation.add(p);
 	}
 	
