@@ -28,7 +28,7 @@ public class FirstTask extends Task{
 		super(champions);
 		super.shuffleChampions();
 		generateMap();
-		ArrayList<Point> markedCells = new ArrayList<Point>();
+		this.markedCells = new ArrayList<Point>();
 		markCells();
 	}
 	public ArrayList <Point> getMarkedCells()
