@@ -72,6 +72,7 @@ public class SecondTask extends Task {
 		   else
 	 	   {   
 			 super.getMap()[x][y] = new TreasureCell(super.getChampions().get(i));
+			 addChampsTreasureLocation(x,y);
 	       }
 		 }
 		
@@ -205,6 +206,14 @@ public class SecondTask extends Task {
     		finalizeAction();
     	}
     }
+	
+	public void addChampsTreasureLocation(int x, int y){
+		Point p = new Point();
+		p.x     = x;
+		p.y     = y;
+		this.treasuresLocation.add(p);
+	}
+	
 	@Override
 	public void onHufflepuffTrait()
 	{
