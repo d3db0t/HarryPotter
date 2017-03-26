@@ -235,5 +235,29 @@ public class SecondTask extends Task {
 	   super.onHufflepuffTrait();
 	   c.setTraitCooldown(7);
 	}
+	
+	public Object onRavenclawTrait(){
+		ArrayList<Direction> hint = new ArrayList<Direction>();
+		Wizard w                  = (Wizard) this.getCurrentChamp();
+		Point treasurelocation    = this.getChampTreasureLocation();
+		Point champ               = w.getLocation(); 
+	    int champx                = (int) champ.getX(); 
+	    int champy                = (int) champ.getY(); 
+	    int tx                    = (int) treasurelocation.getX(); 
+	    int ty                    = (int) treasurelocation.getY(); 
+	    if(champy > ty) 
+	      hint.add(Direction.LEFT); 
+	    else if(ty > champy) 
+	      hint.add(Direction.RIGHT); 
+	    if(champx > tx) 
+	      hint.add(Direction.FORWARD); 
+	    else if(tx > champx) 
+	      hint.add(Direction.BACKWARD);
+	    
+	    super.setTraitActivated(true);
+	    w.setTraitCooldown(8);
+	    return hint;
+	}
+	
 
 }
