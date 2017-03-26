@@ -95,7 +95,7 @@ public class ThirdTask extends Task {
     	}
 	}
 	@Override
-	public void finalizeAction()
+	public void finalizeAction() throws IOException
 	{
 		Wizard c = (Wizard) super.getCurrentChamp();
 		Point p = c.getLocation();
@@ -110,31 +110,31 @@ public class ThirdTask extends Task {
     	endTurn();
 	}
 	@Override
-	public void moveForward()
+	public void moveForward() throws IOException
 	{
 		super.moveForward();
 		finalizeAction();
 	}
 	@Override
-	public void moveBackward()
+	public void moveBackward() throws IOException
 	{
 		super.moveBackward();
 		finalizeAction();
 	}
 	@Override
-	public void moveRight()
+	public void moveRight() throws IOException
 	{
 		super.moveRight();
 		finalizeAction();
 	}
 	@Override
-	public void moveLeft()
+	public void moveLeft() throws IOException
 	{
 		super.moveLeft();
 		finalizeAction();
 	}
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d){
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException{
     	Point p = directionToPoint(d, this.getCurrentChamp());
     	int x = (int) p.getX();
     	int y = (int) p.getY();
@@ -165,18 +165,18 @@ public class ThirdTask extends Task {
     	finalizeAction();
     }
 	@Override
-	public void castHealingSpell(HealingSpell s){
+	public void castHealingSpell(HealingSpell s) throws IOException{
 		super.castHealingSpell(s);
 		finalizeAction();
 	}
 	@Override
-	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r)
+	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException
     {
 	    super.castRelocatingSpell(s, d, t, r);
 	    finalizeAction();
 	}
 	@Override
-    public void onSlytherinTrait(Direction d){
+    public void onSlytherinTrait(Direction d) throws IOException{
     	Wizard w = (Wizard) this.getCurrentChamp();
     	Point champpoint  = w.getLocation();
     	Point firstpoint  = super.getExactPosition(w.getLocation(), d, 1);
