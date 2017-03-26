@@ -366,7 +366,7 @@ public abstract class Task implements WizardListener{
         	useSpell(s);
     	}
     }
-    private Point getExactPosition(Point p , Direction t ,int range)
+    public Point getExactPosition(Point p , Direction t ,int range)
     {   
     	int x = (int) p.getX();
     	int y = (int) p.getY();
