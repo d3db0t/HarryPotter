@@ -172,7 +172,37 @@ public class ThirdTask extends Task {
     {
 	    super.castRelocatingSpell(s, d, t, r);
 	    finalizeAction();
-	 }
+	}
+	@Override
+    public void onSlytherinTrait(Direction d){
+    	Wizard w = (Wizard) this.getCurrentChamp();
+    	Point champpoint  = w.getLocation();
+    	Point firstpoint  = super.getExactPosition(w.getLocation(), d, 1);
+    	Point secondpoint = super.getExactPosition(w.getLocation(), d, 2);
+    	int cpx = (int) champpoint.getX();
+    	int cpy = (int) champpoint.getY();
+    	int fpx = (int) firstpoint.getX();
+    	int fpy = (int) firstpoint.getY();
+    	int spx = (int) secondpoint.getX();
+    	int spy = (int) secondpoint.getY();
+    	Cell cellofchamp  = this.getMap()[cpx][cpy];
+    	Cell firstcell    = this.getMap()[fpx][fpy];
+    	Cell secondcell   = this.getMap()[spx][spy];
+    	if (!( super.insideBoundary(firstpoint) || super.insideBoundary(secondpoint) )){
+    		return;
+    	}
+    	if (secondcell instanceof EmptyCell &&
+    			(firstcell instanceof EmptyCell ||
+    				firstcell instanceof ObstacleCell ||
+    					firstcell instanceof WallCell)){
+    					
+    		w.setLocation(secondpoint);
+    		this.getMap()[spx][spy] = cellofchamp;
+    		this.getMap()[cpx][cpy] = new EmptyCell();
+    		super.setTraitActivated(true);
+    		w.setTraitCooldown(11);
+    	}
+    }
 	
 	
 
