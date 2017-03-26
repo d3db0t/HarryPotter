@@ -224,7 +224,8 @@ public class ThirdTask extends Task {
 			hint.add(Direction.FORWARD);
 		else if(cupx > champx)
 			hint.add(Direction.BACKWARD);
-		
+		super.setTraitActivated(true);
+		c.setTraitCooldown(8);
 		return hint;
 	}
 
