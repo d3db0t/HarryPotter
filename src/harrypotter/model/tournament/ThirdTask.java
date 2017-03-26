@@ -9,6 +9,7 @@ import harrypotter.model.character.Champion;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.magic.DamagingSpell;
+import harrypotter.model.magic.HealingSpell;
 import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
@@ -161,6 +162,11 @@ public class ThirdTask extends Task {
     	super.useSpell(s);
     	finalizeAction(); // To be implemented... ;)
     }
+	@Override
+	public void castHealingSpell(HealingSpell s){
+		super.castHealingSpell(s);
+		finalizeAction();
+	}
 	@Override
 	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r)
     {
