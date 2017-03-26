@@ -11,6 +11,7 @@ import harrypotter.model.character.Champion;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.character.WizardListener;
 import harrypotter.model.magic.DamagingSpell;
+import harrypotter.model.magic.HealingSpell;
 import harrypotter.model.magic.Potion;
 import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.magic.Spell;
@@ -378,7 +379,12 @@ public abstract class Task implements WizardListener{
     	}
     	return new Point(x,y);
     }
-    //Add here HealingSpell
+    
+    public void castHealingSpell(HealingSpell s){
+    	Wizard w = (Wizard) this.currentChamp;
+    	w.setHp(w.getHp() + s.getHealingAmount());
+    	useSpell(s);
+    }
     
     public void endTurn()
     {
