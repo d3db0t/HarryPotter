@@ -282,10 +282,13 @@ public abstract class Task implements WizardListener{
     		this.allowedMoves = this.allowedMoves - 1;
     	}
     	else if(new1 instanceof TreasureCell)
-    	{
-    		old = new EmptyCell();
-    		c.setLocation(a);
-    		this.allowedMoves = this.allowedMoves - 1;
+    	{ 
+    		if(((TreasureCell) new1).getOwner() == this.currentChamp)
+    		{
+    			old = new EmptyCell();
+    			c.setLocation(a);
+    			this.allowedMoves = this.allowedMoves - 1;
+    		}
     	}
     	else if(new1 instanceof CupCell)
     	{
