@@ -2,6 +2,7 @@ package harrypotter.model.tournament;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import harrypotter.model.character.Champion;
@@ -80,6 +81,19 @@ public class Tournament implements TaskListener{
 		return thirdTask;
 	}
 	
+	public void addChampion(Champion c)
+	{
+		this.champions.add(c);
+	}
 	
+	public void onFinishingSecondTask(ArrayList<Champion> winners)throws IOException
+	{
+		this.thirdTask = new ThirdTask(winners);
+	}
+	
+	public void onFinishingThirdTask(Champion winner)
+	{
+		
+	}
 
 }

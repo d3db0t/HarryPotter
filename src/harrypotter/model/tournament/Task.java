@@ -205,7 +205,7 @@ public abstract class Task implements WizardListener{
 		return p.get(a) == null;
 	}
     
-    public abstract void finalizeAction();
+    public abstract void finalizeAction() throws IOException;
     
     private void restoreStats()
     {
@@ -228,28 +228,28 @@ public abstract class Task implements WizardListener{
     		a.setCoolDown(0);
     	}
     }
-    public void moveForward()
+    public void moveForward() throws IOException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(0));
     }
-    public void moveBackward()
+    public void moveBackward() throws IOException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(1));
     }
-    public void moveRight()
+    public void moveRight() throws IOException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(2));
     }
-    public void moveLeft()
+    public void moveLeft() throws IOException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
@@ -323,7 +323,7 @@ public abstract class Task implements WizardListener{
     	this.allowedMoves = this.allowedMoves - 1;
     }
     
-    public void castDamagingSpell(DamagingSpell s, Direction d)
+    public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException
     {
     	Point p = getTargetPoint(d);
     	int x = (int) p.getX();
@@ -349,7 +349,7 @@ public abstract class Task implements WizardListener{
     	}
     }
     
-    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r)
+    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException
     {
     	Point current = getTargetPoint(d);
     	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
@@ -383,13 +383,13 @@ public abstract class Task implements WizardListener{
     	return new Point(x,y);
     }
     
-    public void castHealingSpell(HealingSpell s){
+    public void castHealingSpell(HealingSpell s) throws IOException{
     	Wizard w = (Wizard) this.currentChamp;
     	w.setHp(w.getHp() + s.getHealingAmount());
     	useSpell(s);
     }
     
-    public void endTurn()
+    public void endTurn() throws IOException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	decrementTraitCooldown(c);
@@ -437,7 +437,7 @@ public abstract class Task implements WizardListener{
     	this.traitActivated = true;
     	c.setTraitCooldown(5);
     }
-    public abstract void onSlytherinTrait(Direction d);
+    public abstract void onSlytherinTrait(Direction d) throws IOException;
     
     public void onHufflepuffTrait()
     {
