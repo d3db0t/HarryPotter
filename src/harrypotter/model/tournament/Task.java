@@ -43,6 +43,7 @@ public abstract class Task implements WizardListener{
       loadPotions("Potions.csv");
       restoreStats();
       setListeners();
+      this.currentChamp = this.champions.get(0);
     }
     private void loadPotions(String filePath)throws IOException
     {
@@ -133,24 +134,44 @@ public abstract class Task implements WizardListener{
     	{
     	case 1 :
         	map[9][0] = new ChampionCell(champions.get(0));
+        	setChampionsLocation(1);
         	break;
     	case 2 :
     		map[9][0] = new ChampionCell(champions.get(0));
         	map[9][9] = new ChampionCell(champions.get(1));
+        	setChampionsLocation(2);
         	break;
     	case 3 :
     		map[9][0] = new ChampionCell(champions.get(0));
         	map[9][9] = new ChampionCell(champions.get(1));
         	map[0][9] = new ChampionCell(champions.get(2));
+        	setChampionsLocation(3);
         	break;
     	case 4 :
     		map[9][0] = new ChampionCell(champions.get(0));
         	map[9][9] = new ChampionCell(champions.get(1));
         	map[0][9] = new ChampionCell(champions.get(2));
         	map[0][0] = new ChampionCell(champions.get(3));
+        	setChampionsLocation(4);
         	break;
         default :
         	break;
+    	}
+    }
+    private void setChampionsLocation(int num)
+    {
+    	switch(num)
+    	{
+    	  case 1 : ((Wizard)this.champions.get(0)).setLocation(new Point(9,0));break;
+    	  case 2 : ((Wizard)this.champions.get(0)).setLocation(new Point(9,0));
+    	  		   ((Wizard)this.champions.get(1)).setLocation(new Point(9,9));break;
+    	  case 3 : ((Wizard)this.champions.get(0)).setLocation(new Point(9,0));
+    	  		   ((Wizard)this.champions.get(1)).setLocation(new Point(9,9));
+    	  		   ((Wizard)this.champions.get(2)).setLocation(new Point(0,9));break;
+    	  case 4 : ((Wizard)this.champions.get(0)).setLocation(new Point(9,0));
+    	  		   ((Wizard)this.champions.get(1)).setLocation(new Point(9,9));
+    	  		   ((Wizard)this.champions.get(2)).setLocation(new Point(0,9));
+    	  		   ((Wizard)this.champions.get(3)).setLocation(new Point(0,0));break;
     	}
     }
     public boolean isEmptyCell(Cell c)

@@ -55,24 +55,32 @@ public class ThirdTask extends Task {
     			   if(super.getChampions().size() >= 1){
     				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
     						   .get(0));
+    				   ((Wizard)super.getChampions().get(0))
+    				                .setLocation(new Point(c,i));
     			   }
     			   break;
     		   case 2:
     			   if(super.getChampions().size() >= 2){
     				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
     						   .get(1));
+    				   ((Wizard)super.getChampions().get(1))
+		                            .setLocation(new Point(c,i));
     			   }
     			   break;
     		   case 3:
     			   if(super.getChampions().size() >= 3){
     				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
     						   .get(2));
+    				   ((Wizard)super.getChampions().get(2))
+		                            .setLocation(new Point(c,i));
     			   }
     			   break;
     		   case 4:
     			   if(super.getChampions().size() >= 4){
     				   super.getMap()[c][i] = new ChampionCell(super.getChampions()
     						   .get(super.getChampions().size()-1));
+    				   ((Wizard)super.getChampions().get(super.getChampions().size()-1))
+		                           .setLocation(new Point(c,i));
     			   }
     			   break;
     		   case 5:
