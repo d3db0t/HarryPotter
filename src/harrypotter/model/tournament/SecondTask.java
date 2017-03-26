@@ -204,5 +204,12 @@ public class SecondTask extends Task {
     		finalizeAction();
     	}
     }
+	@Override
+	public void onHufflepuffTrait()
+	{
+	   Wizard c = (Wizard) super.getCurrentChamp();
+	   super.onHufflepuffTrait();
+	   c.setTraitCooldown(7);
+	}
 
 }
