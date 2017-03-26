@@ -22,6 +22,8 @@ import harrypotter.model.world.TreasureCell;
 public class SecondTask extends Task {
 	
 	ArrayList<Champion> winners;
+	private ArrayList<Champion> winners;
+	private ArrayList<Point> treasuresLocation;
 	
 	public ArrayList<Champion> getWinners() {
 		return winners;
