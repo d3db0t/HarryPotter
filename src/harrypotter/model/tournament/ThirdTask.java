@@ -201,6 +201,8 @@ public class ThirdTask extends Task {
     		this.getMap()[cpx][cpy] = new EmptyCell();
     		super.setTraitActivated(true);
     		w.setTraitCooldown(11);
+    		super.setAllowedMoves(super.getAllowedMoves() - 1);
+    		finalizeAction();
     	}
     }
 	

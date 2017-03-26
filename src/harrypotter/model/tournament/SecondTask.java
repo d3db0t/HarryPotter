@@ -200,6 +200,8 @@ public class SecondTask extends Task {
     		this.getMap()[cpx][cpy] = new EmptyCell();
     		super.setTraitActivated(true);
     		w.setTraitCooldown(5);
+    		super.setAllowedMoves(super.getAllowedMoves() - 1);
+    		finalizeAction();
     	}
     }
 

@@ -225,6 +225,8 @@ public class FirstTask extends Task{
     		this.getMap()[cpx][cpy] = new EmptyCell();
     		super.setTraitActivated(true);
     		w.setTraitCooldown(7);
+    		super.setAllowedMoves(super.getAllowedMoves() - 1);
+    		finalizeAction();
     	}
     }
 }
