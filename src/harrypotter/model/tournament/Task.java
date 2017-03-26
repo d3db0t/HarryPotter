@@ -349,7 +349,7 @@ public abstract class Task implements WizardListener{
     public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r)
     {
     	Point current = getTargetPoint(d);
-    	Point next = getExactPosition(getTargetPoint(t),t,r);
+    	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
     	int x = (int) next.getX();
     	int y = (int) next.getY();
     	int a = (int) current.getX();
