@@ -236,4 +236,11 @@ public class FirstTask extends Task{
     	super.onHufflepuffTrait();
     	c.setTraitCooldown(4);
     }
+    
+    public Object onRavenclawTrait(){
+    	Wizard w = (Wizard) super.getCurrentChamp();
+    	super.setTraitActivated(true);
+    	w.setTraitCooldown(6);
+    	return this.markedCells;
+    }
 }
