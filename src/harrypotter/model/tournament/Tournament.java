@@ -85,6 +85,15 @@ public class Tournament implements TaskListener{
 	{
 		this.champions.add(c);
 	}
+	public void beginTournament() throws IOException{
+		FirstTask ft = new FirstTask(this.champions);
+		ft.setTaskListener(Tournament);
+	}
+	
+	public void onFinishingFirstTask(ArrayList<Champion> winners){
+		SecondTask sd = new SecondTask(winners);
+	}
+	
 	
 	public void onFinishingSecondTask(ArrayList<Champion> winners)throws IOException
 	{
