@@ -434,4 +434,5 @@ public abstract class Task implements WizardListener{
     	this.traitActivated = true;
     	c.setTraitCooldown(5);
     }
+    public abstract void onSlytherinTrait(Direction d);
 }
