@@ -22,6 +22,7 @@ import harrypotter.model.world.TreasureCell;
 import harrypotter.model.world.WallCell;
 
 public class ThirdTask extends Task {
+	private Point cupCell;
 	
 	public ThirdTask(ArrayList<Champion> champions)throws IOException
 	{
@@ -83,6 +84,7 @@ public class ThirdTask extends Task {
     			   break;
     		   case 7:
     			   super.getMap()[c][i] = new CupCell();
+    			   cupCell = new Point(c,i);
     			   break;
     		   default:
     			   break;
@@ -205,7 +207,25 @@ public class ThirdTask extends Task {
     		finalizeAction();
     	}
     }
-	
-	
+	public ArrayList<Direction> onRavenclawTrait()
+	{
+		ArrayList <Direction> hint = new ArrayList<Direction>();
+		Wizard c = (Wizard) super.getCurrentChamp();
+		Point champ = c.getLocation();
+		int champx = (int) champ.getX();
+		int champy = (int) champ.getY();
+		int cupx = (int) this.cupCell.getX();
+		int cupy = (int) this.cupCell.getY();
+		if(champy > cupy)
+			hint.add(Direction.LEFT);
+		else if(cupy > champy)
+			hint.add(Direction.RIGHT);
+		if(champx > cupx)
+			hint.add(Direction.FORWARD);
+		else if(cupx > champx)
+			hint.add(Direction.BACKWARD);
+		
+		return hint;
+	}
 
 }
