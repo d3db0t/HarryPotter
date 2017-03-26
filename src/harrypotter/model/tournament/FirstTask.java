@@ -145,7 +145,7 @@ public class FirstTask extends Task{
     	}
     	else fire();
     	if(super.getAllowedMoves() == 0)
-    	   endTurn(); // To be implemented... ;
+    	   endTurn();
     		
     }
 	

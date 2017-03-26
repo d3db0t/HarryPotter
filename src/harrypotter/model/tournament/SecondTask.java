@@ -121,7 +121,7 @@ public class SecondTask extends Task {
     	}
     	else encounterMerPerson();
     	if(super.getAllowedMoves() == 0)
-    	   endTurn(); // To be implemented... ;
+    	   endTurn();
 	}
 	@Override
 	public void moveForward()
