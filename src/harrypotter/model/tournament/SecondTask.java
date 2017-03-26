@@ -214,6 +214,20 @@ public class SecondTask extends Task {
 		this.treasuresLocation.add(p);
 	}
 	
+	public Point getChampTreasureLocation(){
+		Point p = null;
+		for (int i = 0; i < this.treasuresLocation.size();i++){
+			p = this.treasuresLocation.get(i);
+			int x = (int) p.getX();
+	    	int y = (int) p.getY();
+			TreasureCell t = (TreasureCell) this.getMap()[x][y];
+			if (t.getOwner() == this.getCurrentChamp()){
+				break;
+			}
+		}
+		return p;
+	}
+	
 	@Override
 	public void onHufflepuffTrait()
 	{
