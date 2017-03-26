@@ -86,5 +86,10 @@ public class Tournament implements TaskListener{
 		ft.setTaskListener(Tournament);
 	}
 	
+	public void onFinishingFirstTask(ArrayList<Champion> winners){
+		SecondTask sd = new SecondTask(winners);
+	}
+	
+	
 
 }
