@@ -42,6 +42,7 @@ public abstract class Task implements WizardListener{
       potions = new ArrayList<Potion>();
       loadPotions("Potions.csv");
       restoreStats();
+      setListeners();
     }
     private void loadPotions(String filePath)throws IOException
     {
@@ -54,6 +55,14 @@ public abstract class Task implements WizardListener{
     	   Potion p = new Potion(result[0],Tournament.parseInt(result[1]));
     	   //Insert in ArrayList
     	   potions.add(p);
+    	}
+    }
+    public void setListeners()
+    {
+    	for(int i = 0 ; i < this.champions.size() ; i++)
+    	{
+    		Wizard c = (Wizard) this.champions.get(i);
+    		c.setListener(this);
     	}
     }
     public ArrayList <Champion> getChampions()
