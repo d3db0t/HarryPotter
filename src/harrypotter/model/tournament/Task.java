@@ -102,11 +102,11 @@ public abstract class Task implements WizardListener{
     {
     	return potions;
     }
-    public TaskListener getTaskListener()
+    public TaskListener getListener()
     {
     	return listener;
     }
-    public void setTaskListener(TaskListener listener)
+    public void setListener(TaskListener listener)
     {
     	this.listener = listener;
     }

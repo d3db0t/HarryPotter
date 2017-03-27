@@ -175,7 +175,7 @@ public class SecondTask extends Task {
 	   if(super.getChampions().size() != 0)
 	     super.endTurn();
 	   else
-	     super.getTaskListener().onFinishingSecondTask(this.winners);
+	     super.getListener().onFinishingSecondTask(this.winners);
 	}
 	@Override
     public void onSlytherinTrait(Direction d) throws IOException{

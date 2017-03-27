@@ -111,7 +111,7 @@ public class ThirdTask extends Task {
     	int y = (int) p.getY();
 		if(this.getMap()[x][y] instanceof CupCell)
 		{
-    		super.getTaskListener().onFinishingThirdTask(this.getCurrentChamp());
+    		super.getListener().onFinishingThirdTask(this.getCurrentChamp());
     		return;
 		}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
