@@ -210,7 +210,7 @@ public class ThirdTask extends Task {
     		this.getMap()[spx][spy] = cellofchamp;
     		this.getMap()[cpx][cpy] = new EmptyCell();
     		super.setTraitActivated(true);
-    		w.setTraitCooldown(11);
+    		w.setTraitCooldown(10);
     		super.setAllowedMoves(super.getAllowedMoves() - 1);
     		finalizeAction();
     	}
@@ -233,7 +233,7 @@ public class ThirdTask extends Task {
 		else if(cupx > champx)
 			hint.add(Direction.BACKWARD);
 		super.setTraitActivated(true);
-		c.setTraitCooldown(8);
+		c.setTraitCooldown(7);
 		return hint;
 	}
 

@@ -224,7 +224,7 @@ public class FirstTask extends Task{
     		this.getMap()[spx][spy] = cellofchamp;
     		this.getMap()[cpx][cpy] = new EmptyCell();
     		super.setTraitActivated(true);
-    		w.setTraitCooldown(7);
+    		w.setTraitCooldown(6);
     		super.setAllowedMoves(super.getAllowedMoves() - 1);
     		finalizeAction();
     	}
@@ -234,13 +234,13 @@ public class FirstTask extends Task{
     {
     	Wizard c = (Wizard) super.getCurrentChamp();
     	super.onHufflepuffTrait();
-    	c.setTraitCooldown(4);
+    	c.setTraitCooldown(3);
     }
     
     public Object onRavenclawTrait(){
     	Wizard w = (Wizard) super.getCurrentChamp();
     	super.setTraitActivated(true);
-    	w.setTraitCooldown(6);
+    	w.setTraitCooldown(5);
     	return this.markedCells;
     }
 }

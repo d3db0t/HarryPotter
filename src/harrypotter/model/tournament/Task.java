@@ -347,7 +347,7 @@ public abstract class Task implements WizardListener{
     
     public void useSpell(Spell s)
     {
-    	s.setCoolDown(s.getDefaultCooldown()+1);
+    	s.setCoolDown(s.getDefaultCooldown());
     	Wizard w = (Wizard) this.getCurrentChamp();
     	w.setIp(w.getIp() - s.getCost());
     	this.allowedMoves = this.allowedMoves - 1;
@@ -465,7 +465,7 @@ public abstract class Task implements WizardListener{
     	Wizard c = (Wizard) this.currentChamp;
     	this.allowedMoves = 2;
     	this.traitActivated = true;
-    	c.setTraitCooldown(5);
+    	c.setTraitCooldown(4);
     }
     public abstract void onSlytherinTrait(Direction d) throws IOException;
     
