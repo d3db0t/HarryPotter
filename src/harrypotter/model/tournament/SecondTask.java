@@ -24,21 +24,24 @@ public class SecondTask extends Task {
 	private ArrayList<Champion> winners;
 	private ArrayList<Point> treasuresLocation;
 	
-	public ArrayList<Champion> getWinners() {
-		return winners;
-	}
-	public void setWinners(ArrayList<Champion> winners) {
-		this.winners = winners;
-	}
+	
 	
 	public SecondTask(ArrayList<Champion> champions)throws IOException
 	{
 		super(champions);
 		super.shuffleChampions();
 		this.treasuresLocation = new ArrayList<Point>();
+		this.winners = new ArrayList<Champion>();
 		generateMap();
 	    super.setCurrentChamp(super.getChampions().get(0));
-
+        
+	}
+	
+	public ArrayList<Champion> getWinners() {
+		return winners;
+	}
+	public void setWinners(ArrayList<Champion> winners) {
+		this.winners = winners;
 	}
 	@Override
 	public void generateMap() throws IOException
@@ -221,9 +224,13 @@ public class SecondTask extends Task {
 			p = this.treasuresLocation.get(i);
 			int x = (int) p.getX();
 	    	int y = (int) p.getY();
-			TreasureCell t = (TreasureCell) this.getMap()[x][y];
-			if (t.getOwner() == this.getCurrentChamp()){
-				break;
+			Cell t = this.getMap()[x][y];
+			if(t instanceof TreasureCell)
+			{
+				TreasureCell n = (TreasureCell) this.getMap()[x][y];
+				if (n.getOwner() == this.getCurrentChamp()){
+					break;
+				}
 			}
 		}
 		return p;
