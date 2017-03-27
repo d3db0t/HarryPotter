@@ -205,10 +205,10 @@ public abstract class Task implements WizardListener{
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	ArrayList<Point> a = new ArrayList<Point>();
+    	a.add(new Point(x-1, y));
+    	a.add(new Point(x+1, y));
     	a.add(new Point(x, y-1));
     	a.add(new Point(x, y+1));
-    	a.add(new Point(x+1, y));
-    	a.add(new Point(x-1, y));
     	a.add(p);
     	for (int i = 0; i < a.size()-1;i++){
     		if (!(insideBoundary(a.get(i)))){
