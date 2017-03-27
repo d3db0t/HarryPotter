@@ -28,6 +28,7 @@ public class ThirdTask extends Task {
 	{
 		super(champions);
 		generateMap();
+		super.setCurrentChamp(super.getChampions().get(0));
 	}
 	@Override
 	public void generateMap() throws IOException
@@ -115,7 +116,8 @@ public class ThirdTask extends Task {
     		return;
 		}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
-    	endTurn();
+	    if(super.getAllowedMoves() == 0)
+	    	endTurn();
 	}
 	@Override
 	public void moveForward() throws IOException

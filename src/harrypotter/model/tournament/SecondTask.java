@@ -37,6 +37,8 @@ public class SecondTask extends Task {
 		super.shuffleChampions();
 		this.treasuresLocation = new ArrayList<Point>();
 		generateMap();
+	    super.setCurrentChamp(super.getChampions().get(0));
+
 	}
 	@Override
 	public void generateMap() throws IOException

@@ -297,17 +297,16 @@ public abstract class Task implements WizardListener{
     	int x = (int) a.getX();
     	int y = (int) a.getY();
     	Cell new1 = this.map[x][y];
-		Cell old = this.map[e][f];
     	if(new1 instanceof EmptyCell)
     	{
-    		old = new EmptyCell();
+    		this.map[e][f] = new EmptyCell();
     		c.setLocation(a);
     		this.allowedMoves = this.allowedMoves - 1;
     	}
     	else if(new1 instanceof CollectibleCell)
     	{
     		c.getInventory().add(((CollectibleCell) new1).getCollectible());
-    		old = new EmptyCell();
+    		this.map[e][f] = new EmptyCell();
     		c.setLocation(a);
     		this.allowedMoves = this.allowedMoves - 1;
     	}
@@ -315,14 +314,14 @@ public abstract class Task implements WizardListener{
     	{ 
     		if(((TreasureCell) new1).getOwner() == this.currentChamp)
     		{
-    			old = new EmptyCell();
+    			this.map[e][f] = new EmptyCell();
     			c.setLocation(a);
     			this.allowedMoves = this.allowedMoves - 1;
     		}
     	}
     	else if(new1 instanceof CupCell)
     	{
-    		old = new EmptyCell();
+    		this.map[e][f] = new EmptyCell();
     		c.setLocation(a);
     		this.allowedMoves = this.allowedMoves - 1;
     	}
