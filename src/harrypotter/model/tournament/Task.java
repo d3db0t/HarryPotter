@@ -43,7 +43,6 @@ public abstract class Task implements WizardListener{
       loadPotions("Potions.csv");
       restoreStats();
       setListeners();
-      this.currentChamp = this.champions.get(0);
     }
     private void loadPotions(String filePath)throws IOException
     {
@@ -246,7 +245,7 @@ public abstract class Task implements WizardListener{
     		c.setIp(c.getDefaultIp());
     		c.setTraitCooldown(0);
     		restoreSpells(c);
-    		this.allowedMoves = 0;
+    		this.allowedMoves = 1;
     		this.traitActivated = false;
     	}
     }
