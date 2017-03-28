@@ -454,8 +454,8 @@ public abstract class Task implements WizardListener{
     public void usePotion(Potion p)
     {
     	Wizard c = (Wizard) this.currentChamp;
-    	int ip = p.getAmount();
-    	c.setIp(c.getIp()+ip);
+    	c.setIp(c.getIp()+ p.getAmount());
+    	c.getInventory().remove(p);
     }
     
     public void onGryffindorTrait()
