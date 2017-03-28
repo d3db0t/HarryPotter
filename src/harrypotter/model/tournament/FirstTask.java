@@ -226,7 +226,10 @@ public class FirstTask extends Task{
     	if(super.getChampions().size() != 0)
     		super.endTurn();
     	else
-    		super.getListener().onFinishingFirstTask(this.winners);
+    	{
+    		if(super.getListener() != null)
+    			super.getListener().onFinishingFirstTask(this.winners);
+    	}
     }
     @Override
     public void onSlytherinTrait(Direction d) throws IOException{
