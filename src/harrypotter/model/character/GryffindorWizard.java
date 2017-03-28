@@ -10,7 +10,8 @@ public class GryffindorWizard extends Wizard implements Champion{
 	
 	public void useTrait()
 	{
-	  super.getListener().onGryffindorTrait();	
+	  if(super.getListener() != null)
+		  super.getListener().onGryffindorTrait();	
 	}
 
 }

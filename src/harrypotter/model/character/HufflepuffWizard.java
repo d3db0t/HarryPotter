@@ -10,7 +10,8 @@ public class HufflepuffWizard extends Wizard implements Champion{
 	
 	public void useTrait()
 	{
-	  super.getListener().onHufflepuffTrait();	
+	  if(super.getListener() != null)
+		  super.getListener().onHufflepuffTrait();	
 	}
 
 }
