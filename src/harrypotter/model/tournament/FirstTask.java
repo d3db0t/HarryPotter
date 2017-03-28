@@ -159,33 +159,38 @@ public class FirstTask extends Task{
     	if (x == 4 && y == 4)
     	{  
     	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
-    	    fire();
+    	    applyFire();
     	    if(isAlive(super.getCurrentChamp()))
     	    {
     	    	this.winners.add(super.getCurrentChamp());
     	    	super.removeWizard(super.getCurrentChamp());
-    	    }
-    	    else 
-    	    	super.removeWizard(super.getCurrentChamp());    	    	
+    	    }  
+    	    this.getMap()[x][y] = new EmptyCell();
 	    	endTurn();
             return;
     	}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
-   	    if (w instanceof HufflepuffWizard)
-    	{
-    		if(!(this.isTraitActivated()))
-    		{
-    			fire();
-    		}
-    		else 
-    			super.setTraitActivated(false);
-    	}
-    	else fire();
-    	if(super.getAllowedMoves() == 0)
-    	   endTurn();
-    		
+	    applyFire();
+	    if(super.getAllowedMoves() == 0 )
+	    	endTurn();
     }
-	
+	private void applyFire()
+	{
+		Wizard w = (Wizard) super.getCurrentChamp();
+		 if(super.getAllowedMoves() == 0)
+		 {
+		     if (w instanceof HufflepuffWizard)
+		     {
+		    	if(!(this.isTraitActivated()))
+		    	{
+		    		fire();
+		    	}
+		    	else 
+		    		super.setTraitActivated(false);
+		    }
+		    else fire();
+		 }	
+	}
 	@Override
 	public void moveForward() throws IOException
 	{
