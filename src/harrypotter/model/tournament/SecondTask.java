@@ -102,7 +102,10 @@ public class SecondTask extends Task {
 			  Merperson n = (Merperson)m.getObstacle();
 			  c.setHp(c.getHp()-n.getDamage());
 			  if(!super.isAlive(this.getCurrentChamp()))
+			  {   
+				  this.getMap()[p.x][p.y] = new EmptyCell();
 				  super.removeWizard(super.getCurrentChamp());
+			  }
 			}
 		}
 	}
