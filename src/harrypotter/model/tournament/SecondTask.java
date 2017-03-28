@@ -115,22 +115,26 @@ public class SecondTask extends Task {
     	int y = (int) p.getY();
 		if(this.getMap()[x][y] instanceof TreasureCell)
 		{
-			this.getWinners().add(super.getCurrentChamp());
+			this.winners.add(super.getCurrentChamp());
 			super.removeWizard(super.getCurrentChamp());
+			this.getMap()[x][y] = new EmptyCell();
 			endTurn();
     		return;
 		}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
-		if (c instanceof HufflepuffWizard)
-		{
-    		if(!(this.isTraitActivated()))
-    			encounterMerPerson();
-    		else
-    			super.setTraitActivated(false);
-    	}
-    	else encounterMerPerson();
-    	if(super.getAllowedMoves() == 0)
-    	   endTurn();
+	    if(super.getAllowedMoves() == 0)
+	    {
+	    	if (c instanceof HufflepuffWizard)
+	    	{
+	    		if(!(this.isTraitActivated()))
+	    			encounterMerPerson();
+	    		else
+	    			super.setTraitActivated(false);
+	    	}
+	    	else encounterMerPerson();
+	    	endTurn();
+	    }
+    	
 	}
 	@Override
 	public void moveForward() throws IOException
