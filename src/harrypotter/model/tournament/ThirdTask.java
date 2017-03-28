@@ -112,8 +112,11 @@ public class ThirdTask extends Task {
     	int y = (int) p.getY();
 		if(this.getMap()[x][y] instanceof CupCell)
 		{
-    		super.getListener().onFinishingThirdTask(this.getCurrentChamp());
-    		return;
+			if(super.getListener() != null)
+			{
+				super.getListener().onFinishingThirdTask(this.getCurrentChamp());
+    			return;
+			}
 		}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
 	    if(super.getAllowedMoves() == 0)
@@ -217,7 +220,7 @@ public class ThirdTask extends Task {
     		finalizeAction();
     	}
     }
-	public ArrayList<Direction> onRavenclawTrait()
+	public Object onRavenclawTrait()
 	{
 		ArrayList <Direction> hint = new ArrayList<Direction>();
 		Wizard c = (Wizard) super.getCurrentChamp();
