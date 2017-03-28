@@ -117,6 +117,22 @@ public class FirstTask extends Task{
 	{
 	  Wizard c = (Wizard) super.getCurrentChamp();
 	  Point p = c.getLocation();
+	  Point one = this.markedCells.get(0);  
+	  Point two = this.markedCells.get(1);  
+	  if(this.getMap()[one.x][one.y] instanceof ChampionCell && one != p)  
+	  {  
+	     ((Wizard) ((ChampionCell)this.getMap()[one.x][one.y]).getChamp())  
+	                                   .setHp(c.getHp()-150);  
+	     if(!super.isAlive(((ChampionCell)this.getMap()[one.x][one.y]).getChamp()))  
+	        super.removeWizard(((ChampionCell)this.getMap()[one.x][one.y]).getChamp());  
+	  }  
+	  else if(this.getMap()[two.x][two.y] instanceof ChampionCell && two != p)  
+	   {  
+	      ((Wizard) ((ChampionCell)this.getMap()[two.x][two.y]).getChamp())  
+	                                   .setHp(c.getHp()-150);  
+	       if(!super.isAlive(((ChampionCell)this.getMap()[two.x][two.y]).getChamp()))  
+	          super.removeWizard(((ChampionCell)this.getMap()[two.x][two.y]).getChamp());  
+	   }  
 	  if(this.markedCells.get(0) == p || this.markedCells.get(1) == p)
 		  c.setHp(c.getHp()-150);
 	  if(!super.isAlive(this.getCurrentChamp()))
