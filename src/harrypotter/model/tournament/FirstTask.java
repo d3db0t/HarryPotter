@@ -121,17 +121,19 @@ public class FirstTask extends Task{
 	  Point two = this.markedCells.get(1);  
 	  if(this.getMap()[one.x][one.y] instanceof ChampionCell && one != p)  
 	  {  
-	     ((Wizard) ((ChampionCell)this.getMap()[one.x][one.y]).getChamp())  
-	                                   .setHp(c.getHp()-150);  
-	     if(!super.isAlive(((ChampionCell)this.getMap()[one.x][one.y]).getChamp()))  
-	        super.removeWizard(((ChampionCell)this.getMap()[one.x][one.y]).getChamp());  
+		  ChampionCell a = (ChampionCell) super.getMap()[one.x][one.y];
+		  Wizard b = (Wizard) a.getChamp();  
+	      b.setHp(b.getHp()-150);  
+	     if(!super.isAlive(a.getChamp()))  
+	        super.removeWizard(a.getChamp());  
 	  }  
 	  else if(this.getMap()[two.x][two.y] instanceof ChampionCell && two != p)  
 	   {  
-	      ((Wizard) ((ChampionCell)this.getMap()[two.x][two.y]).getChamp())  
-	                                   .setHp(c.getHp()-150);  
-	       if(!super.isAlive(((ChampionCell)this.getMap()[two.x][two.y]).getChamp()))  
-	          super.removeWizard(((ChampionCell)this.getMap()[two.x][two.y]).getChamp());  
+		  ChampionCell a = (ChampionCell) super.getMap()[two.x][two.y];
+		  Wizard b = (Wizard) a.getChamp();  
+	      b.setHp(b.getHp()-150);    
+	       if(!super.isAlive(a.getChamp()))  
+	          super.removeWizard(a.getChamp());  
 	   }  
 	  if(this.markedCells.get(0) == p || this.markedCells.get(1) == p)
 		  c.setHp(c.getHp()-150);
