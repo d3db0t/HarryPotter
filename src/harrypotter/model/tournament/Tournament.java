@@ -87,17 +87,25 @@ public class Tournament implements TaskListener{
 	}
 	public void beginTournament() throws IOException{
 		this.firstTask = new FirstTask(this.champions);
-		this.firstTask.setTaskListener(this);
+		this.firstTask.setListener(this);
 	}
 	
 	public void onFinishingFirstTask(ArrayList<Champion> winners) throws IOException{
-		this.secondTask= new SecondTask(winners);
+		if(winners.size() > 0)
+		{
+			this.secondTask= new SecondTask(winners);
+			this.secondTask.setListener(this);
+		}
 	}
 	
 	
 	public void onFinishingSecondTask(ArrayList<Champion> winners)throws IOException
 	{
-		this.thirdTask = new ThirdTask(winners);
+		if(winners.size() > 0)
+		{
+			this.thirdTask = new ThirdTask(winners);
+			this.thirdTask.setListener(this);
+		}
 	}
 	
 	public void onFinishingThirdTask(Champion winner)
