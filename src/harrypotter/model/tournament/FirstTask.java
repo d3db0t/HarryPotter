@@ -10,6 +10,7 @@ import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.HealingSpell;
+import harrypotter.model.magic.Potion;
 import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
@@ -117,28 +118,36 @@ public class FirstTask extends Task{
 	{
 	  Wizard c = (Wizard) super.getCurrentChamp();
 	  Point p = c.getLocation();
+	  markCells();
 	  Point one = this.markedCells.get(0);  
 	  Point two = this.markedCells.get(1);  
-	  if(this.getMap()[one.x][one.y] instanceof ChampionCell && one != p)  
+	  if(this.getMap()[one.x][one.y] instanceof ChampionCell && !(one.equals(p)))  
 	  {  
 		  ChampionCell a = (ChampionCell) super.getMap()[one.x][one.y];
-		  Wizard b = (Wizard) a.getChamp();  
-	      b.setHp(b.getHp()-150);  
-	     if(!super.isAlive(a.getChamp()))  
-	        super.removeWizard(a.getChamp());  
+		  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);  
+	     if(!super.isAlive(a.getChamp()))
+	     {
+	        super.removeWizard(a.getChamp());
+	        super.getMap()[one.x][one.y]= new EmptyCell();
+	     }
 	  }  
-	  else if(this.getMap()[two.x][two.y] instanceof ChampionCell && two != p)  
+	  else if(this.getMap()[two.x][two.y] instanceof ChampionCell && !(two.equals(p)))  
 	   {  
 		  ChampionCell a = (ChampionCell) super.getMap()[two.x][two.y];
-		  Wizard b = (Wizard) a.getChamp();  
-	      b.setHp(b.getHp()-150);    
-	       if(!super.isAlive(a.getChamp()))  
-	          super.removeWizard(a.getChamp());  
+		  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);    
+	       if(!super.isAlive(a.getChamp())) 
+	       {
+	          super.removeWizard(a.getChamp());
+	          super.getMap()[two.x][two.y] = new EmptyCell();
+	       }
 	   }  
-	  if(this.markedCells.get(0) == p || this.markedCells.get(1) == p)
+	  if(this.markedCells.get(0).equals(p) || this.markedCells.get(1).equals(p))
 		  c.setHp(c.getHp()-150);
 	  if(!super.isAlive(this.getCurrentChamp()))
+	  {
 		  super.removeWizard(super.getCurrentChamp());
+		  super.getMap()[p.x][p.y] = new EmptyCell();
+	  }
 	}
 	@Override
 	public void finalizeAction() throws IOException
@@ -148,23 +157,21 @@ public class FirstTask extends Task{
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	if (x == 4 && y == 4)
-    	{   
+    	{  
     	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
     	    fire();
-    	    if(isAlive(this.getCurrentChamp()))
+    	    if(isAlive(super.getCurrentChamp()))
     	    {
     	    	this.winners.add(super.getCurrentChamp());
-    			super.removeWizard(super.getCurrentChamp());
-       	    }
-    	    else 
-    	    {
     	    	super.removeWizard(super.getCurrentChamp());
     	    }
+    	    else 
+    	    	super.removeWizard(super.getCurrentChamp());    	    	
 	    	endTurn();
             return;
     	}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
-    	if (w instanceof HufflepuffWizard)
+   	    if (w instanceof HufflepuffWizard)
     	{
     		if(!(this.isTraitActivated()))
     		{
@@ -256,10 +263,10 @@ public class FirstTask extends Task{
     		this.getMap()[spx][spy] = cellofchamp;
     		this.getMap()[cpx][cpy] = new EmptyCell();
     		super.setTraitActivated(true);
-    		w.setTraitCooldown(6);
     		super.setAllowedMoves(super.getAllowedMoves() - 1);
-    		finalizeAction();
     	}
+		w.setTraitCooldown(6);
+		finalizeAction();
     }
     @Override
     public void onHufflepuffTrait()
