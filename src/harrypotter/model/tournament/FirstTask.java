@@ -148,11 +148,20 @@ public class FirstTask extends Task{
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	if (x == 4 && y == 4)
-    	{
-    		this.winners.add(super.getCurrentChamp());
-    		super.removeWizard(super.getCurrentChamp());
-    		endTurn();
-    		return;
+    	{   
+    	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
+    	    fire();
+    	    if(isAlive(this.getCurrentChamp()))
+    	    {
+    	    	this.winners.add(super.getCurrentChamp());
+    			super.removeWizard(super.getCurrentChamp());
+       	    }
+    	    else 
+    	    {
+    	    	super.removeWizard(super.getCurrentChamp());
+    	    }
+	    	endTurn();
+            return;
     	}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
     	if (w instanceof HufflepuffWizard)
