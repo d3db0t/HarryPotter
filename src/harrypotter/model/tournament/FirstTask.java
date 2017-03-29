@@ -269,9 +269,10 @@ public class FirstTask extends Task{
     		w.setLocation(secondpoint);
     		this.getMap()[spx][spy] = cellofchamp;
     		this.getMap()[cpx][cpy] = new EmptyCell();
-    		super.setTraitActivated(true);
-    		super.setAllowedMoves(super.getAllowedMoves() - 1);
+    		
     	}
+    	super.setTraitActivated(true);
+		super.setAllowedMoves(0);
 		w.setTraitCooldown(6);
 		finalizeAction();
     }

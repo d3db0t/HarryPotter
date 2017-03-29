@@ -218,9 +218,9 @@ public class SecondTask extends Task {
     		w.setLocation(secondpoint);
     		this.getMap()[spx][spy] = new ChampionCell(super.getCurrentChamp());
     		this.getMap()[cpx][cpy] = new EmptyCell();
-    		super.setTraitActivated(true);
-    		super.setAllowedMoves(super.getAllowedMoves() - 1);
     	}
+    	super.setTraitActivated(true);
+		super.setAllowedMoves(0);
 		w.setTraitCooldown(4);
 		finalizeAction();
     }
