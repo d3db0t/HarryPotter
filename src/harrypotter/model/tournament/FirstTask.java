@@ -124,9 +124,7 @@ public class FirstTask extends Task{
 		  if(this.getMap()[one.x][one.y] instanceof ChampionCell)  
 		  {  
 			  ChampionCell a = (ChampionCell) super.getMap()[one.x][one.y];
-			  if(a.getChamp().equals(super.getCurrentChamp()))
-			  {
-				  if(checkBeforeFire(a.getChamp()))
+				  if(checkBeforeFire())
 				  {
 					  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);  
 					  if(!super.isAlive(a.getChamp()))
@@ -134,17 +132,7 @@ public class FirstTask extends Task{
 						  super.removeWizard(a.getChamp());
 						  super.getMap()[one.x][one.y]= new EmptyCell();
 					  }
-			  	}
-			  }
-			  else
-			  {
-				  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);  
-				  if(!super.isAlive(a.getChamp()))
-				  {
-					  super.removeWizard(a.getChamp());
-					  super.getMap()[one.x][one.y]= new EmptyCell();
-				  }
-			  }
+			      }
 		  }
 	  }
 	  if(!(two.equals(new Point(4,4))))
@@ -152,9 +140,7 @@ public class FirstTask extends Task{
 		  if(this.getMap()[two.x][two.y] instanceof ChampionCell)  
 		  {  
 			  ChampionCell a = (ChampionCell) super.getMap()[two.x][two.y];
-			  if(a.getChamp().equals(super.getCurrentChamp()))
-			  {
-				  if(checkBeforeFire(a.getChamp()))
+				  if(checkBeforeFire())
 				  {
 					  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);    
 					  if(!super.isAlive(a.getChamp())) 
@@ -163,16 +149,6 @@ public class FirstTask extends Task{
 						  super.getMap()[two.x][two.y] = new EmptyCell();
 					  }
 				  }
-			  }
-			  else
-			  {
-				  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);    
-				  if(!super.isAlive(a.getChamp())) 
-				  {
-					  super.removeWizard(a.getChamp());
-					  super.getMap()[two.x][two.y] = new EmptyCell();
-				  }
-			  }
 		  }
 	  }
 	}
@@ -187,11 +163,8 @@ public class FirstTask extends Task{
     	{  
     	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
     	    fire();
-    	    if(isAlive(super.getCurrentChamp()))
-    	    {
-    	    	this.winners.add(super.getCurrentChamp());
-    	    	super.removeWizard(super.getCurrentChamp());
-    	    }  
+    	    this.winners.add(super.getCurrentChamp());
+    	    super.removeWizard(super.getCurrentChamp());
     	    this.getMap()[x][y] = new EmptyCell();
 	    	endTurn();
             return;
@@ -201,17 +174,19 @@ public class FirstTask extends Task{
 	    if(super.getAllowedMoves() == 0 )
 	    	endTurn();
     }
-	private boolean checkBeforeFire(Champion c)
+	private boolean checkBeforeFire()
 	{
-		Wizard w = (Wizard) c;
-		if(super.getAllowedMoves() == 0)
+		if (super.getCurrentChamp() instanceof HufflepuffWizard)
 		{
-			if (w instanceof HufflepuffWizard)
+			if(this.isTraitActivated())
 			{
-				if(!(this.isTraitActivated()))
-					return true;
+				return false;
 			}
 			else return true;
+		}
+		if(super.getAllowedMoves() == 0)
+		{
+			return true;
 		}
 		return false;
 	}
