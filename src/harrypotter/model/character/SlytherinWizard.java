@@ -24,7 +24,8 @@ public class SlytherinWizard extends Wizard implements Champion{
 
 	public void useTrait() throws IOException
 	{
-	  super.getListener().onSlytherinTrait(traitDirection);
+		if(super.getListener() != null)
+			super.getListener().onSlytherinTrait(traitDirection);
 	}
 
 }

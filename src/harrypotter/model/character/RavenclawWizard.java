@@ -10,7 +10,8 @@ public class RavenclawWizard extends Wizard implements Champion{
 	
 	public void useTrait()
 	{
-	  super.getListener().onRavenclawTrait();
+		if(super.getListener() != null)
+			super.getListener().onRavenclawTrait();
 	}
 
 }
