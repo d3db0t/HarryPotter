@@ -116,37 +116,33 @@ public class FirstTask extends Task{
 	
 	public void fire()
 	{
-	  Wizard c = (Wizard) super.getCurrentChamp();
-	  Point p = c.getLocation();
-	  markCells();
 	  Point one = this.markedCells.get(0);  
-	  Point two = this.markedCells.get(1);  
-	  if(this.getMap()[one.x][one.y] instanceof ChampionCell && !(one.equals(p)))  
-	  {  
-		  ChampionCell a = (ChampionCell) super.getMap()[one.x][one.y];
-		  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);  
-	     if(!super.isAlive(a.getChamp()))
-	     {
-	        super.removeWizard(a.getChamp());
-	        super.getMap()[one.x][one.y]= new EmptyCell();
-	     }
-	  }  
-	  else if(this.getMap()[two.x][two.y] instanceof ChampionCell && !(two.equals(p)))  
-	   {  
-		  ChampionCell a = (ChampionCell) super.getMap()[two.x][two.y];
-		  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);    
-	       if(!super.isAlive(a.getChamp())) 
-	       {
-	          super.removeWizard(a.getChamp());
-	          super.getMap()[two.x][two.y] = new EmptyCell();
-	       }
-	   }  
-	  if(this.markedCells.get(0).equals(p) || this.markedCells.get(1).equals(p))
-		  c.setHp(c.getHp()-150);
-	  if(!super.isAlive(this.getCurrentChamp()))
+	  Point two = this.markedCells.get(1);
+	  if(!(one.equals(new Point(4,4))))
 	  {
-		  super.removeWizard(super.getCurrentChamp());
-		  super.getMap()[p.x][p.y] = new EmptyCell();
+		  if(this.getMap()[one.x][one.y] instanceof ChampionCell)  
+		  {  
+			  ChampionCell a = (ChampionCell) super.getMap()[one.x][one.y];
+			  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);  
+			  if(!super.isAlive(a.getChamp()))
+			  {
+				  super.removeWizard(a.getChamp());
+				  super.getMap()[one.x][one.y]= new EmptyCell();
+			  }
+		  }
+	  }
+	  if(!(two.equals(new Point(4,4))))
+	  {
+		  if(this.getMap()[two.x][two.y] instanceof ChampionCell)  
+		  {  
+			  ChampionCell a = (ChampionCell) super.getMap()[two.x][two.y];
+			  ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);    
+			  if(!super.isAlive(a.getChamp())) 
+			  {
+				  super.removeWizard(a.getChamp());
+				  super.getMap()[two.x][two.y] = new EmptyCell();
+			  }
+		  }
 	  }
 	}
 	@Override
