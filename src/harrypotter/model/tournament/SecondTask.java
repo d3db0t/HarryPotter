@@ -187,11 +187,16 @@ public class SecondTask extends Task {
 	   if(super.getChampions().size() != 0)
 	     super.endTurn();
 	   else
-	     super.getListener().onFinishingSecondTask(this.winners);
+	   {
+		 if(super.getListener() != null)
+			 super.getListener().onFinishingSecondTask(this.winners);
+	   }
 	}
 	@Override
     public void onSlytherinTrait(Direction d) throws IOException{
-    	Wizard w = (Wizard) this.getCurrentChamp();
+	    Wizard w = (Wizard) this.getCurrentChamp();
+	    if(w.getTraitCooldown() != 0)
+	    	return;
     	Point champpoint  = w.getLocation();
     	Point firstpoint  = super.getExactPosition(w.getLocation(), d, 1);
     	Point secondpoint = super.getExactPosition(w.getLocation(), d, 2);
