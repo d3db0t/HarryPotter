@@ -158,8 +158,8 @@ public class FirstTask extends Task{
     	{  
     	    this.winners.add(super.getCurrentChamp());
     	    super.removeWizard(super.getCurrentChamp());
-    	    fire();
     	    this.getMap()[x][y] = new EmptyCell();
+    	    fire();
 	    	endTurn();
             return;
     	}
