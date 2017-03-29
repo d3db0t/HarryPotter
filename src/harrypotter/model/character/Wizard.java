@@ -79,12 +79,7 @@ public abstract class Wizard {
 	}
 
 	public void setIp(int ip) {
-		if(ip > this.defaultIp)
-			this.ip = this.defaultIp;
-		else if(ip < 0)
-			this.ip = 0;
-		else
-			this.ip = ip;
+		this.ip = ip;
 	}
 
 	public Point getLocation() {
