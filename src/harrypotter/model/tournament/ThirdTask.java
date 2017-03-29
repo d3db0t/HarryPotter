@@ -214,11 +214,11 @@ public class ThirdTask extends Task {
     		w.setLocation(secondpoint);
     		this.getMap()[spx][spy] = cellofchamp;
     		this.getMap()[cpx][cpy] = new EmptyCell();
-    		super.setTraitActivated(true);
-    		w.setTraitCooldown(10);
-    		super.setAllowedMoves(super.getAllowedMoves() - 1);
-    		finalizeAction();
     	}
+    	super.setTraitActivated(true);
+		w.setTraitCooldown(10);
+		super.setAllowedMoves(super.getAllowedMoves() - 1);
+		finalizeAction();
     }
 	public Object onRavenclawTrait()
 	{
