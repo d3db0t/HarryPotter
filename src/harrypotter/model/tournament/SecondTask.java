@@ -216,13 +216,13 @@ public class SecondTask extends Task {
     			firstcell instanceof EmptyCell){
     					
     		w.setLocation(secondpoint);
-    		this.getMap()[spx][spy] = cellofchamp;
+    		this.getMap()[spx][spy] = new ChampionCell(super.getCurrentChamp());
     		this.getMap()[cpx][cpy] = new EmptyCell();
     		super.setTraitActivated(true);
-    		w.setTraitCooldown(4);
     		super.setAllowedMoves(super.getAllowedMoves() - 1);
-    		finalizeAction();
     	}
+		w.setTraitCooldown(4);
+		finalizeAction();
     }
 	
 	public void addChampsTreasureLocation(int x, int y){
