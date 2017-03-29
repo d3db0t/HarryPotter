@@ -99,6 +99,7 @@ public class FirstTask extends Task{
 	}
 	public void markCells()
 	{
+		this.markedCells.clear();
 		Wizard c = (Wizard) this.getCurrentChamp();
 		Point p = c.getLocation();
 		ArrayList<Point> possiblePositions = getAdjacentCells(p);
@@ -232,7 +233,10 @@ public class FirstTask extends Task{
     public void endTurn() throws IOException
     {
     	if(super.getChampions().size() != 0)
+    	{
     		super.endTurn();
+    		markCells();
+    	}
     	else
     	{
     		if(super.getListener() != null)
