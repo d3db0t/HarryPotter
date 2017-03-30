@@ -11,6 +11,7 @@ import harrypotter.model.character.Wizard;
 import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.HealingSpell;
 import harrypotter.model.magic.RelocatingSpell;
+import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CupCell;
@@ -174,7 +175,7 @@ public class ThirdTask extends Task {
     			removeWizard(c.getChamp());
     		}
     	}
-    	super.useSpell(s);
+    	useSpell(s);
     	finalizeAction();
     }
 	@Override
@@ -240,6 +241,9 @@ public class ThirdTask extends Task {
 		super.setTraitActivated(true);
 		c.setTraitCooldown(7);
 		return hint;
+	}
+	public void useSpell(Spell s){
+		super.useSpell(s);
 	}
 
 }
