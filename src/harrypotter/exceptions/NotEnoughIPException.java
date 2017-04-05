@@ -13,6 +13,8 @@ public class NotEnoughIPException extends NotEnoughResourcesException{
 	
 	public NotEnoughIPException(int requiredIP, int remainingIP){
 		super("Not enough ip\nrequiredIP: "+ requiredIP + "\nremainingIP: " + remainingIP);
+		this.requiredIP  = requiredIP;
+		this.remainingIP = remainingIP;
 	}
 	
 

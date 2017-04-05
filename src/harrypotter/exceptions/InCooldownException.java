@@ -5,6 +5,7 @@ public class InCooldownException extends NotEnoughResourcesException{
 	
 	public InCooldownException(int remainingTurns){
 		super("Cooldown is not yet zero\nremainingTurns: " + remainingTurns);
+		this.remainingTurns = remainingTurns;
 	}
 
 	public int getRemainingTurns() {
