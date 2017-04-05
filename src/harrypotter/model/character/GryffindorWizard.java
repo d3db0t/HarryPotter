@@ -1,5 +1,7 @@
 package harrypotter.model.character;
 
+import harrypotter.exceptions.InCooldownException;
+
 public class GryffindorWizard extends Wizard implements Champion{
 	
 	public GryffindorWizard(String name){
@@ -8,7 +10,7 @@ public class GryffindorWizard extends Wizard implements Champion{
 		super.setDefaultIp(500);
 	}
 	
-	public void useTrait()
+	public void useTrait() throws InCooldownException
 	{
 	  if(super.getListener() != null)
 		  super.getListener().onGryffindorTrait();	
