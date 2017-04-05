@@ -3,6 +3,7 @@ package harrypotter.model.character;
 import java.io.IOException;
 
 import harrypotter.exceptions.InCooldownException;
+import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.OutOfBordersException;
 import harrypotter.model.world.Direction;
 
@@ -24,7 +25,7 @@ public class SlytherinWizard extends Wizard implements Champion{
 		this.traitDirection = traitDirection;
 	}
 
-	public void useTrait() throws IOException, InCooldownException, OutOfBordersException
+	public void useTrait() throws IOException, InCooldownException, OutOfBordersException, InvalidTargetCellException
 	{
 		if(super.getListener() != null)
 			super.getListener().onSlytherinTrait(traitDirection);
