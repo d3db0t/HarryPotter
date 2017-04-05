@@ -336,7 +336,7 @@ public abstract class Task implements WizardListener{
     private void makeMove(Point a) throws OutOfBordersException
     {
     	if(a == null){
-    		throw new OutOfBordersException();
+    		return;
     	}
     		
     	Wizard c = (Wizard) this.currentChamp;
