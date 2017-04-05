@@ -270,10 +270,7 @@ public abstract class Task implements WizardListener{
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     
-    	if(getAdjacentCells(p).get(0).getX() > 9
-    			|| getAdjacentCells(p).get(0).getX() < 0
-    			|| getAdjacentCells(p).get(0).getY() < 0
-    			|| getAdjacentCells(p).get(0).getY() > 9)
+    	if(getAdjacentCells(p).get(0) == null)
     		throw new OutOfBordersException();
     	
     	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
@@ -287,10 +284,7 @@ public abstract class Task implements WizardListener{
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	
-    	if(getAdjacentCells(p).get(1).getX() > 9
-    			|| getAdjacentCells(p).get(1).getX() < 0
-    			|| getAdjacentCells(p).get(1).getY() < 0
-    			|| getAdjacentCells(p).get(1).getY() > 9)
+    	if(getAdjacentCells(p).get(1) == null)
     		throw new OutOfBordersException();
     	
     	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
@@ -304,10 +298,7 @@ public abstract class Task implements WizardListener{
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	
-    	if(getAdjacentCells(p).get(2).getX() > 9
-    			|| getAdjacentCells(p).get(2).getX() < 0
-    			|| getAdjacentCells(p).get(2).getY() < 0
-    			|| getAdjacentCells(p).get(2).getY() > 9)
+    	if(getAdjacentCells(p).get(2) == null)
     		throw new OutOfBordersException();
     	
     	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
@@ -321,10 +312,7 @@ public abstract class Task implements WizardListener{
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	
-    	if(getAdjacentCells(p).get(3).getX() > 9
-    			|| getAdjacentCells(p).get(3).getX() < 0
-    			|| getAdjacentCells(p).get(3).getY() < 0
-    			|| getAdjacentCells(p).get(3).getY() > 9)
+    	if(getAdjacentCells(p).get(3) == null)
     		throw new OutOfBordersException();
     	
     	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
