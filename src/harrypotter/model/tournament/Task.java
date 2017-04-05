@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import harrypotter.exceptions.InCooldownException;
+import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.NotEnoughIPException;
 import harrypotter.exceptions.NotEnoughResourcesException;
 import harrypotter.exceptions.OutOfBordersException;
@@ -264,7 +265,7 @@ public abstract class Task implements WizardListener{
     		a.setCoolDown(0);
     	}
     }
-    public void moveForward() throws IOException, OutOfBordersException
+    public void moveForward() throws IOException, OutOfBordersException, InvalidTargetCellException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
@@ -275,10 +276,13 @@ public abstract class Task implements WizardListener{
     			|| getAdjacentCells(p).get(0).getY() > 9)
     		throw new OutOfBordersException();
     	
+    	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
+    		throw new InvalidTargetCellException();
+    	
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(0));
     }
-    public void moveBackward() throws IOException, OutOfBordersException
+    public void moveBackward() throws IOException, OutOfBordersException, InvalidTargetCellException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
@@ -289,10 +293,13 @@ public abstract class Task implements WizardListener{
     			|| getAdjacentCells(p).get(1).getY() > 9)
     		throw new OutOfBordersException();
     	
+    	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
+    		throw new InvalidTargetCellException();
+    	
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(1));
     }
-    public void moveRight() throws IOException, OutOfBordersException
+    public void moveRight() throws IOException, OutOfBordersException, InvalidTargetCellException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
@@ -303,10 +310,13 @@ public abstract class Task implements WizardListener{
     			|| getAdjacentCells(p).get(2).getY() > 9)
     		throw new OutOfBordersException();
     	
+    	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
+    		throw new InvalidTargetCellException();
+    	
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(2));
     }
-    public void moveLeft() throws IOException, OutOfBordersException
+    public void moveLeft() throws IOException, OutOfBordersException, InvalidTargetCellException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
@@ -316,6 +326,9 @@ public abstract class Task implements WizardListener{
     			|| getAdjacentCells(p).get(3).getY() < 0
     			|| getAdjacentCells(p).get(3).getY() > 9)
     		throw new OutOfBordersException();
+    	
+    	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
+    		throw new InvalidTargetCellException();
     	
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(3));
@@ -388,7 +401,7 @@ public abstract class Task implements WizardListener{
     	this.allowedMoves = this.allowedMoves - 1;
     }
     
-    public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException
+    public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException
     {
     	Point p = getTargetPoint(d);
     	int x = (int) p.getX();
@@ -424,10 +437,16 @@ public abstract class Task implements WizardListener{
     	useSpell(s);
     }
     
-    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException
+    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
     	Point current = getTargetPoint(d);
     	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
+    	
+    	if(!(map[(int)next.getX()][(int)next.getY()] instanceof EmptyCell)
+    			|| map[(int)current.getX()][(int)current.getY()] instanceof CollectibleCell
+    			|| map[(int)current.getX()][(int)current.getY()] instanceof TreasureCell)
+    		throw new InvalidTargetCellException();
+    	
     	int cost = s.getCost();
     	int remainingip = cost - ((Wizard)currentChamp).getIp();
     	
@@ -540,7 +559,7 @@ public abstract class Task implements WizardListener{
     	this.traitActivated = true;
     	c.setTraitCooldown(4);
     }
-    public abstract void onSlytherinTrait(Direction d) throws IOException, InCooldownException, OutOfBordersException;
+    public abstract void onSlytherinTrait(Direction d) throws IOException, InCooldownException, OutOfBordersException, InvalidTargetCellException;
     
     public void onHufflepuffTrait() throws InCooldownException
     {
