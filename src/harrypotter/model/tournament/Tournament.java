@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import harrypotter.exceptions.OutOfBordersException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.HealingSpell;
@@ -85,7 +86,7 @@ public class Tournament implements TaskListener{
 	{
 		this.champions.add(c);
 	}
-	public void beginTournament() throws IOException{
+	public void beginTournament() throws IOException, OutOfBordersException{
 		this.firstTask = new FirstTask(this.champions);
 		this.firstTask.setListener(this);
 	}

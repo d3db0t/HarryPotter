@@ -10,6 +10,8 @@ import java.util.Random;
 import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.NotEnoughIPException;
 import harrypotter.exceptions.NotEnoughResourcesException;
+import harrypotter.exceptions.OutOfBordersException;
+import harrypotter.exceptions.OutOfRangeException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.character.WizardListener;
@@ -204,7 +206,7 @@ public abstract class Task implements WizardListener{
     	return x.getHp() > 0;
     }
     
-    public static ArrayList<Point> getAdjacentCells(Point p){ // Return {UP, Down, Right, Left, CurrentPoint}
+    public static ArrayList<Point> getAdjacentCells(Point p) throws OutOfBordersException{ // Return {UP, Down, Right, Left, CurrentPoint}
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	ArrayList<Point> a = new ArrayList<Point>();
@@ -216,12 +218,13 @@ public abstract class Task implements WizardListener{
     	for (int i = 0; i < a.size()-1;i++){
     		if (!(insideBoundary(a.get(i)))){
     			a.set(i, null);
+    			
     		}
     	}
     	return a;
     }
     
-    public static boolean insideBoundary(Point p){ // Checks if point is inside the map boundaries
+    public static boolean insideBoundary(Point p) throws OutOfBordersException{ // Checks if point is inside the map boundaries
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	return !(y < 0 || y > 9 || x < 0 || x > 9);
@@ -237,7 +240,7 @@ public abstract class Task implements WizardListener{
 		return p.get(a) == null;
 	}
     
-    public abstract void finalizeAction() throws IOException;
+    public abstract void finalizeAction() throws IOException, OutOfBordersException;
     
     private void restoreStats()
     {
@@ -260,38 +263,40 @@ public abstract class Task implements WizardListener{
     		a.setCoolDown(0);
     	}
     }
-    public void moveForward() throws IOException
+    public void moveForward() throws IOException, OutOfBordersException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(0));
     }
-    public void moveBackward() throws IOException
+    public void moveBackward() throws IOException, OutOfBordersException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(1));
     }
-    public void moveRight() throws IOException
+    public void moveRight() throws IOException, OutOfBordersException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(2));
     }
-    public void moveLeft() throws IOException
+    public void moveLeft() throws IOException, OutOfBordersException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(3));
     }
-    private void makeMove(Point a)
+    private void makeMove(Point a) throws OutOfBordersException
     {
-    	if(a == null)
-    		return;
+    	if(a == null){
+    		throw new OutOfBordersException();
+    	}
+    		
     	Wizard c = (Wizard) this.currentChamp;
     	Point b = c.getLocation();
     	int e = (int) b.getX();
@@ -328,7 +333,7 @@ public abstract class Task implements WizardListener{
     		this.allowedMoves = this.allowedMoves - 1;
     	}
     }
-    public static Point directionToPoint(Direction d, Champion c){
+    public static Point directionToPoint(Direction d, Champion c) throws OutOfBordersException{
     	Wizard w           = (Wizard) c;
     	ArrayList<Point> a = getAdjacentCells(w.getLocation());
     	Point p            = w.getLocation();
@@ -341,7 +346,7 @@ public abstract class Task implements WizardListener{
     	return p;
     }
     
-    public Point getTargetPoint(Direction d)
+    public Point getTargetPoint(Direction d) throws OutOfBordersException
     {
     	return  directionToPoint(d, this.getCurrentChamp());
     }
@@ -357,7 +362,7 @@ public abstract class Task implements WizardListener{
     	this.allowedMoves = this.allowedMoves - 1;
     }
     
-    public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException
+    public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException
     {
     	Point p = getTargetPoint(d);
     	int x = (int) p.getX();
@@ -386,7 +391,7 @@ public abstract class Task implements WizardListener{
     	useSpell(s);
     }
     
-    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException
+    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException
     {
     	Point current = getTargetPoint(d);
     	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
@@ -396,6 +401,9 @@ public abstract class Task implements WizardListener{
     	int b = (int) current.getY();
     	if (s.getCoolDown() > 0){
     		throw new InCooldownException(s.getCoolDown());
+    	}
+    	if (r > s.getRange()){
+    		throw new OutOfRangeException(s.getRange());
     	}
     	if(insideBoundary(next))
     	{
@@ -409,6 +417,7 @@ public abstract class Task implements WizardListener{
     		}
         	
     	}
+
     	useSpell(s);
     }
     public Point getExactPosition(Point p , Direction t ,int range)
@@ -425,7 +434,7 @@ public abstract class Task implements WizardListener{
     	return new Point(x,y);
     }
     
-    public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException{
+    public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
     	Wizard w = (Wizard) this.currentChamp;
     	if (s.getCoolDown() > 0){
     		throw new InCooldownException(s.getCoolDown());
@@ -434,7 +443,7 @@ public abstract class Task implements WizardListener{
     	useSpell(s);
     }
     
-    public void endTurn() throws IOException
+    public void endTurn() throws IOException, OutOfBordersException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	decrementTraitCooldown(c);
@@ -475,17 +484,24 @@ public abstract class Task implements WizardListener{
     	c.getInventory().remove(p);
     }
     
-    public void onGryffindorTrait()
+    public void onGryffindorTrait() throws InCooldownException
     {
     	Wizard c = (Wizard) this.currentChamp;
+    	if (c.getTraitCooldown() > 0){
+    		throw new InCooldownException(c.getTraitCooldown());
+    	}
     	this.allowedMoves = 2;
     	this.traitActivated = true;
     	c.setTraitCooldown(4);
     }
-    public abstract void onSlytherinTrait(Direction d) throws IOException;
+    public abstract void onSlytherinTrait(Direction d) throws IOException, InCooldownException, OutOfBordersException;
     
-    public void onHufflepuffTrait()
+    public void onHufflepuffTrait() throws InCooldownException
     {
+    	Wizard c = (Wizard) this.currentChamp;
+    	if (c.getTraitCooldown() > 0){
+    		throw new InCooldownException(c.getTraitCooldown());
+    	}
     	this.traitActivated = true;
     }
 }

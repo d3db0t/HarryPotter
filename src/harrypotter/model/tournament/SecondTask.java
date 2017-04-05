@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.NotEnoughIPException;
+import harrypotter.exceptions.OutOfBordersException;
+import harrypotter.exceptions.OutOfRangeException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
@@ -87,7 +89,7 @@ public class SecondTask extends Task {
 		
 	}
 	
-	public void encounterMerPerson()
+	public void encounterMerPerson() throws OutOfBordersException
 	{ //for the currentChamp
 		Wizard c = (Wizard) super.getCurrentChamp();
 		Point p  = c.getLocation();
@@ -113,7 +115,7 @@ public class SecondTask extends Task {
 		}
 	}
 	@Override
-	public void finalizeAction() throws IOException
+	public void finalizeAction() throws IOException, OutOfBordersException
 	{
 		Wizard c = (Wizard) super.getCurrentChamp();
 		Point p = c.getLocation();
@@ -143,49 +145,49 @@ public class SecondTask extends Task {
     	
 	}
 	@Override
-	public void moveForward() throws IOException
+	public void moveForward() throws IOException, OutOfBordersException
 	{
 		super.moveForward();
 		finalizeAction();
 	}
 	@Override
-	public void moveBackward() throws IOException
+	public void moveBackward() throws IOException, OutOfBordersException
 	{
 		super.moveBackward();
 		finalizeAction();
 	}
 	@Override
-	public void moveRight() throws IOException
+	public void moveRight() throws IOException, OutOfBordersException
 	{
 		super.moveRight();
 		finalizeAction();
 	}
 	@Override
-	public void moveLeft() throws IOException
+	public void moveLeft() throws IOException, OutOfBordersException
 	{
 		super.moveLeft();
 		finalizeAction();
 	}
 	
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException{
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
     	super.castDamagingSpell(s, d);
     	finalizeAction();
     }
 	@Override
-	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException{
+	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
 		super.castHealingSpell(s);
 		finalizeAction();
 	}
 	 
 	@Override
-	public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException
+	public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException
     {
 	   super.castRelocatingSpell(s, d, t, r);
 	   finalizeAction();
 	}
 	@Override
-	public void endTurn() throws IOException
+	public void endTurn() throws IOException, OutOfBordersException
 	{
 	   if(super.getChampions().size() != 0)
 	     super.endTurn();
@@ -196,7 +198,7 @@ public class SecondTask extends Task {
 	   }
 	}
 	@Override
-    public void onSlytherinTrait(Direction d) throws IOException{
+    public void onSlytherinTrait(Direction d) throws IOException, OutOfBordersException{
 	    Wizard w = (Wizard) this.getCurrentChamp();
 	    if(w.getTraitCooldown() != 0)
 	    	return;
@@ -252,14 +254,14 @@ public class SecondTask extends Task {
 	}
 	
 	@Override
-	public void onHufflepuffTrait()
+	public void onHufflepuffTrait() throws InCooldownException
 	{
 	   Wizard c = (Wizard) super.getCurrentChamp();
 	   super.onHufflepuffTrait();
 	   c.setTraitCooldown(6);
 	}
 	
-	public Object onRavenclawTrait(){
+	public Object onRavenclawTrait() throws InCooldownException{
 		ArrayList<Direction> hint = new ArrayList<Direction>();
 		Wizard w                  = (Wizard) this.getCurrentChamp();
 		Point treasurelocation    = this.getChampTreasureLocation();
@@ -268,6 +270,9 @@ public class SecondTask extends Task {
 	    int champy                = (int) champ.getY(); 
 	    int tx                    = (int) treasurelocation.getX(); 
 	    int ty                    = (int) treasurelocation.getY(); 
+	    if (w.getTraitCooldown() > 0){
+    		throw new InCooldownException(w.getTraitCooldown());
+    	}
 	    if(champy > ty) 
 	      hint.add(Direction.LEFT); 
 	    else if(ty > champy) 

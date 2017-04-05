@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.NotEnoughIPException;
+import harrypotter.exceptions.OutOfBordersException;
+import harrypotter.exceptions.OutOfRangeException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
@@ -108,7 +110,7 @@ public class ThirdTask extends Task {
     	}
 	}
 	@Override
-	public void finalizeAction() throws IOException
+	public void finalizeAction() throws IOException, OutOfBordersException
 	{
 		Wizard c = (Wizard) super.getCurrentChamp();
 		Point p = c.getLocation();
@@ -127,31 +129,31 @@ public class ThirdTask extends Task {
 	    	endTurn();
 	}
 	@Override
-	public void moveForward() throws IOException
+	public void moveForward() throws IOException, OutOfBordersException
 	{
 		super.moveForward();
 		finalizeAction();
 	}
 	@Override
-	public void moveBackward() throws IOException
+	public void moveBackward() throws IOException, OutOfBordersException
 	{
 		super.moveBackward();
 		finalizeAction();
 	}
 	@Override
-	public void moveRight() throws IOException
+	public void moveRight() throws IOException, OutOfBordersException
 	{
 		super.moveRight();
 		finalizeAction();
 	}
 	@Override
-	public void moveLeft() throws IOException
+	public void moveLeft() throws IOException, OutOfBordersException
 	{
 		super.moveLeft();
 		finalizeAction();
 	}
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException{
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, OutOfBordersException{
     	Point p = directionToPoint(d, this.getCurrentChamp());
     	int x = (int) p.getX();
     	int y = (int) p.getY();
@@ -182,19 +184,22 @@ public class ThirdTask extends Task {
     	finalizeAction();
     }
 	@Override
-	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException{
+	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
 		super.castHealingSpell(s);
 		finalizeAction();
 	}
 	@Override
-	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException
+	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException
     {
 	    super.castRelocatingSpell(s, d, t, r);
 	    finalizeAction();
 	}
 	@Override
-    public void onSlytherinTrait(Direction d) throws IOException{
+    public void onSlytherinTrait(Direction d) throws IOException, InCooldownException, OutOfBordersException{
     	Wizard w = (Wizard) this.getCurrentChamp();
+    	if (w.getTraitCooldown() > 0){
+    		throw new InCooldownException(w.getTraitCooldown());
+    	}
     	Point champpoint  = w.getLocation();
     	Point firstpoint  = super.getExactPosition(w.getLocation(), d, 1);
     	Point secondpoint = super.getExactPosition(w.getLocation(), d, 2);
@@ -224,7 +229,7 @@ public class ThirdTask extends Task {
 		super.setAllowedMoves(super.getAllowedMoves() - 1);
 		finalizeAction();
     }
-	public Object onRavenclawTrait()
+	public Object onRavenclawTrait() throws InCooldownException
 	{
 		ArrayList <Direction> hint = new ArrayList<Direction>();
 		Wizard c = (Wizard) super.getCurrentChamp();
@@ -233,6 +238,9 @@ public class ThirdTask extends Task {
 		int champy = (int) champ.getY();
 		int cupx = (int) this.cupCell.getX();
 		int cupy = (int) this.cupCell.getY();
+		if (c.getTraitCooldown() > 0){
+    		throw new InCooldownException(c.getTraitCooldown());
+    	}
 		if(champy > cupy)
 			hint.add(Direction.LEFT);
 		else if(cupy > champy)

@@ -7,6 +7,8 @@ import java.util.Random;
 
 import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.NotEnoughIPException;
+import harrypotter.exceptions.OutOfBordersException;
+import harrypotter.exceptions.OutOfRangeException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.GryffindorWizard;
 import harrypotter.model.character.HufflepuffWizard;
@@ -27,7 +29,7 @@ public class FirstTask extends Task{
 	private ArrayList<Point> markedCells;
 	private ArrayList<Champion> winners;
 	
-	public FirstTask(ArrayList<Champion> champions)throws IOException
+	public FirstTask(ArrayList<Champion> champions)throws IOException, OutOfBordersException
 	{
 		super(champions);
 		super.shuffleChampions();
@@ -100,7 +102,7 @@ public class FirstTask extends Task{
 		   }
 	   }
 	}
-	public void markCells()
+	public void markCells() throws OutOfBordersException
 	{
 		this.markedCells.clear();
 		Wizard c = (Wizard) this.getCurrentChamp();
@@ -150,7 +152,7 @@ public class FirstTask extends Task{
 	}
   }
 	@Override
-	public void finalizeAction() throws IOException
+	public void finalizeAction() throws IOException, OutOfBordersException
 	{
     	Wizard w = (Wizard) this.getCurrentChamp();
     	Point p  = w.getLocation();
@@ -191,48 +193,48 @@ public class FirstTask extends Task{
 		
 	}
 	@Override
-	public void moveForward() throws IOException
+	public void moveForward() throws IOException, OutOfBordersException
 	{
 		super.moveForward();
 		finalizeAction();
 	}
 	@Override
-	public void moveBackward() throws IOException
+	public void moveBackward() throws IOException, OutOfBordersException
 	{
 		super.moveBackward();
 		finalizeAction();
 	}
 	@Override
-	public void moveRight() throws IOException
+	public void moveRight() throws IOException, OutOfBordersException
 	{
 		super.moveRight();
 		finalizeAction();
 	}
 	@Override
-	public void moveLeft() throws IOException
+	public void moveLeft() throws IOException, OutOfBordersException
 	{
 		super.moveLeft();
 		finalizeAction();
 	}
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException
 	{
     	super.castDamagingSpell(s, d);
     	finalizeAction();
     }
 	@Override
-	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException{
+	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
 		super.castHealingSpell(s);
 		finalizeAction();
 	}
     @Override
-    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException
+    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException
     {
     	super.castRelocatingSpell(s, d, t, r);
     	finalizeAction();
     }
     @Override
-    public void endTurn() throws IOException
+    public void endTurn() throws IOException, OutOfBordersException
     {
     	if(super.getChampions().size() != 0)
     	{
@@ -246,8 +248,11 @@ public class FirstTask extends Task{
     	}
     }
     @Override
-    public void onSlytherinTrait(Direction d) throws IOException{
+    public void onSlytherinTrait(Direction d) throws IOException, InCooldownException, OutOfBordersException{
     	Wizard w = (Wizard) this.getCurrentChamp();
+    	if (w.getTraitCooldown() > 0){
+    		throw new InCooldownException(w.getTraitCooldown());
+    	}
     	Point champpoint  = w.getLocation();
     	Point firstpoint  = super.getExactPosition(w.getLocation(), d, 1);
     	Point secondpoint = super.getExactPosition(w.getLocation(), d, 2);
@@ -277,15 +282,18 @@ public class FirstTask extends Task{
 		finalizeAction();
     }
     @Override
-    public void onHufflepuffTrait()
+    public void onHufflepuffTrait() throws InCooldownException
     {
     	Wizard c = (Wizard) super.getCurrentChamp();
     	super.onHufflepuffTrait();
     	c.setTraitCooldown(3);
     }
     
-    public Object onRavenclawTrait(){
+    public Object onRavenclawTrait() throws InCooldownException{
     	Wizard w = (Wizard) super.getCurrentChamp();
+    	if (w.getTraitCooldown() > 0){
+    		throw new InCooldownException(w.getTraitCooldown());
+    	}
     	super.setTraitActivated(true);
     	w.setTraitCooldown(5);
     	return this.markedCells;
