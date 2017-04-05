@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import harrypotter.exceptions.InCooldownException;
+import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.NotEnoughIPException;
 import harrypotter.exceptions.OutOfBordersException;
 import harrypotter.exceptions.OutOfRangeException;
@@ -145,32 +146,32 @@ public class SecondTask extends Task {
     	
 	}
 	@Override
-	public void moveForward() throws IOException, OutOfBordersException
+	public void moveForward() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveForward();
 		finalizeAction();
 	}
 	@Override
-	public void moveBackward() throws IOException, OutOfBordersException
+	public void moveBackward() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveBackward();
 		finalizeAction();
 	}
 	@Override
-	public void moveRight() throws IOException, OutOfBordersException
+	public void moveRight() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveRight();
 		finalizeAction();
 	}
 	@Override
-	public void moveLeft() throws IOException, OutOfBordersException
+	public void moveLeft() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveLeft();
 		finalizeAction();
 	}
 	
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException{
     	super.castDamagingSpell(s, d);
     	finalizeAction();
     }
@@ -181,7 +182,7 @@ public class SecondTask extends Task {
 	}
 	 
 	@Override
-	public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException
+	public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
 	   super.castRelocatingSpell(s, d, t, r);
 	   finalizeAction();
@@ -198,7 +199,7 @@ public class SecondTask extends Task {
 	   }
 	}
 	@Override
-    public void onSlytherinTrait(Direction d) throws IOException, OutOfBordersException{
+    public void onSlytherinTrait(Direction d) throws IOException, OutOfBordersException, InvalidTargetCellException{
 	    Wizard w = (Wizard) this.getCurrentChamp();
 	    if(w.getTraitCooldown() != 0)
 	    	return;
@@ -222,6 +223,10 @@ public class SecondTask extends Task {
     	if (!( super.insideBoundary(firstpoint) || super.insideBoundary(secondpoint) )){
     		return;
     	}
+    	
+    	if(firstcell instanceof TreasureCell || secondcell instanceof TreasureCell)
+    		throw new InvalidTargetCellException();
+    	
     	if (secondcell instanceof EmptyCell && 
     			firstcell instanceof EmptyCell){
     					
