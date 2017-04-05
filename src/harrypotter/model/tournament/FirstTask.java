@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import harrypotter.exceptions.InCooldownException;
+import harrypotter.exceptions.NotEnoughIPException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.GryffindorWizard;
 import harrypotter.model.character.HufflepuffWizard;
@@ -213,18 +215,18 @@ public class FirstTask extends Task{
 		finalizeAction();
 	}
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException
 	{
     	super.castDamagingSpell(s, d);
     	finalizeAction();
     }
 	@Override
-	public void castHealingSpell(HealingSpell s) throws IOException{
+	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException{
 		super.castHealingSpell(s);
 		finalizeAction();
 	}
     @Override
-    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException
+    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException
     {
     	super.castRelocatingSpell(s, d, t, r);
     	finalizeAction();

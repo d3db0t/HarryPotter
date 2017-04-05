@@ -5,6 +5,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import harrypotter.exceptions.InCooldownException;
+import harrypotter.exceptions.NotEnoughIPException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
@@ -148,7 +151,7 @@ public class ThirdTask extends Task {
 		finalizeAction();
 	}
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException{
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException{
     	Point p = directionToPoint(d, this.getCurrentChamp());
     	int x = (int) p.getX();
     	int y = (int) p.getY();
@@ -179,12 +182,12 @@ public class ThirdTask extends Task {
     	finalizeAction();
     }
 	@Override
-	public void castHealingSpell(HealingSpell s) throws IOException{
+	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException{
 		super.castHealingSpell(s);
 		finalizeAction();
 	}
 	@Override
-	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException
+	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException
     {
 	    super.castRelocatingSpell(s, d, t, r);
 	    finalizeAction();
@@ -242,7 +245,7 @@ public class ThirdTask extends Task {
 		c.setTraitCooldown(7);
 		return hint;
 	}
-	public void useSpell(Spell s){
+	public void useSpell(Spell s) throws NotEnoughIPException{
 		super.useSpell(s);
 	}
 

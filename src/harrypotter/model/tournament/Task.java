@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import harrypotter.exceptions.InCooldownException;
+import harrypotter.exceptions.NotEnoughIPException;
+import harrypotter.exceptions.NotEnoughResourcesException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.character.WizardListener;
@@ -343,10 +346,13 @@ public abstract class Task implements WizardListener{
     	return  directionToPoint(d, this.getCurrentChamp());
     }
     
-    public void useSpell(Spell s)
+    public void useSpell(Spell s) throws NotEnoughIPException
     {
     	s.setCoolDown(s.getDefaultCooldown());
     	Wizard w = (Wizard) this.getCurrentChamp();
+    	if (!(w.getIp() > s.getCost())){
+    		throw new NotEnoughIPException(s.getCost(), s.getCost()-w.getIp());
+    	}
     	w.setIp(w.getIp() - s.getCost());
     	this.allowedMoves = this.allowedMoves - 1;
     }
