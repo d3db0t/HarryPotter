@@ -273,7 +273,9 @@ public abstract class Task implements WizardListener{
     	if(getAdjacentCells(p).get(0) == null)
     		throw new OutOfBordersException();
     	
-    	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
+    	if(map[(int) getAdjacentCells(p).get(0).getX()]
+    			[(int) getAdjacentCells(p).get(0).getY()] 
+    					instanceof ChampionCell)
     		throw new InvalidTargetCellException();
     	
     	if(this.allowedMoves > 0)
@@ -287,7 +289,9 @@ public abstract class Task implements WizardListener{
     	if(getAdjacentCells(p).get(1) == null)
     		throw new OutOfBordersException();
     	
-    	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
+    	if(map[(int) getAdjacentCells(p).get(1).getX()]
+    			[(int) getAdjacentCells(p).get(1).getY()] 
+    					instanceof ChampionCell)
     		throw new InvalidTargetCellException();
     	
     	if(this.allowedMoves > 0)
@@ -301,7 +305,9 @@ public abstract class Task implements WizardListener{
     	if(getAdjacentCells(p).get(2) == null)
     		throw new OutOfBordersException();
     	
-    	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
+    	if(map[(int) getAdjacentCells(p).get(2).getX()]
+    			[(int) getAdjacentCells(p).get(2).getY()] 
+    					instanceof ChampionCell)
     		throw new InvalidTargetCellException();
     	
     	if(this.allowedMoves > 0)
@@ -315,7 +321,9 @@ public abstract class Task implements WizardListener{
     	if(getAdjacentCells(p).get(3) == null)
     		throw new OutOfBordersException();
     	
-    	if(map[(int)p.getX()][(int)p.getY()] instanceof ChampionCell)
+    	if(map[(int) getAdjacentCells(p).get(3).getX()]
+    			[(int) getAdjacentCells(p).get(3).getY()] 
+    					instanceof ChampionCell)
     		throw new InvalidTargetCellException();
     	
     	if(this.allowedMoves > 0)
