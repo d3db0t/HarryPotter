@@ -203,6 +203,11 @@ public class ThirdTask extends Task {
     	Point champpoint  = w.getLocation();
     	Point firstpoint  = super.getExactPosition(w.getLocation(), d, 1);
     	Point secondpoint = super.getExactPosition(w.getLocation(), d, 2);
+    	
+    	if (firstpoint.getX() > 9 || firstpoint.getX() < 0 || firstpoint.getY() > 9 || firstpoint.getY() < 0
+    			|| secondpoint.getX() > 9 || secondpoint.getX() < 0 || secondpoint.getY() > 9 || secondpoint.getY() < 0)
+    		throw new OutOfBordersException();
+    	
     	int cpx = (int) champpoint.getX();
     	int cpy = (int) champpoint.getY();
     	int fpx = (int) firstpoint.getX();
