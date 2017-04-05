@@ -267,6 +267,13 @@ public abstract class Task implements WizardListener{
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
+    
+    	if(getAdjacentCells(p).get(0).getX() > 9
+    			|| getAdjacentCells(p).get(0).getX() < 0
+    			|| getAdjacentCells(p).get(0).getY() < 0
+    			|| getAdjacentCells(p).get(0).getY() > 9)
+    		throw new OutOfBordersException();
+    	
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(0));
     }
@@ -274,6 +281,13 @@ public abstract class Task implements WizardListener{
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
+    	
+    	if(getAdjacentCells(p).get(1).getX() > 9
+    			|| getAdjacentCells(p).get(1).getX() < 0
+    			|| getAdjacentCells(p).get(1).getY() < 0
+    			|| getAdjacentCells(p).get(1).getY() > 9)
+    		throw new OutOfBordersException();
+    	
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(1));
     }
@@ -281,6 +295,13 @@ public abstract class Task implements WizardListener{
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
+    	
+    	if(getAdjacentCells(p).get(2).getX() > 9
+    			|| getAdjacentCells(p).get(2).getX() < 0
+    			|| getAdjacentCells(p).get(2).getY() < 0
+    			|| getAdjacentCells(p).get(2).getY() > 9)
+    		throw new OutOfBordersException();
+    	
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(2));
     }
@@ -288,6 +309,13 @@ public abstract class Task implements WizardListener{
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
+    	
+    	if(getAdjacentCells(p).get(3).getX() > 9
+    			|| getAdjacentCells(p).get(3).getX() < 0
+    			|| getAdjacentCells(p).get(3).getY() < 0
+    			|| getAdjacentCells(p).get(3).getY() > 9)
+    		throw new OutOfBordersException();
+    	
     	if(this.allowedMoves > 0)
     		makeMove(getAdjacentCells(p).get(3));
     }
