@@ -28,6 +28,7 @@ import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
 import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.TreasureCell;
+import harrypotter.model.world.WallCell;
 
 public abstract class Task implements WizardListener{
 	private ArrayList <Champion> champions ;
@@ -383,9 +384,6 @@ public abstract class Task implements WizardListener{
     {
     	s.setCoolDown(s.getDefaultCooldown());
     	Wizard w = (Wizard) this.getCurrentChamp();
-    	if (!(w.getIp() > s.getCost())){
-    		throw new NotEnoughIPException(s.getCost(), s.getCost()-w.getIp());
-    	}
     	w.setIp(w.getIp() - s.getCost());
     	this.allowedMoves = this.allowedMoves - 1;
     }
@@ -396,6 +394,13 @@ public abstract class Task implements WizardListener{
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	Cell cl = this.getMap()[x][y];
+    	
+    	int cost = s.getCost();
+    	int remainingip = cost - ((Wizard)currentChamp).getIp();
+    	
+    	if(remainingip >= 0)
+    		throw new NotEnoughIPException(cost, remainingip);
+    	
     	if (s.getCoolDown() > 0){
     		throw new InCooldownException(s.getCoolDown());
     	}
@@ -423,6 +428,12 @@ public abstract class Task implements WizardListener{
     {
     	Point current = getTargetPoint(d);
     	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
+    	int cost = s.getCost();
+    	int remainingip = cost - ((Wizard)currentChamp).getIp();
+    	
+    	if(remainingip >= 0)
+    		throw new NotEnoughIPException(cost, remainingip);
+    	
     	int x = (int) next.getX();
     	int y = (int) next.getY();
     	int a = (int) current.getX();
@@ -464,6 +475,13 @@ public abstract class Task implements WizardListener{
     
     public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
     	Wizard w = (Wizard) this.currentChamp;
+    	
+       	int cost = s.getCost();
+    	int remainingip = cost - ((Wizard)currentChamp).getIp();
+    	
+    	if(remainingip >= 0)
+    		throw new NotEnoughIPException(cost, remainingip);
+    	
     	if (s.getCoolDown() > 0){
     		throw new InCooldownException(s.getCoolDown());
     	}
