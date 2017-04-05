@@ -357,12 +357,15 @@ public abstract class Task implements WizardListener{
     	this.allowedMoves = this.allowedMoves - 1;
     }
     
-    public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException
+    public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException
     {
     	Point p = getTargetPoint(d);
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	Cell cl = this.getMap()[x][y];
+    	if (s.getCoolDown() > 0){
+    		throw new InCooldownException(s.getCoolDown());
+    	}
     	if (cl instanceof ObstacleCell){
     		ObstacleCell o = (ObstacleCell) cl;
     		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
@@ -383,7 +386,7 @@ public abstract class Task implements WizardListener{
     	useSpell(s);
     }
     
-    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException
+    public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException
     {
     	Point current = getTargetPoint(d);
     	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
@@ -391,6 +394,9 @@ public abstract class Task implements WizardListener{
     	int y = (int) next.getY();
     	int a = (int) current.getX();
     	int b = (int) current.getY();
+    	if (s.getCoolDown() > 0){
+    		throw new InCooldownException(s.getCoolDown());
+    	}
     	if(insideBoundary(next))
     	{
     		Cell n = this.map[x][y];
@@ -419,8 +425,11 @@ public abstract class Task implements WizardListener{
     	return new Point(x,y);
     }
     
-    public void castHealingSpell(HealingSpell s) throws IOException{
+    public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException{
     	Wizard w = (Wizard) this.currentChamp;
+    	if (s.getCoolDown() > 0){
+    		throw new InCooldownException(s.getCoolDown());
+    	}
     	w.setHp(w.getHp() + s.getHealingAmount());
     	useSpell(s);
     }

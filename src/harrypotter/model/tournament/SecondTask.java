@@ -3,6 +3,9 @@ package harrypotter.model.tournament;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import harrypotter.exceptions.InCooldownException;
+import harrypotter.exceptions.NotEnoughIPException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
@@ -165,18 +168,18 @@ public class SecondTask extends Task {
 	}
 	
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException{
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException{
     	super.castDamagingSpell(s, d);
     	finalizeAction();
     }
 	@Override
-	public void castHealingSpell(HealingSpell s) throws IOException{
+	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException{
 		super.castHealingSpell(s);
 		finalizeAction();
 	}
 	 
 	@Override
-	public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException
+	public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException
     {
 	   super.castRelocatingSpell(s, d, t, r);
 	   finalizeAction();
