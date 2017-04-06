@@ -439,7 +439,8 @@ public abstract class Task implements WizardListener{
     {
     	Point current = getTargetPoint(d);
     	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
-    	
+    	if(!insideBoundary(next))
+    		throw new OutOfBordersException();
     	if(!(map[(int)next.getX()][(int)next.getY()] instanceof EmptyCell)
     			|| map[(int)current.getX()][(int)current.getY()] instanceof CollectibleCell
     			|| map[(int)current.getX()][(int)current.getY()] instanceof TreasureCell)
