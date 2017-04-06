@@ -437,28 +437,32 @@ public abstract class Task implements WizardListener{
     
     public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
-    	Point current = getTargetPoint(d);
-    	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
-    	if(!insideBoundary(next))
-    		throw new OutOfBordersException();
-    	if(!(map[(int)next.getX()][(int)next.getY()] instanceof EmptyCell)
-    			|| map[(int)current.getX()][(int)current.getY()] instanceof CollectibleCell
-    			|| map[(int)current.getX()][(int)current.getY()] instanceof TreasureCell)
-    		throw new InvalidTargetCellException();
-    	
+    	if (s.getCoolDown() > 0){
+    		throw new InCooldownException(s.getCoolDown());
+    	}
     	int cost = s.getCost();
     	int remainingip = cost - ((Wizard)currentChamp).getIp();
     	
     	if(remainingip >= 0)
     		throw new NotEnoughIPException(cost, remainingip);
     	
+    	Point current = getTargetPoint(d);
+    	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
+    	if(next == null || current == null || !insideBoundary(next) || !insideBoundary(current))
+    		throw new OutOfBordersException();
+    	if(!(map[(int)next.getX()][(int)next.getY()] instanceof EmptyCell)
+    			|| map[(int)current.getX()][(int)current.getY()] instanceof CollectibleCell
+    			|| map[(int)current.getX()][(int)current.getY()] instanceof TreasureCell
+    		    || map[current.x][current.y] instanceof CupCell
+    		    || map[current.x][current.y] instanceof EmptyCell
+    		    || map[current.x][current.y] instanceof WallCell)
+    		throw new InvalidTargetCellException();
+    	
     	int x = (int) next.getX();
     	int y = (int) next.getY();
     	int a = (int) current.getX();
     	int b = (int) current.getY();
-    	if (s.getCoolDown() > 0){
-    		throw new InCooldownException(s.getCoolDown());
-    	}
+    	
     	if (r > s.getRange()){
     		throw new OutOfRangeException(s.getRange());
     	}
