@@ -329,7 +329,7 @@ public abstract class Task implements WizardListener{
     	if(this.allowedMoves > 0)
     		makeMove(left);
     }
-    private void makeMove(Point a) throws OutOfBordersException
+    private void makeMove(Point a) throws OutOfBordersException, InvalidTargetCellException
     {
     	if(a == null){
     		return;
@@ -363,6 +363,8 @@ public abstract class Task implements WizardListener{
     			c.setLocation(a);
     			this.allowedMoves = this.allowedMoves - 1;
     		}
+    		else
+    			throw new InvalidTargetCellException();
     	}
     	else if(new1 instanceof CupCell)
     	{
