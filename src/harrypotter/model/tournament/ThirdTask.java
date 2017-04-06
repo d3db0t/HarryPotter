@@ -159,7 +159,8 @@ public class ThirdTask extends Task {
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	Cell cl = this.getMap()[x][y];
-    	
+    	if(s.getCoolDown() > 0)
+    		throw new InCooldownException(s.getCoolDown());
     	if (cl instanceof CupCell)
     		throw new InvalidTargetCellException();
     	
