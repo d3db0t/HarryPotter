@@ -154,7 +154,7 @@ public class ThirdTask extends Task {
 		finalizeAction();
 	}
 	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, OutOfBordersException, InvalidTargetCellException{
+	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, OutOfBordersException, InvalidTargetCellException , InCooldownException{
     	Point p = directionToPoint(d, this.getCurrentChamp());
     	int x = (int) p.getX();
     	int y = (int) p.getY();
