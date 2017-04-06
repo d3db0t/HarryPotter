@@ -495,7 +495,6 @@ public abstract class Task implements WizardListener{
     		throw new OutOfBordersException();	
     	int x = (int) p.getX();
     	int y = (int) p.getY();
-    	System.out.println(1);
     	switch(t)
     	{
     	 case FORWARD : x = x - range; break;
