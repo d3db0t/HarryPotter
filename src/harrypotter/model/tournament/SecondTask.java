@@ -199,10 +199,10 @@ public class SecondTask extends Task {
 	   }
 	}
 	@Override
-    public void onSlytherinTrait(Direction d) throws IOException, OutOfBordersException, InvalidTargetCellException{
+    public void onSlytherinTrait(Direction d) throws IOException, OutOfBordersException, InvalidTargetCellException, InCooldownException{
 	    Wizard w = (Wizard) this.getCurrentChamp();
 	    if(w.getTraitCooldown() != 0)
-	    	return;
+	    	throw new InCooldownException(w.getTraitCooldown());
     	Point champpoint  = w.getLocation();
     	Point firstpoint  = super.getExactPosition(w.getLocation(), d, 1);
     	Point secondpoint = super.getExactPosition(w.getLocation(), d, 2);
@@ -224,7 +224,7 @@ public class SecondTask extends Task {
     		return;
     	}
     	
-    	if(firstcell instanceof TreasureCell || secondcell instanceof TreasureCell)
+    	if(! (secondcell instanceof EmptyCell) )
     		throw new InvalidTargetCellException();
     	
     	if (secondcell instanceof EmptyCell && 

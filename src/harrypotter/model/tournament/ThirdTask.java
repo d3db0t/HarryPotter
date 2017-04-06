@@ -20,6 +20,7 @@ import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
+import harrypotter.model.world.CollectibleCell;
 import harrypotter.model.world.CupCell;
 import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
@@ -245,7 +246,7 @@ public class ThirdTask extends Task {
     		return;
     	}
     	
-    	if(secondcell instanceof WallCell)
+    	if(!(secondcell instanceof EmptyCell))
     		throw new InvalidTargetCellException();
 
     	if (secondcell instanceof EmptyCell &&

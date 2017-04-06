@@ -249,7 +249,7 @@ public class FirstTask extends Task{
     	}
     }
     @Override
-    public void onSlytherinTrait(Direction d) throws IOException, InCooldownException, OutOfBordersException{
+    public void onSlytherinTrait(Direction d) throws IOException, InCooldownException, OutOfBordersException, InvalidTargetCellException{
     	Wizard w = (Wizard) this.getCurrentChamp();
     	if (w.getTraitCooldown() > 0){
     		throw new InCooldownException(w.getTraitCooldown());
@@ -274,6 +274,8 @@ public class FirstTask extends Task{
     	if (!( super.insideBoundary(firstpoint) || super.insideBoundary(secondpoint) )){
     		return;
     	}
+    	if(!(secondcell instanceof EmptyCell))
+    		throw new InvalidTargetCellException();
     	if (secondcell instanceof EmptyCell && 
     			(firstcell instanceof EmptyCell ||
     					firstcell instanceof ObstacleCell)){

@@ -227,6 +227,8 @@ public abstract class Task implements WizardListener{
     }
     
     public static boolean insideBoundary(Point p) throws OutOfBordersException{ // Checks if point is inside the map boundaries
+    	if(p == null)
+    		throw new OutOfBordersException();
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	return !(y < 0 || y > 9 || x < 0 || x > 9);
@@ -487,10 +489,13 @@ public abstract class Task implements WizardListener{
 
     	useSpell(s);
     }
-    public Point getExactPosition(Point p , Direction t ,int range)
+    public Point getExactPosition(Point p , Direction t ,int range) throws OutOfBordersException
     {   
+    	if(p == null)
+    		throw new OutOfBordersException();	
     	int x = (int) p.getX();
     	int y = (int) p.getY();
+    	System.out.println(1);
     	switch(t)
     	{
     	 case FORWARD : x = x - range; break;
