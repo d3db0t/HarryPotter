@@ -401,20 +401,26 @@ public abstract class Task implements WizardListener{
     
     public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException
     {
+    	if (s.getCoolDown() > 0){
+    		throw new InCooldownException(s.getCoolDown());
+    	}
     	Point p = getTargetPoint(d);
+    	if(p == null)
+    		throw new OutOfBordersException();
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	Cell cl = this.getMap()[x][y];
     	
     	int cost = s.getCost();
     	int remainingip = cost - ((Wizard)currentChamp).getIp();
-    	
     	if(remainingip >= 0)
     		throw new NotEnoughIPException(cost, remainingip);
-    	
-    	if (s.getCoolDown() > 0){
-    		throw new InCooldownException(s.getCoolDown());
-    	}
+    	if(map[p.x][p.y] instanceof CollectibleCell || 
+    			map[p.x][p.y] instanceof EmptyCell ||
+    			map[p.x][p.y] instanceof TreasureCell ||
+    			map[p.x][p.y] instanceof CupCell || 
+    			map[p.x][p.y] instanceof WallCell)
+    		throw new InvalidTargetCellException();
     	if (cl instanceof ObstacleCell){
     		ObstacleCell o = (ObstacleCell) cl;
     		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());

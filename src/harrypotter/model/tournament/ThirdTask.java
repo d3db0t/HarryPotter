@@ -155,15 +155,24 @@ public class ThirdTask extends Task {
 	}
 	@Override
 	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, OutOfBordersException, InvalidTargetCellException , InCooldownException{
-    	Point p = directionToPoint(d, this.getCurrentChamp());
+		if(s.getCoolDown() > 0)
+    		throw new InCooldownException(s.getCoolDown());
+		Point p = directionToPoint(d, this.getCurrentChamp());
+		if(p == null)
+			throw new OutOfBordersException();
     	int x = (int) p.getX();
     	int y = (int) p.getY();
     	Cell cl = this.getMap()[x][y];
-    	if(s.getCoolDown() > 0)
-    		throw new InCooldownException(s.getCoolDown());
-    	if (cl instanceof CupCell)
+    	int cost = s.getCost();
+    	int remainingip = cost - ((Wizard)super.getCurrentChamp()).getIp();
+    	if(remainingip >= 0)
+    		throw new NotEnoughIPException(cost, remainingip);
+    	if(getMap()[p.x][p.y] instanceof CollectibleCell || 
+    			getMap()[p.x][p.y] instanceof EmptyCell ||
+    			getMap()[p.x][p.y] instanceof CupCell || 
+    			getMap()[p.x][p.y] instanceof WallCell)
     		throw new InvalidTargetCellException();
-    	
+ 
     	if (cl instanceof ObstacleCell){
     		ObstacleCell o = (ObstacleCell) cl;
     		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
