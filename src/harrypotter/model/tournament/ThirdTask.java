@@ -207,15 +207,6 @@ public class ThirdTask extends Task {
 	@Override
 	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
-    	Point current = getTargetPoint(d);
-    	//Point next = getExactPosition(getTargetPoint(t),t,r - 1);
-    	if(current == null)
-    		throw new OutOfBordersException();
-    	
-    	if(getMap()[(int)current.getX()][(int)current.getY()] instanceof CupCell||
-    			getMap()[(int)current.getX()][(int)current.getY()] instanceof EmptyCell)
-    		throw new InvalidTargetCellException();
-    	
 		super.castRelocatingSpell(s, d, t, r);
 	    finalizeAction();
 	}
