@@ -200,15 +200,17 @@ public class SecondTask extends Task {
 	}
 	@Override
     public void onSlytherinTrait(Direction d) throws IOException, OutOfBordersException, InvalidTargetCellException, InCooldownException{
-	    Wizard w = (Wizard) this.getCurrentChamp();
+	    //Check the trait cooldown
+		Wizard w = (Wizard) this.getCurrentChamp();
 	    if(w.getTraitCooldown() != 0)
 	    	throw new InCooldownException(w.getTraitCooldown());
-    	Point champpoint  = w.getLocation();
+    	//Checks if target point inside map 
+	    //Note: getExactPosition method could create point outside map and does not assign it to null
+	    //not like getAdjacentCells method
+	    Point champpoint  = w.getLocation();
     	Point firstpoint  = super.getExactPosition(w.getLocation(), d, 1);
     	Point secondpoint = super.getExactPosition(w.getLocation(), d, 2);
-    	
-    	if (firstpoint.getX() > 9 || firstpoint.getX() < 0 || firstpoint.getY() > 9 || firstpoint.getY() < 0
-    			|| secondpoint.getX() > 9 || secondpoint.getX() < 0 || secondpoint.getY() > 9 || secondpoint.getY() < 0)
+    	if (!( super.insideBoundary(firstpoint) || super.insideBoundary(secondpoint) ))
     		throw new OutOfBordersException();
     	
     	int cpx = (int) champpoint.getX();
@@ -220,9 +222,6 @@ public class SecondTask extends Task {
     	Cell cellofchamp  = this.getMap()[cpx][cpy];
     	Cell firstcell    = this.getMap()[fpx][fpy];
     	Cell secondcell   = this.getMap()[spx][spy];
-    	if (!( super.insideBoundary(firstpoint) || super.insideBoundary(secondpoint) )){
-    		return;
-    	}
     	
     	if(! (secondcell instanceof EmptyCell) )
     		throw new InvalidTargetCellException();
