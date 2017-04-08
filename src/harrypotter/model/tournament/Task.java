@@ -272,14 +272,8 @@ public abstract class Task implements WizardListener{
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
         Point up = getAdjacentCells(p).get(0);
-    	if(up == null)
-    		throw new OutOfBordersException();
-    	
-    	if(map[up.x][up.y] instanceof ChampionCell || 
-    			map[up.x][up.y] instanceof WallCell || 
-    			map[up.x][up.y] instanceof ObstacleCell)
-    		throw new InvalidTargetCellException();
-    	
+        //Calls a method that checks the target cells and throw the corresponding exceptions
+    	checkMoveValidity(up);
     	if(this.allowedMoves > 0)
     		makeMove(up);
     }
@@ -288,14 +282,8 @@ public abstract class Task implements WizardListener{
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	Point back = getAdjacentCells(p).get(1);
-    	if(back == null)
-    		throw new OutOfBordersException();
-    	
-    	if(map[back.x][back.y] instanceof ChampionCell || 
-    			map[back.x][back.y] instanceof WallCell || 
-    			map[back.x][back.y] instanceof ObstacleCell)
-    		throw new InvalidTargetCellException();
-    	
+    	//Calls a method that checks the target cells and throw the corresponding exceptions
+    	checkMoveValidity(back);
     	if(this.allowedMoves > 0)
     		makeMove(back);
     }
@@ -304,14 +292,8 @@ public abstract class Task implements WizardListener{
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
     	Point right = getAdjacentCells(p).get(2);
-    	if(right == null)
-    		throw new OutOfBordersException();
-    	
-    	if(map[right.x][right.y] instanceof ChampionCell || 
-    			map[right.x][right.y] instanceof WallCell || 
-    			map[right.x][right.y] instanceof ObstacleCell)
-    		throw new InvalidTargetCellException();
-    	
+    	//Calls a method that checks the target cells and throw the corresponding exceptions
+    	checkMoveValidity(right);
     	if(this.allowedMoves > 0)
     		makeMove(right);
     }
@@ -319,24 +301,24 @@ public abstract class Task implements WizardListener{
     {
     	Wizard c = (Wizard) this.currentChamp;
     	Point p = c.getLocation();
-    	Point left = getAdjacentCells(p).get(3); 
-    	if(left == null)
-    		throw new OutOfBordersException();
-    	
-    	if(map[left.x][left.y] instanceof ChampionCell || 
-    			map[left.x][left.y] instanceof WallCell || 
-    			map[left.x][left.y] instanceof ObstacleCell  )
-    		throw new InvalidTargetCellException();
-    	
+    	Point left = getAdjacentCells(p).get(3);
+    	//Calls a method that checks the target cells and throw the corresponding exceptions
+    	checkMoveValidity(left);
     	if(this.allowedMoves > 0)
     		makeMove(left);
     }
-    private void makeMove(Point a) throws OutOfBordersException, InvalidTargetCellException
+    private void checkMoveValidity(Point m) throws OutOfBordersException, InvalidTargetCellException
     {
-    	if(a == null){
-    		return;
-    	}
-    		
+    	if(m == null)
+    		throw new OutOfBordersException();
+    	
+    	if(map[m.x][m.y] instanceof ChampionCell || 
+    			map[m.x][m.y] instanceof WallCell || 
+    			map[m.x][m.y] instanceof ObstacleCell  )
+    		throw new InvalidTargetCellException();
+    }
+    private void makeMove(Point a) throws OutOfBordersException, InvalidTargetCellException
+    {	
     	Wizard c = (Wizard) this.currentChamp;
     	Point b = c.getLocation();
     	int e = (int) b.getX();
