@@ -385,26 +385,30 @@ public abstract class Task implements WizardListener{
     
     public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException
     {
+    	//Checks the spell cooldown
     	if (s.getCoolDown() > 0){
     		throw new InCooldownException(s.getCoolDown());
     	}
-    	Point p = getTargetPoint(d);
-    	if(p == null)
-    		throw new OutOfBordersException();
-    	int x = (int) p.getX();
-    	int y = (int) p.getY();
-    	Cell cl = this.getMap()[x][y];
-    	
+    	//Checks enough ip
     	int cost = s.getCost();
     	int remainingip = cost - ((Wizard)currentChamp).getIp();
     	if(remainingip >= 0)
     		throw new NotEnoughIPException(cost, remainingip);
+    	//Checks if point not OutOfMap
+    	Point p = getTargetPoint(d);
+    	if(p == null)
+    		throw new OutOfBordersException();
+    	//Checks if the cell is valid to make action
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	Cell cl = this.getMap()[x][y];
     	if(map[p.x][p.y] instanceof CollectibleCell || 
     			map[p.x][p.y] instanceof EmptyCell ||
     			map[p.x][p.y] instanceof TreasureCell ||
     			map[p.x][p.y] instanceof CupCell || 
     			map[p.x][p.y] instanceof WallCell)
     		throw new InvalidTargetCellException();
+    	
     	if (cl instanceof ObstacleCell){
     		ObstacleCell o = (ObstacleCell) cl;
     		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
@@ -427,19 +431,21 @@ public abstract class Task implements WizardListener{
     
     public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
+    	//Checks Cooldown
     	if (s.getCoolDown() > 0){
     		throw new InCooldownException(s.getCoolDown());
     	}
+    	//Checks enough ip
     	int cost = s.getCost();
     	int remainingip = cost - ((Wizard)currentChamp).getIp();
-    	
     	if(remainingip >= 0)
     		throw new NotEnoughIPException(cost, remainingip);
-    	
+    	//Checks next and current inside the Map
     	Point current = getTargetPoint(d);
     	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
     	if(next == null || current == null || !insideBoundary(next) || !insideBoundary(current))
     		throw new OutOfBordersException();
+    	//Checks if the target cells are valid
     	if(!(map[(int)next.getX()][(int)next.getY()] instanceof EmptyCell)
     			|| map[(int)current.getX()][(int)current.getY()] instanceof CollectibleCell
     			|| map[(int)current.getX()][(int)current.getY()] instanceof TreasureCell
@@ -447,27 +453,20 @@ public abstract class Task implements WizardListener{
     		    || map[current.x][current.y] instanceof EmptyCell
     		    || map[current.x][current.y] instanceof WallCell)
     		throw new InvalidTargetCellException();
+    	//Checks if range requested equal to spell range
+    	if (r > s.getRange()){
+    		throw new OutOfRangeException(s.getRange());
+    	}
     	
     	int x = (int) next.getX();
     	int y = (int) next.getY();
     	int a = (int) current.getX();
     	int b = (int) current.getY();
-    	
-    	if (r > s.getRange()){
-    		throw new OutOfRangeException(s.getRange());
-    	}
-    	if(insideBoundary(next))
-    	{
-    		Cell n = this.map[x][y];
-    		Cell c = this.map[a][b];
-    		if(n instanceof EmptyCell && !(c instanceof TreasureCell) && !(c instanceof CupCell))
-    		{
-    			this.map[x][y] = c;
-    			this.map[a][b] = n;
- 
-    		}
+    	Cell n = this.map[x][y];
+    	Cell c = this.map[a][b];
+    	this.map[x][y] = c;
+        this.map[a][b] = n;
         	
-    	}
 
     	useSpell(s);
     }
@@ -488,17 +487,17 @@ public abstract class Task implements WizardListener{
     }
     
     public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
-    	Wizard w = (Wizard) this.currentChamp;
-    	
-       	int cost = s.getCost();
-    	int remainingip = cost - ((Wizard)currentChamp).getIp();
-    	
-    	if(remainingip >= 0)
-    		throw new NotEnoughIPException(cost, remainingip);
-    	
+    	//Checks spell cooldown
     	if (s.getCoolDown() > 0){
     		throw new InCooldownException(s.getCoolDown());
     	}
+    	//Checks enough ip to make action
+    	Wizard w = (Wizard) this.currentChamp;
+       	int cost = s.getCost();
+    	int remainingip = cost - (w.getIp());
+    	if(remainingip >= 0)
+    		throw new NotEnoughIPException(cost, remainingip);
+    	
     	w.setHp(w.getHp() + s.getHealingAmount());
     	useSpell(s);
     }
