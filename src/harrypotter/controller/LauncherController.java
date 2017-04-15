@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
@@ -15,7 +17,7 @@ public class LauncherController implements ActionListener {
 	private MainLauncher mainLauncher;
 	private PreGameLauncher preGameLauncher;
 	
-	public LauncherController(){
+	public LauncherController() throws IOException{
 		// Initialize MainLauncher
 		mainLauncher = new MainLauncher();
 		// Play Button
@@ -30,8 +32,10 @@ public class LauncherController implements ActionListener {
 		quitbtn.addActionListener(this);
 		quitbtn.setPreferredSize(new Dimension(150,75));
 		quitbtn.setBackground(Color.DARK_GRAY);
-		mainLauncher.addButtons(playbtn);
-		//mainLauncher.addButtons(quitbtn);
+		ArrayList <JButton>btns = new ArrayList<JButton>();
+		btns.add(playbtn);
+		btns.add(quitbtn);
+		mainLauncher.addButtons(btns);
 		mainLauncher.setVisible(true);
 	}
 	
@@ -49,7 +53,7 @@ public class LauncherController implements ActionListener {
 		
 		}
 	}
-	public static void main(String [] args){
+	public static void main(String [] args) throws IOException{
 		new LauncherController();
 	}
 
