@@ -26,8 +26,8 @@ public class MainLauncher extends Launcher{
 	            g.drawImage(image, 0, 0,null);
 	        }
 	    });
-	    this.btnPanel = new JPanel(new BorderLayout());
-	    this.add(btnPanel);
+	    btnPanel = new JPanel(new BorderLayout());
+	    add(btnPanel);
 	}
 	
 	public void addButtons(ArrayList <JButton> btns)
