@@ -18,7 +18,6 @@ public class MainLauncher extends Launcher{
 	
 	public MainLauncher() throws IOException{
 		super();
-        getContentPane().setLayout(new BorderLayout());
 	    setContentPane(new JPanel() {
 	        BufferedImage image = ImageIO.read(new File("HarryPotter.jpeg"));
 	        public void paintComponent(Graphics g) {
