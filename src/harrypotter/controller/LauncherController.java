@@ -66,14 +66,14 @@ public class LauncherController implements ActionListener {
 		mainLauncher.removeAll();
 		mainLauncher.revalidate();
 		preGameLauncher = new PreGameLauncher();
-		ImageIcon hufflepuffimg = (new ImageIcon("Hufflepuff.jpg"));
-		JButton hufflepuffbtn = new JButton(hufflepuffimg);
-		hufflepuffbtn.setBounds(20,200, hufflepuffimg.getIconWidth(), hufflepuffimg.getIconHeight());
-		hufflepuffbtn.setBorder(BorderFactory.createEmptyBorder());
-		hufflepuffbtn.setContentAreaFilled(false);
-		hufflepuffbtn.setName("HufflepuffButton");
-		hufflepuffbtn.addActionListener(this);
-		preGameLauncher.addButtons(hufflepuffbtn);
+		ImageIcon ravenclawimg = (new ImageIcon("RavenClaw.png"));
+		JButton ravenclawbtn = new JButton(ravenclawimg);
+		ravenclawbtn.setBounds(20,200, ravenclawimg.getIconWidth(), ravenclawimg.getIconHeight());
+		ravenclawbtn.setBorder(BorderFactory.createEmptyBorder());
+		ravenclawbtn.setContentAreaFilled(false);
+		ravenclawbtn.setName("RavenClawButton");
+		ravenclawbtn.addActionListener(this);
+		preGameLauncher.addButtons(ravenclawbtn);
 		// CreateButtonGlow Image
 		ImageIcon createbuttonglowimg = (new ImageIcon("CreateButtonGlow.png"));
 		// CreateButton Button
