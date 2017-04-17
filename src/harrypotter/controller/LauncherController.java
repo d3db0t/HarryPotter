@@ -12,16 +12,19 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import harrypotter.view.Launcher;
 import harrypotter.view.MainLauncher;
 import harrypotter.view.PreGameLauncher;
 
 public class LauncherController implements ActionListener {
+	private Launcher launcher;
 	private MainLauncher mainLauncher;
 	private PreGameLauncher preGameLauncher;
 	
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
 		mainLauncher = new MainLauncher();
+		
 		// Play Button
 		//JButton playbtn = new JButton();
 		//playbtn.setText("Play");
@@ -44,7 +47,7 @@ public class LauncherController implements ActionListener {
 		// NewGameButton
 		ImageIcon newgameimg = (new ImageIcon("NewGameButton.png"));
 		JButton newgamebtn = new JButton(newgameimg);
-		newgamebtn.setBounds(20,200, newgameimg.getIconWidth(), newgameimg.getIconHeight());
+		newgamebtn.setBounds(500,200, newgameimg.getIconWidth(), newgameimg.getIconHeight());
 		newgamebtn.setBorder(BorderFactory.createEmptyBorder());
 		newgamebtn.setContentAreaFilled(false);
 		newgamebtn.setName("NewGameButton");
@@ -56,6 +59,8 @@ public class LauncherController implements ActionListener {
 		btns.add(newgamebtn);
 		mainLauncher.addButtons(btns);
 		mainLauncher.setVisible(true);
+		launcher = new Launcher();
+		launcher.addPanel(mainLauncher);
 	}
 	
 	@Override
@@ -63,9 +68,6 @@ public class LauncherController implements ActionListener {
 		JButton btn  = (JButton) e.getSource();
 		String btnID = btn.getName();
 		switch(btnID){
-		case "Quit" : mainLauncher.dispatchEvent(
-				new WindowEvent(
-						mainLauncher, WindowEvent.WINDOW_CLOSING)); break;
 		case "NewGameButton" : startPreGameLauncher();
 							   break;
 		
@@ -73,6 +75,8 @@ public class LauncherController implements ActionListener {
 	}
 	
 	public void startPreGameLauncher(){
+		mainLauncher.removeAll();
+		mainLauncher.revalidate();
 		preGameLauncher = new PreGameLauncher();
 		ImageIcon hufflepuffimg = (new ImageIcon("Hufflepuff.jpg"));
 		JButton hufflepuffbtn = new JButton(hufflepuffimg);
@@ -87,7 +91,7 @@ public class LauncherController implements ActionListener {
 		// CreateButton Button
 		ImageIcon createbuttonimg = (new ImageIcon("CreateButton.png"));
 		JButton createbtn = new JButton(createbuttonimg);
-		createbtn.setBounds(20,200, createbuttonimg.getIconWidth(), createbuttonimg.getIconHeight());
+		createbtn.setBounds(990,550, createbuttonimg.getIconWidth(), createbuttonimg.getIconHeight());
 		createbtn.setBorder(BorderFactory.createEmptyBorder());
 		createbtn.setContentAreaFilled(false);
 		createbtn.setName("CreateButton");
@@ -95,7 +99,7 @@ public class LauncherController implements ActionListener {
 		preGameLauncher.addButtons(createbtn);
 		createbtn.setRolloverIcon(createbuttonglowimg);
 		preGameLauncher.setVisible(true); 
-		mainLauncher.dispose();
+		launcher.addPanel(preGameLauncher);
 	}
 	public static void main(String [] args) throws IOException{
 		new LauncherController();
