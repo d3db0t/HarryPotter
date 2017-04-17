@@ -12,12 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainLauncher extends Launcher{
+public class MainLauncher extends JPanel{
 
 	//JPanel btnPanel ;
 	
 	public MainLauncher() throws IOException{
-		super();
 	    setContentPane(new JPanel() {
 	        BufferedImage image = ImageIO.read(new File("HarryPotter.jpeg"));
 	        public void paintComponent(Graphics g) {
@@ -25,6 +24,8 @@ public class MainLauncher extends Launcher{
 	            g.drawImage(image, 0, 0,null);
 	        }
 	    });
+		setLayout(null); // To be able to change the locations of objects inside the panel
+		//super();
 	    //btnPanel = new JPanel(new BorderLayout());
 	    //add(btnPanel);
 	}
