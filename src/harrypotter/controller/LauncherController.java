@@ -72,7 +72,7 @@ public class LauncherController implements ActionListener {
 		hufflepuffbtn.setBounds(20,200, hufflepuffimg.getIconWidth(), hufflepuffimg.getIconHeight());
 		hufflepuffbtn.setBorder(BorderFactory.createEmptyBorder());
 		hufflepuffbtn.setContentAreaFilled(false);
-		hufflepuffbtn.setName("NewGameButton");
+		hufflepuffbtn.setName("HufflepuffButton");
 		hufflepuffbtn.addActionListener(this);
 		preGameLauncher.addButtons(hufflepuffbtn);
 		// CreateButtonGlow Image
