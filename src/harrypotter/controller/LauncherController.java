@@ -24,19 +24,6 @@ public class LauncherController implements ActionListener {
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
 		mainLauncher = new MainLauncher();
-		
-		// Play Button
-		//JButton playbtn = new JButton();
-		//playbtn.setText("Play");
-		//playbtn.addActionListener(this);
-		//playbtn.setPreferredSize(new Dimension(150,75));
-		//playbtn.setBackground(Color.GRAY);
-		// Quit Button
-		//JButton quitbtn = new JButton();
-		//quitbtn.setText("Quit");
-		//quitbtn.addActionListener(this);
-		//quitbtn.setPreferredSize(new Dimension(150,75));
-		//quitbtn.setBackground(Color.DARK_GRAY);
 		ArrayList <JButton>btns = new ArrayList<JButton>();
 		// DragonInto gif
 		ImageIcon dragonintroimg = (new ImageIcon("DragonIntro.gif"));
@@ -52,9 +39,6 @@ public class LauncherController implements ActionListener {
 		newgamebtn.setContentAreaFilled(false);
 		newgamebtn.setName("NewGameButton");
 		newgamebtn.addActionListener(this);
-		//mainLauncher.addB(newgamebtn);
-		//btns.add(playbtn);
-		//btns.add(quitbtn);
 		btns.add(dragonintrobtn);
 		btns.add(newgamebtn);
 		mainLauncher.addButtons(btns);
