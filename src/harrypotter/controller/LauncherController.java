@@ -59,11 +59,24 @@ public class LauncherController implements ActionListener {
 		case "Quit" : mainLauncher.dispatchEvent(
 				new WindowEvent(
 						mainLauncher, WindowEvent.WINDOW_CLOSING)); break;
-		case "NewGameButton" : preGameLauncher = new PreGameLauncher();
-					  		   preGameLauncher.setVisible(true); 
-					  		   mainLauncher.dispose(); break; 				
+		case "NewGameButton" : startPreGameLauncher();
+							   break;
 		
 		}
+	}
+	
+	public void startPreGameLauncher(){
+		preGameLauncher = new PreGameLauncher();
+		ImageIcon hufflepuffimg = (new ImageIcon("Hufflepuff.jpg"));
+		JButton hufflepuffbtn = new JButton(hufflepuffimg);
+		hufflepuffbtn.setBounds(20,200, hufflepuffimg.getIconWidth(), hufflepuffimg.getIconHeight());
+		hufflepuffbtn.setBorder(BorderFactory.createEmptyBorder());
+		hufflepuffbtn.setContentAreaFilled(false);
+		hufflepuffbtn.setName("NewGameButton");
+		hufflepuffbtn.addActionListener(this);
+		preGameLauncher.addButtons(hufflepuffbtn);
+		preGameLauncher.setVisible(true); 
+		mainLauncher.dispose();
 	}
 	public static void main(String [] args) throws IOException{
 		new LauncherController();
