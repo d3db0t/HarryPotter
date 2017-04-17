@@ -8,6 +8,8 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import harrypotter.view.MainLauncher;
@@ -21,20 +23,30 @@ public class LauncherController implements ActionListener {
 		// Initialize MainLauncher
 		mainLauncher = new MainLauncher();
 		// Play Button
-		JButton playbtn = new JButton();
-		playbtn.setText("Play");
-		playbtn.addActionListener(this);
-		playbtn.setPreferredSize(new Dimension(150,75));
-		playbtn.setBackground(Color.GRAY);
+		//JButton playbtn = new JButton();
+		//playbtn.setText("Play");
+		//playbtn.addActionListener(this);
+		//playbtn.setPreferredSize(new Dimension(150,75));
+		//playbtn.setBackground(Color.GRAY);
 		// Quit Button
-		JButton quitbtn = new JButton();
-		quitbtn.setText("Quit");
-		quitbtn.addActionListener(this);
-		quitbtn.setPreferredSize(new Dimension(150,75));
-		quitbtn.setBackground(Color.DARK_GRAY);
+		//JButton quitbtn = new JButton();
+		//quitbtn.setText("Quit");
+		//quitbtn.addActionListener(this);
+		//quitbtn.setPreferredSize(new Dimension(150,75));
+		//quitbtn.setBackground(Color.DARK_GRAY);
 		ArrayList <JButton>btns = new ArrayList<JButton>();
-		btns.add(playbtn);
-		btns.add(quitbtn);
+		// NewGameButton
+		ImageIcon newgameimg = (new ImageIcon("NewGameButton.png"));
+		JButton newgamebtn = new JButton(newgameimg);
+		newgamebtn.setBounds(20,200, newgameimg.getIconWidth(), newgameimg.getIconHeight());
+		newgamebtn.setBorder(BorderFactory.createEmptyBorder());
+		newgamebtn.setContentAreaFilled(false);
+		newgamebtn.setName("NewGameButton");
+		newgamebtn.addActionListener(this);
+		//mainLauncher.addB(newgamebtn);
+		//btns.add(playbtn);
+		//btns.add(quitbtn);
+		btns.add(newgamebtn);
 		mainLauncher.addButtons(btns);
 		mainLauncher.setVisible(true);
 	}
@@ -42,14 +54,14 @@ public class LauncherController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e){
 		JButton btn  = (JButton) e.getSource();
-		String btnID = btn.getText();
+		String btnID = btn.getName();
 		switch(btnID){
 		case "Quit" : mainLauncher.dispatchEvent(
 				new WindowEvent(
 						mainLauncher, WindowEvent.WINDOW_CLOSING)); break;
-		case "Play" : preGameLauncher = new PreGameLauncher();
-					  preGameLauncher.setVisible(true); 
-					  mainLauncher.dispose(); break; 				
+		case "NewGameButton" : preGameLauncher = new PreGameLauncher();
+					  		   preGameLauncher.setVisible(true); 
+					  		   mainLauncher.dispose(); break; 				
 		
 		}
 	}
