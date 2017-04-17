@@ -31,10 +31,10 @@ public class MainLauncher extends Launcher{
 	
 	public void addButtons(ArrayList <JButton> btns)
 	{ // Play , Quit	
-		//btnPanel.add(btns.get(0),BorderLayout.WEST);
-		//btnPanel.add(btns.get(1),BorderLayout.EAST);
-		//btnPanel.add(btns.get(2),BorderLayout.SOUTH);
+		//btnPanel.add(btns.get(0),BorderLayout.NORTH);
+		//btnPanel.add(btns.get(1),BorderLayout.SOUTH);
 		this.add(btns.get(0));
+		this.add(btns.get(1));
 	}
 
 }

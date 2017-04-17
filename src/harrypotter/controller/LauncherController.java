@@ -35,6 +35,12 @@ public class LauncherController implements ActionListener {
 		//quitbtn.setPreferredSize(new Dimension(150,75));
 		//quitbtn.setBackground(Color.DARK_GRAY);
 		ArrayList <JButton>btns = new ArrayList<JButton>();
+		// DragonInto gif
+		ImageIcon dragonintroimg = (new ImageIcon("DragonIntro.gif"));
+		JButton dragonintrobtn = new JButton(dragonintroimg);
+		dragonintrobtn.setBounds(20,200, dragonintroimg.getIconWidth(), dragonintroimg.getIconHeight());
+		dragonintrobtn.setBorder(BorderFactory.createEmptyBorder());
+		dragonintrobtn.setContentAreaFilled(false);
 		// NewGameButton
 		ImageIcon newgameimg = (new ImageIcon("NewGameButton.png"));
 		JButton newgamebtn = new JButton(newgameimg);
@@ -46,6 +52,7 @@ public class LauncherController implements ActionListener {
 		//mainLauncher.addB(newgamebtn);
 		//btns.add(playbtn);
 		//btns.add(quitbtn);
+		btns.add(dragonintrobtn);
 		btns.add(newgamebtn);
 		mainLauncher.addButtons(btns);
 		mainLauncher.setVisible(true);
