@@ -18,6 +18,7 @@ public class MainLauncher extends JPanel{
 	{	
 		this.add(btns.get(0));
 		this.add(btns.get(1));
+		this.add(btns.get(2));
 	}
 	
 	public void paintComponent(Graphics g){
