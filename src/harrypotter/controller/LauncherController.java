@@ -25,13 +25,13 @@ public class LauncherController implements ActionListener {
 		// DragonInto gif
 		ImageIcon dragonintroimg = (new ImageIcon("DragonIntro.gif"));
 		JButton dragonintrobtn = new JButton(dragonintroimg);
-		dragonintrobtn.setBounds(20,200, dragonintroimg.getIconWidth(), dragonintroimg.getIconHeight());
+		dragonintrobtn.setBounds(20,40, dragonintroimg.getIconWidth(), dragonintroimg.getIconHeight());
 		dragonintrobtn.setBorder(BorderFactory.createEmptyBorder());
 		dragonintrobtn.setContentAreaFilled(false);
 		// NewGameButton
 		ImageIcon newgameimg = (new ImageIcon("NewGameButton.png"));
 		JButton newgamebtn = new JButton(newgameimg);
-		newgamebtn.setBounds(500,200, newgameimg.getIconWidth(), newgameimg.getIconHeight());
+		newgamebtn.setBounds(900,450, newgameimg.getIconWidth(), newgameimg.getIconHeight());
 		newgamebtn.setBorder(BorderFactory.createEmptyBorder());
 		newgamebtn.setContentAreaFilled(false);
 		newgamebtn.setName("NewGameButton");
