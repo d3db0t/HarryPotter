@@ -75,6 +75,18 @@ public class LauncherController implements ActionListener {
 		hufflepuffbtn.setName("NewGameButton");
 		hufflepuffbtn.addActionListener(this);
 		preGameLauncher.addButtons(hufflepuffbtn);
+		// CreateButtonGlow Image
+		ImageIcon createbuttonglowimg = (new ImageIcon("CreateButtonGlow.png"));
+		// CreateButton Button
+		ImageIcon createbuttonimg = (new ImageIcon("CreateButton.png"));
+		JButton createbtn = new JButton(createbuttonimg);
+		createbtn.setBounds(20,200, createbuttonimg.getIconWidth(), createbuttonimg.getIconHeight());
+		createbtn.setBorder(BorderFactory.createEmptyBorder());
+		createbtn.setContentAreaFilled(false);
+		createbtn.setName("CreateButton");
+		createbtn.addActionListener(this);
+		preGameLauncher.addButtons(createbtn);
+		createbtn.setRolloverIcon(createbuttonglowimg);
 		preGameLauncher.setVisible(true); 
 		mainLauncher.dispose();
 	}
