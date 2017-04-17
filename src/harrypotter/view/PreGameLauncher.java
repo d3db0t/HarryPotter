@@ -7,16 +7,18 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class PreGameLauncher extends Launcher{
-	
+	JPanel btnSouthPanel;
 	public PreGameLauncher(){
 		super();
 		getContentPane().setBackground(Color.BLACK);
+		//btnSouthPanel = new JPanel(new BorderLayout());
+		//add(btnSouthPanel);
 	}
 	
-	JPanel btnSouthPanel = new JPanel(new BorderLayout());
+	
 	
 	public void addButtons(JButton btn){
-		btnSouthPanel.add(btn);
+		this.add(btn);
 	}
 
 }
