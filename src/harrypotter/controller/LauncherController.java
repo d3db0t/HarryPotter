@@ -66,14 +66,42 @@ public class LauncherController implements ActionListener {
 		mainLauncher.removeAll();
 		mainLauncher.revalidate();
 		preGameLauncher = new PreGameLauncher();
+		// RavenClaw Image Button
 		ImageIcon ravenclawimg = (new ImageIcon("r.png"));
 		JButton ravenclawbtn = new JButton(ravenclawimg);
-		ravenclawbtn.setBounds(20,200, ravenclawimg.getIconWidth(), ravenclawimg.getIconHeight());
+		ravenclawbtn.setBounds(100,40, ravenclawimg.getIconWidth(), ravenclawimg.getIconHeight());
 		ravenclawbtn.setBorder(BorderFactory.createEmptyBorder());
 		ravenclawbtn.setContentAreaFilled(false);
 		ravenclawbtn.setName("RavenClawButton");
 		ravenclawbtn.addActionListener(this);
 		preGameLauncher.addButtons(ravenclawbtn);
+		// Hufflepuff Image Button
+		ImageIcon hufflepuffimg = (new ImageIcon("h.png"));
+		JButton hufflepuffbtn = new JButton(hufflepuffimg);
+		hufflepuffbtn.setBounds(400,40, hufflepuffimg.getIconWidth(), hufflepuffimg.getIconHeight());
+		hufflepuffbtn.setBorder(BorderFactory.createEmptyBorder());
+		hufflepuffbtn.setContentAreaFilled(false);
+		hufflepuffbtn.setName("HufflepuffButton");
+		hufflepuffbtn.addActionListener(this);
+		preGameLauncher.addButtons(hufflepuffbtn);
+		// Gryffindor Image Button
+		ImageIcon gryffindorimg = (new ImageIcon("g.png"));
+		JButton gryffindorbtn = new JButton(gryffindorimg);
+		gryffindorbtn.setBounds(700,40, gryffindorimg.getIconWidth(), gryffindorimg.getIconHeight());
+		gryffindorbtn.setBorder(BorderFactory.createEmptyBorder());
+		gryffindorbtn.setContentAreaFilled(false);
+		gryffindorbtn.setName("GryffindorButton");
+		gryffindorbtn.addActionListener(this);
+		preGameLauncher.addButtons(gryffindorbtn);
+		// Slytherin Image Button
+		ImageIcon slytherinimg = (new ImageIcon("s.png"));
+		JButton slytherinbtn = new JButton(slytherinimg);
+		slytherinbtn.setBounds(1000,40, slytherinimg.getIconWidth(), slytherinimg.getIconHeight());
+		slytherinbtn.setBorder(BorderFactory.createEmptyBorder());
+		slytherinbtn.setContentAreaFilled(false);
+		slytherinbtn.setName("SlytherinButton");
+		slytherinbtn.addActionListener(this);
+		preGameLauncher.addButtons(slytherinbtn);
 		// CreateButtonGlow Image
 		ImageIcon createbuttonglowimg = (new ImageIcon("CreateButtonGlow.png"));
 		// CreateButton Button
