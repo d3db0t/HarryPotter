@@ -66,7 +66,7 @@ public class LauncherController implements ActionListener {
 		mainLauncher.removeAll();
 		mainLauncher.revalidate();
 		preGameLauncher = new PreGameLauncher();
-		ImageIcon ravenclawimg = (new ImageIcon("RavenClaw.png"));
+		ImageIcon ravenclawimg = (new ImageIcon("r.png"));
 		JButton ravenclawbtn = new JButton(ravenclawimg);
 		ravenclawbtn.setBounds(20,200, ravenclawimg.getIconWidth(), ravenclawimg.getIconHeight());
 		ravenclawbtn.setBorder(BorderFactory.createEmptyBorder());
