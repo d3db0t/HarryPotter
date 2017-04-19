@@ -21,31 +21,20 @@ public class LauncherController implements ActionListener {
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
 		mainLauncher = new MainLauncher();
-		ArrayList <JButton>btns = new ArrayList<JButton>();
 		// DragonInto gif
-		ImageIcon dragonintroimg = (new ImageIcon("DragonIntro.gif"));
-		JButton dragonintrobtn = new JButton(dragonintroimg);
-		dragonintrobtn.setBounds(300,10, dragonintroimg.getIconWidth(), dragonintroimg.getIconHeight());
-		dragonintrobtn.setBorder(BorderFactory.createEmptyBorder());
-		dragonintrobtn.setContentAreaFilled(false);
+		JButton dragonintrobtn = new JButton();
+		dragonintrobtn.setName("DragonButton");
+		mainLauncher.addButtons(dragonintrobtn);
 		// HarryPotter Logo
-		ImageIcon harrypotterlogoimg = (new ImageIcon("HPlogo.png"));
-		JButton harrypotterlogobtn = new JButton(harrypotterlogoimg);
-		harrypotterlogobtn.setBounds(20,40, harrypotterlogoimg.getIconWidth(), harrypotterlogoimg.getIconHeight());
-		harrypotterlogobtn.setBorder(BorderFactory.createEmptyBorder());
-		harrypotterlogobtn.setContentAreaFilled(false);
+		JButton harrypotterlogobtn = new JButton();
+		harrypotterlogobtn.setName("HarryPotterLogo");
+		mainLauncher.addButtons(harrypotterlogobtn);
 		// NewGameButton
-		ImageIcon newgameimg = (new ImageIcon("NewGameButton.png"));
-		JButton newgamebtn = new JButton(newgameimg);
-		newgamebtn.setBounds(900,450, newgameimg.getIconWidth(), newgameimg.getIconHeight());
-		newgamebtn.setBorder(BorderFactory.createEmptyBorder());
-		newgamebtn.setContentAreaFilled(false);
+		JButton newgamebtn = new JButton();
 		newgamebtn.setName("NewGameButton");
 		newgamebtn.addActionListener(this);
-		btns.add(dragonintrobtn);
-		btns.add(harrypotterlogobtn);
-		btns.add(newgamebtn);
-		mainLauncher.addButtons(btns);
+		mainLauncher.addButtons(newgamebtn);
+        //Set main launcher to be visible 		
 		mainLauncher.setVisible(true);
 		launcher = new Launcher();
 		launcher.addPanel(mainLauncher);
