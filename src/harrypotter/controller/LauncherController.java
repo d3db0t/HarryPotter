@@ -8,7 +8,13 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
+import harrypotter.model.character.GryffindorWizard;
+import harrypotter.model.character.HufflepuffWizard;
+import harrypotter.model.character.RavenclawWizard;
+import harrypotter.model.character.SlytherinWizard;
+import harrypotter.model.character.Wizard;
 import harrypotter.view.Launcher;
 import harrypotter.view.MainLauncher;
 import harrypotter.view.PreGameLauncher;
@@ -17,6 +23,7 @@ public class LauncherController implements ActionListener {
 	private Launcher launcher;
 	private MainLauncher mainLauncher;
 	private PreGameLauncher preGameLauncher;
+	private ArrayList <Wizard> champions;
 	
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
@@ -38,6 +45,8 @@ public class LauncherController implements ActionListener {
 		mainLauncher.setVisible(true);
 		launcher = new Launcher();
 		launcher.addPanel(mainLauncher);
+		//Initialize the champions ArrayList 
+		this.champions = new ArrayList <Wizard>();
 	}
 	
 	@Override
