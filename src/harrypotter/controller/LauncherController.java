@@ -56,10 +56,61 @@ public class LauncherController implements ActionListener {
 		switch(btnID){
 		case "NewGameButton" : startPreGameLauncher();
 							   break;
-		
+		case "RavenClawButton":
+			if (this.champions.size() == 4)
+				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
+			else
+			{
+			  String name = showNameWindow();
+			  if(name != null)
+				  this.champions.add(new RavenclawWizard(name));
+			}
+			 break;
+		case "HufflepuffButton":
+			 if (this.champions.size() == 4)
+				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
+			 else
+			 {
+				String name1 = showNameWindow();
+				if(name1 != null)
+				   this.champions.add(new HufflepuffWizard(name1));
+			 }
+			 break;
+		case "GryffindorButton":
+		     if (this.champions.size() == 4)
+			     JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
+		     else
+		     {
+		        String name2 = showNameWindow();
+			    if(name2 != null)
+				   this.champions.add(new GryffindorWizard(name2));
+		     }
+			 break;
+		case "SlytherinButton":
+			 if (this.champions.size() == 4)
+				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
+			 else
+			 {
+			     String name3 = showNameWindow();
+			     if(name3 != null)
+				    this.champions.add(new SlytherinWizard(name3));
+			 }
+			 break;
+		case "CreateButton":
+			if(this.champions.size() == 4)
+				startTournament();
+			else
+				JOptionPane.showMessageDialog(launcher, "Please select " + (4 - this.champions.size())
+						+ " more champions");
+			break;
 		}
 	}
-	
+	private String showNameWindow()
+	{
+		String name = JOptionPane.showInputDialog(launcher,
+                "Please enter your name", null);
+		return name;
+	}
 	public void startPreGameLauncher(){
 		mainLauncher.removeAll();
 		mainLauncher.revalidate();
@@ -93,6 +144,10 @@ public class LauncherController implements ActionListener {
 		//Make pre game launcher visible and adding it to frame
 		preGameLauncher.setVisible(true); 
 		launcher.addPanel(preGameLauncher);
+	}
+	public void startTournament()
+	{
+		
 	}
 	public static void main(String [] args) throws IOException{
 		new LauncherController();
