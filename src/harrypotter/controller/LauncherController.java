@@ -57,10 +57,11 @@ public class LauncherController implements ActionListener {
 		case "NewGameButton" : startPreGameLauncher();
 							   break;
 		case "RavenClawButton":
-			if (this.champions.size() == 4)
+			if (this.champions.size() == 4) // If champions ArrayList is full notify the user
 				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
 			else
 			{
+			  //Show an name input window if user is eligible to create a wizard
 			  String name = showNameWindow();
 			  if(name != null)
 				  this.champions.add(new RavenclawWizard(name));
@@ -97,9 +98,9 @@ public class LauncherController implements ActionListener {
 			 }
 			 break;
 		case "CreateButton":
-			if(this.champions.size() == 4)
+			if(this.champions.size() == 4)//If the user press create check if the Champions entered are 4 
 				startTournament();
-			else
+			else // Notify the user to choose more champions
 				JOptionPane.showMessageDialog(launcher, "Please select " + (4 - this.champions.size())
 						+ " more champions");
 			break;
