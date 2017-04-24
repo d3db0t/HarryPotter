@@ -81,6 +81,21 @@ public class ChoosingSpells extends JPanel
     	}
     	addButtons(btn);
     }
+    
+    public void addNameTextField(JTextField tf){
+    	JLabel l = new JLabel("Name: ");
+    	tf.setBounds(200, 350, 150, 35);
+    	tf.setBackground(Color.BLACK);
+    	tf.setFont(new java.awt.Font(null, 1, 15));
+    	tf.setForeground(Color.WHITE);
+		tf.setVisible(true);
+		l.setBounds(90, 115, 500, 500);
+		l.setFont(new java.awt.Font(null, 1, 30));
+		l.setForeground(Color.white);
+		l.setVisible(true);
+		this.add(tf);
+		this.add(l);
+    }
    
     public void paintComponent(Graphics g){
 		super.paintComponent(g);
