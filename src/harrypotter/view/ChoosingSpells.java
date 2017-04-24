@@ -22,7 +22,7 @@ public class ChoosingSpells extends JPanel
 {   
 	private JPanel champInfo;
 	private JPanel spells;
-	private JPanel spellsInfo;
+	private JTextArea spellsInfo;
 	
     public ChoosingSpells(String school)
     {
@@ -45,10 +45,10 @@ public class ChoosingSpells extends JPanel
         //add(this.champInfo , BorderLayout.NORTH);
         add(this.spells);
         addHouseImage(school);
-        this.spellsInfo = new JPanel();
+        this.spellsInfo = new JTextArea();
     }
     
-    public JPanel getSpellsInfo()
+    public JTextArea getSpellsInfo()
     {
     	return spellsInfo ;
     }
@@ -130,15 +130,12 @@ public class ChoosingSpells extends JPanel
     
     public void showSpellInfo(String name,String type,int amount,int cost)
     {
-    	JTextArea txt = new JTextArea();
-    	//txt.setSize(600, 500);
-    	//txt.setBounds(500, 100, 200, 300);
-    	txt.setText("Spell name :"+ name+ "\n" +"SpellType:" + type +"\n" + amount+ "\n" + cost);
-    	this.spellsInfo.add(txt);
-    	this.spellsInfo.setVisible(true);
-    	this.spellsInfo.setSize(200, 75);
-    	this.spellsInfo.setBounds(400, 100, 200, 75);
-    	add(spellsInfo);
+    	
+    	spellsInfo.setText("Spell name :"+ name+ "\n" +"SpellType:" + type +"\n" + amount+ "\n" + cost);
+    	//spellsInfo.setSize(550, 200);
+    	spellsInfo.setBounds(650, 100, 220, 60);
+    	spellsInfo.setVisible(true);
+    	this.add(spellsInfo);
     }
     public void paintComponent(Graphics g){
 		super.paintComponent(g);

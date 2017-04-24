@@ -233,7 +233,8 @@ public class LauncherController implements ActionListener , MouseListener {
 		// TODO Auto-generated method stub
 		choosingSpells.getSpellsInfo().removeAll();
 		choosingSpells.getSpellsInfo().revalidate();
-        choosingSpells.getSpellsInfo().setVisible(false);                		
+        choosingSpells.getSpellsInfo().setVisible(false);
+        
 	}
 
 }
