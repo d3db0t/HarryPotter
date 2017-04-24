@@ -33,6 +33,13 @@ public class ChoosingSpells extends JPanel
         this.spells.setLayout(new GridLayout(7,3));
         this.spells.setBounds(850, 100, 450, 450);
         this.spells.setBackground(Color.BLACK);
+        // Adding spells label
+        JLabel sl = new JLabel("Choose 3 Spells");
+        sl.setBounds(950, -200, 500, 500);
+		sl.setFont(new java.awt.Font(null, 1, 30));
+		sl.setForeground(Color.white);
+		sl.setVisible(true);
+		add(sl);
         //add(this.champInfo , BorderLayout.NORTH);
         add(this.spells);
         addHouseImage(school);
