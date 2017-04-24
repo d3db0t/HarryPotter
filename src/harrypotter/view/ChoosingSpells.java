@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import harrypotter.model.character.Wizard;
@@ -21,6 +22,7 @@ public class ChoosingSpells extends JPanel
 {   
 	private JPanel champInfo;
 	private JPanel spells;
+	private JPanel spellsInfo;
 	
     public ChoosingSpells(String school)
     {
@@ -36,8 +38,13 @@ public class ChoosingSpells extends JPanel
         //add(this.champInfo , BorderLayout.NORTH);
         add(this.spells);
         addHouseImage(school);
+        this.spellsInfo = new JPanel();
     }
     
+    public JPanel getSpellsInfo()
+    {
+    	return spellsInfo ;
+    }
     public void addSpellButton(JButton btn)
     {
     	this.spells.add(btn);
