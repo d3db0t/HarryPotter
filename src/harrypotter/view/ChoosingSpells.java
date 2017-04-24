@@ -133,7 +133,7 @@ public class ChoosingSpells extends JPanel
     	
     	spellsInfo.setText("Spell name :"+ name+ "\n" +"SpellType:" + type +"\n" + amount+ "\n" + cost);
     	//spellsInfo.setSize(550, 200);
-    	spellsInfo.setBounds(650, 100, 220, 60);
+    	spellsInfo.setBounds(630, 100, 250, 60);
     	spellsInfo.setVisible(true);
     	this.add(spellsInfo);
     }
