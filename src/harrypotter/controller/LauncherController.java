@@ -154,6 +154,14 @@ public class LauncherController implements ActionListener , MouseListener {
 		preGameLauncher.removeAll();
 		preGameLauncher.revalidate();
 		choosingSpells = new ChoosingSpells(btnID);
+		for(int i = 0 ; i < spells.size() ;i++)
+		{
+		   JButton btn = new JButton(spells.get(i).getName());
+		   btn.addActionListener(this);
+		   btn.addMouseListener(this);
+		   btn.setName(i+"");
+		   choosingSpells.addSpellButton(btn); 
+		}
 		JTextField tf  = new JTextField();
 		choosingSpells.addNameTextField(tf);
 		choosingSpells.setVisible(true); 
