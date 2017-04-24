@@ -8,13 +8,16 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import harrypotter.model.character.GryffindorWizard;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.RavenclawWizard;
 import harrypotter.model.character.SlytherinWizard;
 import harrypotter.model.character.Wizard;
+import harrypotter.view.ChoosingSpells;
 import harrypotter.view.Launcher;
 import harrypotter.view.MainLauncher;
 import harrypotter.view.PreGameLauncher;
@@ -23,7 +26,8 @@ public class LauncherController implements ActionListener {
 	private Launcher launcher;
 	private MainLauncher mainLauncher;
 	private PreGameLauncher preGameLauncher;
-	private ArrayList <Wizard> champions;
+	private ChoosingSpells choosingSpells;
+	private ArrayList <Wizard> champs;
 	
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
@@ -45,8 +49,8 @@ public class LauncherController implements ActionListener {
 		mainLauncher.setVisible(true);
 		launcher = new Launcher();
 		launcher.addPanel(mainLauncher);
-		//Initialize the champions ArrayList 
-		this.champions = new ArrayList <Wizard>();
+		//Initialize the champs ArrayList 
+		this.champs = new ArrayList <Wizard>();
 	}
 	
 	@Override
@@ -57,51 +61,38 @@ public class LauncherController implements ActionListener {
 		case "NewGameButton" : startPreGameLauncher();
 							   break;
 		case "RavenClawButton":
-			if (this.champions.size() == 4) // If champions ArrayList is full notify the user
+			if (this.champs.size() == 4) // If champions ArrayList is full notify the user
 				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
-			else
-			{
-			  //Show an name input window if user is eligible to create a wizard
-			  String name = showNameWindow();
-			  if(name != null)
-				  this.champions.add(new RavenclawWizard(name));
+			else{
+				startChoosingSpells(btnID);
 			}
 			 break;
 		case "HufflepuffButton":
-			 if (this.champions.size() == 4)
+			 if (this.champs.size() == 4)
 				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
-			 else
-			 {
-				String name1 = showNameWindow();
-				if(name1 != null)
-				   this.champions.add(new HufflepuffWizard(name1));
-			 }
+			 else{
+					startChoosingSpells(btnID);
+				}
 			 break;
 		case "GryffindorButton":
-		     if (this.champions.size() == 4)
+		     if (this.champs.size() == 4)
 			     JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
-		     else
-		     {
-		        String name2 = showNameWindow();
-			    if(name2 != null)
-				   this.champions.add(new GryffindorWizard(name2));
-		     }
+		     else{
+					startChoosingSpells(btnID);
+				}
 			 break;
 		case "SlytherinButton":
-			 if (this.champions.size() == 4)
+			 if (this.champs.size() == 4)
 				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
-			 else
-			 {
-			     String name3 = showNameWindow();
-			     if(name3 != null)
-				    this.champions.add(new SlytherinWizard(name3));
-			 }
+			 else{
+					startChoosingSpells(btnID);
+				}
 			 break;
 		case "CreateButton":
-			if(this.champions.size() == 4)//If the user press create check if the Champions entered are 4 
+			if(this.champs.size() == 4)//If the user press create check if the Champions entered are 4 
 				startTournament();
 			else // Notify the user to choose more champions
-				JOptionPane.showMessageDialog(launcher, "Please select " + (4 - this.champions.size())
+				JOptionPane.showMessageDialog(launcher, "Please select " + (4 - this.champs.size())
 						+ " more champions");
 			break;
 		}
@@ -145,6 +136,17 @@ public class LauncherController implements ActionListener {
 		//Make pre game launcher visible and adding it to frame
 		preGameLauncher.setVisible(true); 
 		launcher.addPanel(preGameLauncher);
+	}
+	
+	public void startChoosingSpells(String btnID){
+		
+		preGameLauncher.removeAll();
+		preGameLauncher.revalidate();
+		choosingSpells = new ChoosingSpells(btnID);
+		JTextField tf  = new JTextField();
+		choosingSpells.addNameTextField(tf);
+		choosingSpells.setVisible(true); 
+		launcher.addPanel(choosingSpells);
 	}
 	public void startTournament()
 	{
