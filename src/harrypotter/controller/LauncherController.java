@@ -145,6 +145,10 @@ public class LauncherController implements ActionListener {
 		choosingSpells = new ChoosingSpells(btnID);
 		JTextField tf  = new JTextField();
 		choosingSpells.addNameTextField(tf);
+		JButton createcharacterbtn = new JButton();
+		createcharacterbtn.setName("CreateCharacterButton");
+		createcharacterbtn.addActionListener(this);
+		choosingSpells.addButtons(createcharacterbtn);
 		choosingSpells.setVisible(true); 
 		launcher.addPanel(choosingSpells);
 	}

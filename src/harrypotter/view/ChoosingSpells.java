@@ -51,6 +51,21 @@ public class ChoosingSpells extends JPanel
     }
     
     public void addButtons(JButton btn){
+    	
+    	String name = btn.getName();
+    	switch(name){
+    	case "CreateCharacterButton": 
+    		// CreateCharacterButtonGlow Image
+    		ImageIcon createcharacterbuttonglowimg = (new ImageIcon("CreateButtonGlow.png"));
+    		// CreateCharacterButton Button
+    		ImageIcon createcharacterbuttonimg = (new ImageIcon("CreateButton.png"));
+    		btn.setIcon(createcharacterbuttonimg);
+    		btn.setBounds(990,550, createcharacterbuttonimg.getIconWidth(), createcharacterbuttonimg.getIconHeight());
+    		btn.setBorder(BorderFactory.createEmptyBorder());
+    		btn.setContentAreaFilled(false);
+    		btn.setRolloverIcon(createcharacterbuttonglowimg);
+    		break;
+    	}
     	this.add(btn);
     }
     
@@ -87,7 +102,8 @@ public class ChoosingSpells extends JPanel
 			break;
     	
     	}
-    	addButtons(btn);
+    	//addButtons(btn);
+    	add(btn);
     }
     
     public void addNameTextField(JTextField tf){
