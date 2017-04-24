@@ -31,7 +31,8 @@ public class ChoosingSpells extends JPanel
         this.spells = new JPanel();
         this.spells.setSize(450, 450);
         this.spells.setLayout(new GridLayout(7,3));
-        this.spells.setBounds(100, 50, 450, 450);
+        this.spells.setBounds(850, 100, 450, 450);
+        this.spells.setBackground(Color.BLACK);
         //add(this.champInfo , BorderLayout.NORTH);
         add(this.spells);
         addHouseImage(school);
