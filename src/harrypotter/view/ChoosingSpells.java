@@ -130,12 +130,25 @@ public class ChoosingSpells extends JPanel
     
     public void showSpellInfo(String name,String type,int amount,int cost)
     {
-    	
-    	spellsInfo.setText("Spell name :"+ name+ "\n" +"SpellType:" + type +"\n" + amount+ "\n" + cost);
-    	//spellsInfo.setSize(550, 200);
-    	spellsInfo.setBounds(630, 100, 250, 60);
-    	spellsInfo.setVisible(true);
-    	this.add(spellsInfo);
+        switch(type)
+        { 
+		    case "HealingSpell":
+		  		spellsInfo.setText("Spell name :"+ name+ "\n" +"SpellType:" + type +"\n" + "Healing amount :" 
+		          + amount + "\n" + "Cost :" + cost);
+		  		break;
+		    case "DamagingSpell":
+		  		spellsInfo.setText("Spell name :"+ name+ "\n" +"SpellType:" + type +"\n" + "Damage :" 
+		          + amount + "\n" + "Cost :" + cost);
+		  		break;
+		    case "RelocatingSpell":
+		  		spellsInfo.setText("Spell name :"+ name+ "\n" +"SpellType:" + type +"\n" + "Range :" 
+		          + amount + "\n" + "Cost :" + cost);
+		  		break;
+        }
+      //spellsInfo.setSize(550, 200);
+  		spellsInfo.setBounds(630, 100, 250, 60);
+  		spellsInfo.setVisible(true);
+  		this.add(spellsInfo);
     }
     public void paintComponent(Graphics g){
 		super.paintComponent(g);
