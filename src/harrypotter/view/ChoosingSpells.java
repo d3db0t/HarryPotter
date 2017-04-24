@@ -104,7 +104,19 @@ public class ChoosingSpells extends JPanel
 		this.add(tf);
 		this.add(l);
     }
-   
+    
+    public void showSpellInfo(String name,String type,int amount,int cost)
+    {
+    	JTextArea txt = new JTextArea();
+    	//txt.setSize(600, 500);
+    	//txt.setBounds(500, 100, 200, 300);
+    	txt.setText("Spell name :"+ name+ "\n" +"SpellType:" + type +"\n" + amount+ "\n" + cost);
+    	this.spellsInfo.add(txt);
+    	this.spellsInfo.setVisible(true);
+    	this.spellsInfo.setSize(200, 75);
+    	this.spellsInfo.setBounds(400, 100, 200, 75);
+    	add(spellsInfo);
+    }
     public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Image img = new ImageIcon("HarryPotter.jpeg").getImage();
