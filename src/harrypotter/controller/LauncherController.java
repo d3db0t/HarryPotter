@@ -97,12 +97,6 @@ public class LauncherController implements ActionListener {
 			break;
 		}
 	}
-	private String showNameWindow()
-	{
-		String name = JOptionPane.showInputDialog(launcher,
-                "Please enter your name", null);
-		return name;
-	}
 	public void startPreGameLauncher(){
 		mainLauncher.removeAll();
 		mainLauncher.revalidate();
