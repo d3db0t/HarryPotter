@@ -175,4 +175,61 @@ public class LauncherController implements ActionListener , MouseListener {
 		new LauncherController();
 	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e)
+	{
+        JButton btn =(JButton) e.getSource() ;
+        Spell s = spells.get(Integer.parseInt(btn.getName()));
+        if(s instanceof DamagingSpell)
+        {
+        	String name = s.getName();
+        	String type = "DamagingSpell";
+        	int damage = ((DamagingSpell) s).getDamageAmount();
+        	int cost = s.getCost();
+        	choosingSpells.showSpellInfo(name,type,damage,cost);
+        }
+        else if(s instanceof HealingSpell)
+        {
+        	String name = s.getName();
+        	String type = "HealingSpell";
+        	int heal = ((HealingSpell) s).getHealingAmount();
+        	int cost = s.getCost();
+        	choosingSpells.showSpellInfo(name,type,heal,cost);
+        }
+        else
+        {
+        	String name = s.getName();
+        	String type = "RelocatingSpell";
+        	int range = ((RelocatingSpell) s).getRange();
+        	int cost = s.getCost();
+        	choosingSpells.showSpellInfo(name,type,range,cost);
+        }
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		choosingSpells.getSpellsInfo().removeAll();
+		choosingSpells.getSpellsInfo().revalidate();
+        choosingSpells.getSpellsInfo().setVisible(false);                		
+	}
+
 }
