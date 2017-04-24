@@ -2,6 +2,8 @@ package harrypotter.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -17,17 +19,24 @@ import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.RavenclawWizard;
 import harrypotter.model.character.SlytherinWizard;
 import harrypotter.model.character.Wizard;
+import harrypotter.model.magic.DamagingSpell;
+import harrypotter.model.magic.HealingSpell;
+import harrypotter.model.magic.RelocatingSpell;
+import harrypotter.model.magic.Spell;
+import harrypotter.model.tournament.Tournament;
 import harrypotter.view.ChoosingSpells;
 import harrypotter.view.Launcher;
 import harrypotter.view.MainLauncher;
 import harrypotter.view.PreGameLauncher;
 
-public class LauncherController implements ActionListener {
+public class LauncherController implements ActionListener , MouseListener {
 	private Launcher launcher;
 	private MainLauncher mainLauncher;
 	private PreGameLauncher preGameLauncher;
 	private ChoosingSpells choosingSpells;
 	private ArrayList <Wizard> champs;
+	private Tournament tournament;
+	private ArrayList <Spell> spells;
 	
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
@@ -51,6 +60,13 @@ public class LauncherController implements ActionListener {
 		launcher.addPanel(mainLauncher);
 		//Initialize the champs ArrayList 
 		this.champs = new ArrayList <Wizard>();
+		try {
+			this.tournament = new Tournament();
+			this.spells = this.tournament.getSpells();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -97,6 +113,7 @@ public class LauncherController implements ActionListener {
 			break;
 		}
 	}
+	
 	public void startPreGameLauncher(){
 		mainLauncher.removeAll();
 		mainLauncher.revalidate();
@@ -137,6 +154,14 @@ public class LauncherController implements ActionListener {
 		preGameLauncher.removeAll();
 		preGameLauncher.revalidate();
 		choosingSpells = new ChoosingSpells(btnID);
+		for(int i = 0 ; i < spells.size() ;i++)
+		{
+		   JButton btn = new JButton(spells.get(i).getName());
+		   btn.addActionListener(this);
+		   btn.addMouseListener(this);
+		   btn.setName(i+"");
+		   choosingSpells.addSpellButton(btn); 
+		}
 		JTextField tf  = new JTextField();
 		choosingSpells.addNameTextField(tf);
 		JButton createcharacterbtn = new JButton();
@@ -152,6 +177,63 @@ public class LauncherController implements ActionListener {
 	}
 	public static void main(String [] args) throws IOException{
 		new LauncherController();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e)
+	{
+        JButton btn =(JButton) e.getSource() ;
+        Spell s = spells.get(Integer.parseInt(btn.getName()));
+        if(s instanceof DamagingSpell)
+        {
+        	String name = s.getName();
+        	String type = "DamagingSpell";
+        	int damage = ((DamagingSpell) s).getDamageAmount();
+        	int cost = s.getCost();
+        	choosingSpells.showSpellInfo(name,type,damage,cost);
+        }
+        else if(s instanceof HealingSpell)
+        {
+        	String name = s.getName();
+        	String type = "HealingSpell";
+        	int heal = ((HealingSpell) s).getHealingAmount();
+        	int cost = s.getCost();
+        	choosingSpells.showSpellInfo(name,type,heal,cost);
+        }
+        else
+        {
+        	String name = s.getName();
+        	String type = "RelocatingSpell";
+        	int range = ((RelocatingSpell) s).getRange();
+        	int cost = s.getCost();
+        	choosingSpells.showSpellInfo(name,type,range,cost);
+        }
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		choosingSpells.getSpellsInfo().removeAll();
+		choosingSpells.getSpellsInfo().revalidate();
+        choosingSpells.getSpellsInfo().setVisible(false);                		
 	}
 
 }
