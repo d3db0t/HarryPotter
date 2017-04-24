@@ -2,6 +2,8 @@ package harrypotter.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -17,17 +19,24 @@ import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.RavenclawWizard;
 import harrypotter.model.character.SlytherinWizard;
 import harrypotter.model.character.Wizard;
+import harrypotter.model.magic.DamagingSpell;
+import harrypotter.model.magic.HealingSpell;
+import harrypotter.model.magic.RelocatingSpell;
+import harrypotter.model.magic.Spell;
+import harrypotter.model.tournament.Tournament;
 import harrypotter.view.ChoosingSpells;
 import harrypotter.view.Launcher;
 import harrypotter.view.MainLauncher;
 import harrypotter.view.PreGameLauncher;
 
-public class LauncherController implements ActionListener {
+public class LauncherController implements ActionListener , MouseListener {
 	private Launcher launcher;
 	private MainLauncher mainLauncher;
 	private PreGameLauncher preGameLauncher;
 	private ChoosingSpells choosingSpells;
 	private ArrayList <Wizard> champs;
+	private Tournament tournament;
+	private ArrayList <Spell> spells;
 	
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
@@ -51,6 +60,13 @@ public class LauncherController implements ActionListener {
 		launcher.addPanel(mainLauncher);
 		//Initialize the champs ArrayList 
 		this.champs = new ArrayList <Wizard>();
+		try {
+			this.tournament = new Tournament();
+			this.spells = this.tournament.getSpells();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
