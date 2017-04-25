@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import harrypotter.model.character.Champion;
 import harrypotter.model.character.GryffindorWizard;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.RavenclawWizard;
@@ -34,10 +35,12 @@ public class LauncherController implements ActionListener , MouseListener {
 	private MainLauncher mainLauncher;
 	private PreGameLauncher preGameLauncher;
 	private ChoosingSpells choosingSpells;
-	private ArrayList <Wizard> champs;
+	private ArrayList <Champion> champs;
 	private Tournament tournament;
 	private ArrayList <Spell> spells;
 	private ArrayList <Spell> selectedSpells;
+	private JTextField tf;
+	private String house;
 	
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
@@ -60,7 +63,7 @@ public class LauncherController implements ActionListener , MouseListener {
 		launcher = new Launcher();
 		launcher.addPanel(mainLauncher);
 		//Initialize the champs ArrayList 
-		this.champs = new ArrayList <Wizard>();
+		this.champs = new ArrayList <Champion>();
 		try {
 			this.tournament = new Tournament();
 			this.spells = this.tournament.getSpells();
@@ -82,6 +85,7 @@ public class LauncherController implements ActionListener , MouseListener {
 			if (this.champs.size() == 4) // If champions ArrayList is full notify the user
 				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
 			else{
+				this.house = "RavenClaw";
 				startChoosingSpells(btnID);
 			}
 			 break;
@@ -89,21 +93,24 @@ public class LauncherController implements ActionListener , MouseListener {
 			 if (this.champs.size() == 4)
 				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
 			 else{
-					startChoosingSpells(btnID);
+				 this.house = "Hufflepuff";
+				 startChoosingSpells(btnID);
 				}
 			 break;
 		case "GryffindorButton":
 		     if (this.champs.size() == 4)
 			     JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
 		     else{
-					startChoosingSpells(btnID);
+		    	 this.house = "Gryffindor";
+				 startChoosingSpells(btnID);
 				}
 			 break;
 		case "SlytherinButton":
 			 if (this.champs.size() == 4)
 				 JOptionPane.showMessageDialog(launcher, "You reached the maximum number of champions");
 			 else{
-					startChoosingSpells(btnID);
+				 this.house = "Slytherin";
+				 startChoosingSpells(btnID);
 				}
 			 break;
 		case "CreateButton":
@@ -113,7 +120,10 @@ public class LauncherController implements ActionListener , MouseListener {
 				JOptionPane.showMessageDialog(launcher, "Please select " + (4 - this.champs.size())
 						+ " more champions");
 			break;
+			
+		case "CreateCharacterButton": creatingCharacter(house); break;
 		}
+		
 	}
 	
 	public void startPreGameLauncher(){
@@ -164,7 +174,7 @@ public class LauncherController implements ActionListener , MouseListener {
 		   btn.setName(i+"");
 		   choosingSpells.addSpellButton(btn); 
 		}
-		JTextField tf  = new JTextField();
+		tf  = new JTextField();
 		choosingSpells.addNameTextField(tf);
 		JButton createcharacterbtn = new JButton();
 		createcharacterbtn.setName("CreateCharacterButton");
@@ -176,6 +186,42 @@ public class LauncherController implements ActionListener , MouseListener {
 	public void startTournament()
 	{
 		
+	}
+	public void creatingCharacter(String house){
+		if (selectedSpells.size() < 3){
+			JOptionPane.showMessageDialog(launcher, "You need to choose 3 spells"); 
+			return;
+		}
+		else if (tf.getText().equals("")){
+			JOptionPane.showMessageDialog(launcher, "You name is empty!"); 
+			return;
+		}
+		switch(house){
+		case "RavenClaw" : RavenclawWizard r = new RavenclawWizard(tf.getText());
+						  r.getSpells().addAll(selectedSpells);
+						  Champion rc = (Champion) r;
+						  champs.add(rc);
+						  break;
+		case "Hufflepuff": HufflepuffWizard h = new HufflepuffWizard(tf.getText());
+						   h.getSpells().addAll(selectedSpells);
+						   Champion hc = (Champion) h;
+						   champs.add(hc);
+						   break;
+		case "Gryffindor": GryffindorWizard g = new GryffindorWizard(tf.getText());
+						   g.getSpells().addAll(selectedSpells);
+						   Champion gc = (Champion) g;
+						   champs.add(gc);
+						   break;
+		case "Slytherin" : SlytherinWizard s = new SlytherinWizard(tf.getText());
+						  s.getSpells().addAll(selectedSpells);
+						  Champion sc = (Champion) s;
+						  champs.add(sc);
+						  break;
+		}
+		selectedSpells.clear();
+		choosingSpells.removeAll();
+		choosingSpells.revalidate();
+		startPreGameLauncher();
 	}
 	public static void main(String [] args) throws IOException{
 		new LauncherController();
