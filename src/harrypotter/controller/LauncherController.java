@@ -185,7 +185,9 @@ public class LauncherController implements ActionListener , MouseListener {
 	}
 	public void startTournament()
 	{
-		
+		this.preGameLauncher.removeAll();
+		this.preGameLauncher.revalidate();
+		new FirstTaskController(this.champs , this.tournament);
 	}
 	public void creatingCharacter(String house){
 		if (selectedSpells.size() < 3){
@@ -223,10 +225,7 @@ public class LauncherController implements ActionListener , MouseListener {
 		choosingSpells.revalidate();
 		startPreGameLauncher();
 	}
-	public static void main(String [] args) throws IOException{
-		new LauncherController();
-	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -292,5 +291,10 @@ public class LauncherController implements ActionListener , MouseListener {
         choosingSpells.getSpellsInfo().setVisible(false);
         
 	}
+	
+	public static void main(String [] args) throws IOException{
+		new LauncherController();
+	}
+
 
 }
