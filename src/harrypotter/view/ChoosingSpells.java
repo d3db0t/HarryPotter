@@ -22,6 +22,7 @@ public class ChoosingSpells extends JPanel
 {   
 	private JPanel champInfo;
 	private JPanel spells;
+	private JPanel spellsSelected;
 	private JTextArea spellsInfo;
 	
     public ChoosingSpells(String school)
@@ -46,11 +47,20 @@ public class ChoosingSpells extends JPanel
         add(this.spells);
         addHouseImage(school);
         this.spellsInfo = new JTextArea();
+        this.spellsSelected = new JPanel();
+        this.spellsSelected.setSize(100, 200);
+        this.spellsSelected.setLayout(new GridLayout(3,1));
+        this.spellsSelected.setBounds(100, 400, 150, 200);
+        this.spellsSelected.setBackground(Color.BLACK);
+        add(this.spellsSelected);
     }
     
     public JTextArea getSpellsInfo()
     {
     	return spellsInfo ;
+    }
+    public JPanel getSpellsSelected(){
+    	return spellsSelected;
     }
     public void addSpellButton(JButton btn)
     {
