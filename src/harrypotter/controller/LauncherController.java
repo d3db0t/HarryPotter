@@ -187,7 +187,7 @@ public class LauncherController implements ActionListener , MouseListener {
 	{
 		this.preGameLauncher.removeAll();
 		this.preGameLauncher.revalidate();
-		new FirstTaskController(this.champs , this.tournament);
+		new FirstTaskController(launcher, this.champs , this.tournament);
 	}
 	public void creatingCharacter(String house){
 		if (selectedSpells.size() < 3){
