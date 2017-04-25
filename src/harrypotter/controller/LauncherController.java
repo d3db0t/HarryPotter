@@ -37,6 +37,7 @@ public class LauncherController implements ActionListener , MouseListener {
 	private ArrayList <Wizard> champs;
 	private Tournament tournament;
 	private ArrayList <Spell> spells;
+	private ArrayList <Spell> selectedSpells;
 	
 	public LauncherController() throws IOException{
 		// Initialize MainLauncher
@@ -63,6 +64,7 @@ public class LauncherController implements ActionListener , MouseListener {
 		try {
 			this.tournament = new Tournament();
 			this.spells = this.tournament.getSpells();
+			this.selectedSpells = new ArrayList <Spell>();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -182,7 +184,11 @@ public class LauncherController implements ActionListener , MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		JButton btn =(JButton) e.getSource();
+		String name = btn.getName();
+		int btnID   = Integer.parseInt(name);
+		choosingSpells.getSpellsSelected().add(btn);
+		selectedSpells.add(spells.get(btnID));
 	}
 
 	@Override
