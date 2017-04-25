@@ -3,6 +3,7 @@ package harrypotter.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ public abstract class TaskView extends JPanel
     private JTextArea spellsInfo;
     private JTextArea potionInfo;
     private JButton [][] map;
+    private ArrayList <ImageIcon> gifs;
     
     public TaskView()
     {
@@ -50,9 +52,19 @@ public abstract class TaskView extends JPanel
         add(south,BorderLayout.SOUTH);
         add(east,BorderLayout.EAST);
         add(west,BorderLayout.WEST);
-       
+        //Adding ArrayList of gifs and images
+        this.gifs = new ArrayList<ImageIcon>();
+        addGifs();
     }
     
+    public void addGifs()
+    {
+    	this.gifs.add(new ImageIcon("Wizard1.gif"));
+    	this.gifs.add(new ImageIcon("Wizard2.gif"));
+    	this.gifs.add(new ImageIcon("Wizard3.gif"));
+    	this.gifs.add(new ImageIcon("Wizard4.gif"));
+    	this.gifs.add(new ImageIcon("egg-icon.png"));
+    }
     public void generateEmptyMap()
     {
     	for(int i = 0 ; i<10 ; i++)
@@ -66,7 +78,11 @@ public abstract class TaskView extends JPanel
     		}
     	}
     }
-
+    
+    public ArrayList<ImageIcon> getGifs()
+    {
+    	return this.gifs;
+    }
 	public JPanel getCenter() {
 		return center;
 	}
@@ -139,7 +155,7 @@ public abstract class TaskView extends JPanel
 		this.potionInfo = potionInfo;
 	}
 
-	public JButton[][] getMap() {
+	public JButton[][] getButtonsMap() {
 		return map;
 	}
 
