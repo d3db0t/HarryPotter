@@ -187,6 +187,10 @@ public class LauncherController implements ActionListener , MouseListener {
 		JButton btn =(JButton) e.getSource();
 		String name = btn.getName();
 		int btnID   = Integer.parseInt(name);
+		if (selectedSpells.size() == 3){
+			JOptionPane.showMessageDialog(launcher, "You reached the maximum number of spells"); 
+			return;
+		}
 		choosingSpells.getSpellsSelected().add(btn);
 		selectedSpells.add(spells.get(btnID));
 	}
