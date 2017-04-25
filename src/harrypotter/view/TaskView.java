@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class TaskView extends JPanel
+public abstract class TaskView extends JPanel
 {
     private JPanel center;
     private JPanel north;
@@ -43,9 +43,8 @@ public class TaskView extends JPanel
         east.add(traitInfo);
         west.add(potionInfo);
         generateEmptyMap();
-        addChampInfo();
-        addInventory();
-        map[4][4].setIcon(new ImageIcon("/home/omar_emad/Desktop/HarryPotter_pics/mage03.gif"));
+        //addChampInfo();
+        //addInventory();
         add(center,BorderLayout.CENTER);
         add(north,BorderLayout.NORTH);
         add(south,BorderLayout.SOUTH);
@@ -67,7 +66,88 @@ public class TaskView extends JPanel
     		}
     	}
     }
+
+	public JPanel getCenter() {
+		return center;
+	}
+
+	public void setCenter(JPanel center) {
+		this.center = center;
+	}
+
+	public JPanel getNorth() {
+		return north;
+	}
+
+	public void setNorth(JPanel north) {
+		this.north = north;
+	}
+
+	public JPanel getSouth() {
+		return south;
+	}
+
+	public void setSouth(JPanel south) {
+		this.south = south;
+	}
+
+	public JPanel getEast() {
+		return east;
+	}
+
+	public void setEast(JPanel east) {
+		this.east = east;
+	}
+
+	public JPanel getWest() {
+		return west;
+	}
+
+	public void setWest(JPanel west) {
+		this.west = west;
+	}
+
+	public JTextArea getChampInfo() {
+		return champInfo;
+	}
+
+	public void setChampInfo(JTextArea champInfo) {
+		this.champInfo = champInfo;
+	}
+
+	public JTextArea getTraitInfo() {
+		return traitInfo;
+	}
+
+	public void setTraitInfo(JTextArea traitInfo) {
+		this.traitInfo = traitInfo;
+	}
+
+	public JTextArea getSpellsInfo() {
+		return spellsInfo;
+	}
+
+	public void setSpellsInfo(JTextArea spellsInfo) {
+		this.spellsInfo = spellsInfo;
+	}
+
+	public JTextArea getPotionInfo() {
+		return potionInfo;
+	}
+
+	public void setPotionInfo(JTextArea potionInfo) {
+		this.potionInfo = potionInfo;
+	}
+
+	public JButton[][] getMap() {
+		return map;
+	}
+
+	public void setMap(JButton[][] map) {
+		this.map = map;
+	}
     
+    /*
     public void addChampInfo()
     {
     	//JTextArea a = new JTextArea();
@@ -82,6 +162,7 @@ public class TaskView extends JPanel
     	traitInfo.setText("TraitInfo : \n Enables the champion to \n make two moves \n Cooldown:2");
     	potionInfo.setText("Potions Avaliable : 4");
     }
+    
     public static void main(String [] args)
     {
     	JFrame a = new JFrame("TaskView");
@@ -92,4 +173,5 @@ public class TaskView extends JPanel
 		a.setVisible(true);
 		a.add(v); 
     }
+    */
 }
