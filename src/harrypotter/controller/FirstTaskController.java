@@ -90,10 +90,37 @@ public class FirstTaskController {
 		down.setName("Down");
 		right.setName("Right");
 		left.setName("Left");
+		up.addActionListener(this);
+		down.addActionListener(this);
+		right.addActionListener(this);
+		left.addActionListener(this);
 		btns.add(up);
 		btns.add(down);
 		btns.add(right);
 		btns.add(left);
 		firstTaskView.generateSouthPanel(btns);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		JButton btn = (JButton) e.getSource();
+		switch(btn.getName())
+		{
+		case"Up": try {
+				firstTask.moveForward();
+			} catch (OutOfBordersException | InvalidTargetCellException | IOException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(launcher, "Invalid Move");
+				e1.printStackTrace();
+			}
+		    break;
+		}
+	}
+	public void moveUp()
+	{
+		Wizard a = (Wizard) firstTask.getCurrentChamp();
+		Point p = a.getLocation();
+		firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x-1][p.y].getIcon());
 	}
 }
