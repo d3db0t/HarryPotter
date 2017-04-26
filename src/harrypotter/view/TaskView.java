@@ -66,6 +66,7 @@ public abstract class TaskView extends JPanel
     	this.gifs.add(new ImageIcon("Wizard3.gif"));
     	this.gifs.add(new ImageIcon("Wizard4.gif"));
     	this.gifs.add(new ImageIcon("egg-icon.png"));
+    	this.gifs.add(new ImageIcon("wall.png"));
     }
     public void generateEmptyMap()
     {

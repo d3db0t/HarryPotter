@@ -87,8 +87,8 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 				else if (a instanceof ObstacleCell)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
-				   btn.setText("Dragon");
-				   btn.setForeground(Color.WHITE);
+				   ImageIcon wallimg = this.firstTaskView.getGifs().get(5);
+				   btn.setIcon(new ImageIcon(wallimg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				}
 				else if (i == 4 && j == 4)
 				{
