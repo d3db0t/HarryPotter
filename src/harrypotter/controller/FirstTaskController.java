@@ -11,10 +11,14 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.OutOfBordersException;
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.GryffindorWizard;
+import harrypotter.model.character.HufflepuffWizard;
+import harrypotter.model.character.SlytherinWizard;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.tournament.FirstTask;
 import harrypotter.model.tournament.Tournament;
@@ -50,8 +54,9 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 			Wizard a = (Wizard) firstTask.getCurrentChamp();
 			Point p = a.getLocation();
 			this.firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.ORANGE);
+			this.updateNEWPanels();
 		} catch (OutOfBordersException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch blocktaskActionListener.updateNEWPanels();
 			e.printStackTrace();
 		} catch (IOException e) {
 			
@@ -188,5 +193,30 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x][p.y+1].getIcon());
 		firstTaskView.getButtonsMap()[p.x][p.y+1].setBackground(Color.BLACK);
 		firstTaskView.getButtonsMap()[p.x][p.y+1].setIcon(null);
+	}
+	public void updateNEWPanels() throws OutOfBordersException, IOException{
+		//firstTask.endTurn();
+		//JPanel north            = firstTaskView.getNorth();
+		//JPanel east             = firstTaskView.getEast();
+		//JPanel west             = firstTaskView.getWest();
+		Wizard w                = (Wizard) firstTask.getCurrentChamp();
+		String name             = w.getName();
+		int wizardhp            = w.getHp();
+		int wizardip            = w.getIp();
+		String house;
+		if (w instanceof HufflepuffWizard){
+			house = "Hufflepuff";
+		}
+		else if (w instanceof SlytherinWizard){
+			house = "Slytherin";
+		}
+		else if (w instanceof GryffindorWizard){
+			house = "Gryffindor";
+		}
+		else{
+			house = "Ravenclaw";
+		}
+		//int wizardtraitcooldown = w.getTraitCooldown();
+		firstTaskView.addChampInfo(house, name, wizardhp, wizardip);
 	}
 }

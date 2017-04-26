@@ -190,16 +190,17 @@ public abstract class TaskView extends JPanel
 		this.map = map;
 	}
     
-    /*
-    public void addChampInfo()
+    
+    public void addChampInfo(String house, String name, int hp, int ip)
     {
     	//JTextArea a = new JTextArea();
-    	champInfo.setText("Name : Omar  House : Gryffindor Hp : 1000 IP :500 Trait : false");
+    	champInfo.setText("Name: " + name + " House: " + house + " Hp: " + hp + " IP: " + ip);
     	//champInfo.add(a);
     	//champInfo.add(a,BorderLayout.SOUTH);
+    	north.add(champInfo);
     		
     }
-    
+    /*
     public void addInventory()
     {
     	traitInfo.setText("TraitInfo : \n Enables the champion to \n make two moves \n Cooldown:2");

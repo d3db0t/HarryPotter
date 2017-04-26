@@ -255,6 +255,7 @@ public class FirstTask extends Task{
     	if(super.getChampions().size() != 0)
     	{
     		super.endTurn();
+    		this.taskActionListener.updateNEWPanels();
     		markCells();
     	}
     	else
