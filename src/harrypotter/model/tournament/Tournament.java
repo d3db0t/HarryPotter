@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import harrypotter.controller.TaskActionListener;
+import harrypotter.controller.TournamentListener;
 import harrypotter.exceptions.OutOfBordersException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.magic.DamagingSpell;
@@ -18,6 +20,7 @@ public class Tournament implements TaskListener{
 	private FirstTask firstTask;
 	private SecondTask secondTask;
 	private ThirdTask thirdTask;
+	private TournamentListener tournamentListener;
 	
 	public Tournament() throws Exception{
 		champions = new ArrayList<Champion>();
@@ -62,6 +65,16 @@ public class Tournament implements TaskListener{
 		}
 	}
 
+	public void setTournamentListener(TournamentListener tournamentListener)
+	{
+		this.tournamentListener = tournamentListener;
+	}
+	
+	public TournamentListener getTournamentListener()
+	{
+		return this.tournamentListener;
+	}
+	
 	public ArrayList<Champion> getChampions() {
 		return champions;
 	}
