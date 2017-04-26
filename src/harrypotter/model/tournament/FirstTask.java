@@ -208,6 +208,7 @@ public class FirstTask extends Task{
 	public void moveForward() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveForward();
+		this.taskActionListener.moveUp();
 		finalizeAction();
 	}
 	@Override
