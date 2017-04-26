@@ -128,12 +128,65 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 				e1.printStackTrace();
 			}
 		    break;
+		case"Down": try {
+			firstTask.moveBackward();
+		} catch (OutOfBordersException | InvalidTargetCellException | IOException e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(launcher, "Invalid Move");
+			e1.printStackTrace();
+		}
+	    break;
+		case"Right": try {
+			firstTask.moveRight();
+		} catch (OutOfBordersException | InvalidTargetCellException | IOException e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(launcher, "Invalid Move");
+			e1.printStackTrace();
+		}
+	    break;
+		case"Left": try {
+			firstTask.moveLeft();
+		} catch (OutOfBordersException | InvalidTargetCellException | IOException e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(launcher, "Invalid Move");
+			e1.printStackTrace();
+		}
+	    break;
 		}
 	}
 	public void moveUp()
 	{
 		Wizard a = (Wizard) firstTask.getCurrentChamp();
 		Point p = a.getLocation();
+		firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x+1][p.y].getIcon());
+		firstTaskView.getButtonsMap()[p.x+1][p.y].setBackground(Color.BLACK);
+		firstTaskView.getButtonsMap()[p.x+1][p.y].setIcon(null);
+	}
+	
+	public void moveDown()
+	{
+		Wizard a = (Wizard) firstTask.getCurrentChamp();
+		Point p = a.getLocation();
 		firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x-1][p.y].getIcon());
+		firstTaskView.getButtonsMap()[p.x-1][p.y].setBackground(Color.BLACK);
+		firstTaskView.getButtonsMap()[p.x-1][p.y].setIcon(null);
+	}
+	
+	public void moveRight()
+	{
+		Wizard a = (Wizard) firstTask.getCurrentChamp();
+		Point p = a.getLocation();
+		firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x][p.y-1].getIcon());
+		firstTaskView.getButtonsMap()[p.x][p.y-1].setBackground(Color.BLACK);
+		firstTaskView.getButtonsMap()[p.x][p.y-1].setIcon(null);
+	}
+	
+	public void moveLeft()
+	{
+		Wizard a = (Wizard) firstTask.getCurrentChamp();
+		Point p = a.getLocation();
+		firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x][p.y+1].getIcon());
+		firstTaskView.getButtonsMap()[p.x][p.y+1].setBackground(Color.BLACK);
+		firstTaskView.getButtonsMap()[p.x][p.y+1].setIcon(null);
 	}
 }
