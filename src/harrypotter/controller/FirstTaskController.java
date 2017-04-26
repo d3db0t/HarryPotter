@@ -2,14 +2,20 @@ package harrypotter.controller;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
+import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.OutOfBordersException;
 import harrypotter.model.character.Champion;
+import harrypotter.model.character.Wizard;
 import harrypotter.model.tournament.FirstTask;
 import harrypotter.model.tournament.Tournament;
 import harrypotter.model.world.Cell;
@@ -21,7 +27,7 @@ import harrypotter.model.world.WallCell;
 import harrypotter.view.FirstTaskView;
 import harrypotter.view.Launcher;
 
-public class FirstTaskController {
+public class FirstTaskController implements TaskActionListener , TournamentListener ,ActionListener {
 
 	private FirstTask firstTask;
 	private FirstTaskView firstTaskView;
@@ -34,15 +40,22 @@ public class FirstTaskController {
 		this.tournament = tournament;
 		this.tournament.getChampions().addAll(champs);
 		firstTaskView = new FirstTaskView();
+		this.tournament.setTournamentListener(this);
 		this.launcher.add(firstTaskView);
 		try {
 			this.tournament.beginTournament();
 			this.firstTask = this.tournament.getFirstTask();
+			this.firstTask.setTaskActionListener(this);
 			generateMap();
+			Wizard a = (Wizard) firstTask.getCurrentChamp();
+			Point p = a.getLocation();
+			this.firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.ORANGE);
 		} catch (OutOfBordersException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			
+			
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
