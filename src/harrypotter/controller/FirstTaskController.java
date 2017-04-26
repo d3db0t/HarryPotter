@@ -80,5 +80,20 @@ public class FirstTaskController {
 				}
 			}
 		}
+		// Up, Down, Right, Left Buttons in South panel
+		JButton up = new JButton("Up");
+		JButton down = new JButton("Down");
+		JButton right = new JButton("Right");
+		JButton left = new JButton("Left");
+		ArrayList<JButton> btns = new ArrayList<JButton>();
+		up.setName("Up");
+		down.setName("Down");
+		right.setName("Right");
+		left.setName("Left");
+		btns.add(up);
+		btns.add(down);
+		btns.add(right);
+		btns.add(left);
+		firstTaskView.generateSouthPanel(btns);
 	}
 }
