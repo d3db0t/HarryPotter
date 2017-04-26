@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,7 +42,8 @@ public abstract class TaskView extends JPanel
         this.potionInfo = new JTextArea();
         this.champInfo.setLayout(new BorderLayout());
         north.add(champInfo);
-        south.add(spellsInfo);
+        //south.add(spellsInfo);
+        //south.setSize(100, 100);
         east.add(traitInfo);
         west.add(potionInfo);
         generateEmptyMap();
@@ -76,6 +78,31 @@ public abstract class TaskView extends JPanel
     			this.map[i][j] = a;
     			center.add(a);
     		}
+    	}
+    }
+    public void generateSouthPanel(ArrayList<JButton> btns){
+    	for (int i = 0; i < btns.size();i++){
+    		JButton btn = btns.get(i);
+    		String name = btn.getName();
+    		switch(name){
+    		case "Up":  btn.setBounds(500, 800, 50, 50);
+    					//btn.setBorder(BorderFactory.createEmptyBorder());
+    					//btn.setContentAreaFilled(false);
+    					break;
+    		case "Down": btn.setBounds(500, 900, 50, 50);
+						 //btn.setBorder(BorderFactory.createEmptyBorder());
+						 //btn.setContentAreaFilled(false);
+						 break;
+    		case "Right": btn.setBounds(550, 900, 50, 50);
+			 			  //btn.setBorder(BorderFactory.createEmptyBorder());
+			 			  //btn.setContentAreaFilled(false);
+			 			  break;
+    		case "Left": btn.setBounds(450, 900, 50, 50);
+			 			 //btn.setBorder(BorderFactory.createEmptyBorder());
+			 			 //btn.setContentAreaFilled(false);
+			 			 break;
+    		}
+    		south.add(btn);
     	}
     }
     
