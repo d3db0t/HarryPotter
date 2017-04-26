@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import harrypotter.controller.TaskActionListener;
 import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.NotEnoughIPException;
@@ -29,6 +30,7 @@ import harrypotter.model.world.PhysicalObstacle;
 public class FirstTask extends Task{
 	private ArrayList<Point> markedCells;
 	private ArrayList<Champion> winners;
+	private TaskActionListener taskActionListener;
 	
 	public FirstTask(ArrayList<Champion> champions)throws IOException, OutOfBordersException
 	{
@@ -39,6 +41,15 @@ public class FirstTask extends Task{
 		this.winners = new ArrayList<Champion>();
 	    super.setCurrentChamp(super.getChampions().get(0));
 		markCells();
+	}
+	
+	public void setTaskActionListener(TaskActionListener taskActionListener)
+	{
+		this.taskActionListener = taskActionListener;
+	}
+	public TaskActionListener getTaskActionListener()
+	{
+		return this.taskActionListener;
 	}
 	public ArrayList <Point> getMarkedCells()
 	{
