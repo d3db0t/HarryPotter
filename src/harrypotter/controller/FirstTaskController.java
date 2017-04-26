@@ -51,9 +51,6 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 			this.firstTask = this.tournament.getFirstTask();
 			this.firstTask.setTaskActionListener(this);
 			generateMap();
-			Wizard a = (Wizard) firstTask.getCurrentChamp();
-			Point p = a.getLocation();
-			this.firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.ORANGE);
 			this.updateNEWPanels();
 		} catch (OutOfBordersException e) {
 			// TODO Auto-generated catch blocktaskActionListener.updateNEWPanels();
@@ -200,6 +197,8 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		//JPanel east             = firstTaskView.getEast();
 		//JPanel west             = firstTaskView.getWest();
 		Wizard w                = (Wizard) firstTask.getCurrentChamp();
+		Point p                 = w.getLocation();
+		firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.ORANGE);
 		String name             = w.getName();
 		int wizardhp            = w.getHp();
 		int wizardip            = w.getIp();
