@@ -1,9 +1,11 @@
 package harrypotter.controller;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import harrypotter.exceptions.OutOfBordersException;
@@ -59,6 +61,8 @@ public class FirstTaskController {
 				if(a instanceof ChampionCell)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
+				   //ImageIcon champgif = this.firstTaskView.getGifs().get(c);
+				   //btn.setIcon(new ImageIcon(champgif.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				   btn.setIcon(this.firstTaskView.getGifs().get(c));
 				   c++; 
 				}
@@ -71,7 +75,8 @@ public class FirstTaskController {
 				else if (i == 4 && j == 4)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
-                   btn.setIcon(this.firstTaskView.getGifs().get(4));
+				   ImageIcon eggimg = this.firstTaskView.getGifs().get(4);
+                   btn.setIcon(new ImageIcon(eggimg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				}
 			}
 		}
