@@ -215,18 +215,21 @@ public class FirstTask extends Task{
 	public void moveBackward() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveBackward();
+		this.taskActionListener.moveDown();
 		finalizeAction();
 	}
 	@Override
 	public void moveRight() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveRight();
+		this.taskActionListener.moveRight();
 		finalizeAction();
 	}
 	@Override
 	public void moveLeft() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveLeft();
+		this.taskActionListener.moveLeft();
 		finalizeAction();
 	}
 	@Override
