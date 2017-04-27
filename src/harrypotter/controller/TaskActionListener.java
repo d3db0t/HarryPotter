@@ -11,10 +11,10 @@ public interface TaskActionListener {
 	public void moveRight();
 	public void moveLeft();
 	public void updateNEWPanels() throws OutOfBordersException, IOException;
+	public void showFire();
+	public void updatePotions();
 	//public void removeChamp();
 	//public void removeObstacle();
 	//public void activateTrait();
-	//public void damagingSpell();
-	//public void healingSpell();
-	//public void relocatingSpell();
+	//public void castSpell();
 }
