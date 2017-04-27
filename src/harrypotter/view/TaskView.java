@@ -20,9 +20,9 @@ public abstract class TaskView extends JPanel
     private JPanel east;
     private JPanel west;
     private JTextArea champInfo;
-    private JTextArea traitInfo;
-    private JTextArea spellsInfo;
-    private JTextArea potionInfo;
+    private JPanel traitInfo;
+    private JPanel spellsInfo;
+    private JPanel potionInfo;
     private JButton [][] map;
     private ArrayList <ImageIcon> gifs;
     
@@ -33,13 +33,16 @@ public abstract class TaskView extends JPanel
     	this.north =  new JPanel();
     	this.south = new JPanel();
     	this.east = new JPanel();
-    	this.west = new JPanel();
+    	this.west = new JPanel(new GridLayout(3,0));
     	this.map = new JButton[10][10];
     	this.center.setLayout(new GridLayout(10,10));
         this.champInfo = new JTextArea();
-        this.traitInfo = new JTextArea();
-        this.spellsInfo = new JTextArea();
-        this.potionInfo = new JTextArea();
+        this.traitInfo = new JPanel();
+        this.spellsInfo = new JPanel(new GridLayout(3,0));
+        this.potionInfo = new JPanel();
+        this.west.add(spellsInfo);
+        this.west.add(traitInfo);
+        this.west.add(potionInfo);
         this.champInfo.setLayout(new BorderLayout());
         north.add(champInfo);
         //south.add(spellsInfo);
@@ -159,27 +162,27 @@ public abstract class TaskView extends JPanel
 		this.champInfo = champInfo;
 	}
 
-	public JTextArea getTraitInfo() {
+	public JPanel getTraitInfo() {
 		return traitInfo;
 	}
 
-	public void setTraitInfo(JTextArea traitInfo) {
-		this.traitInfo = traitInfo;
+	public void setTraitInfo(JPanel traitInfo) {
+		this.traitInfo =  traitInfo;
 	}
 
-	public JTextArea getSpellsInfo() {
-		return spellsInfo;
+	public JPanel getSpellsInfo() {
+		return this.spellsInfo;
 	}
 
-	public void setSpellsInfo(JTextArea spellsInfo) {
+	public void setSpellsInfo(JPanel spellsInfo) {
 		this.spellsInfo = spellsInfo;
 	}
 
-	public JTextArea getPotionInfo() {
-		return potionInfo;
+	public JPanel getPotionInfo() {
+		return this.potionInfo;
 	}
 
-	public void setPotionInfo(JTextArea potionInfo) {
+	public void setPotionInfo(JPanel potionInfo) {
 		this.potionInfo = potionInfo;
 	}
 
@@ -199,7 +202,15 @@ public abstract class TaskView extends JPanel
     	//champInfo.add(a);
     	//champInfo.add(a,BorderLayout.SOUTH);
     	north.add(champInfo);
-    		
+    	
+    }
+    
+    public void addSpells(ArrayList <JButton> spells)
+    {
+    	this.spellsInfo.add(spells.get(0));
+    	this.spellsInfo.add(spells.get(1));
+    	this.spellsInfo.add(spells.get(2));
+    	
     }
     /*
     public void addInventory()
