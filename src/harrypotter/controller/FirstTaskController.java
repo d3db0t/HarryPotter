@@ -236,4 +236,15 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		firstTaskView.addChampInfo(house, name, wizardhp, wizardip);
 		firstTaskView.addSpells(bs);
 	}
+	
+	public void showFire()
+	{
+		Wizard w  = (Wizard) firstTask.getCurrentChamp();
+		JOptionPane.showMessageDialog(launcher, "The champion hp is : " + w.getHp());
+	}
+	
+	public void updatePotions()
+	{
+		
+	}
 }
