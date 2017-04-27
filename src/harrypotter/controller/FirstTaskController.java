@@ -20,6 +20,7 @@ import harrypotter.model.character.GryffindorWizard;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.SlytherinWizard;
 import harrypotter.model.character.Wizard;
+import harrypotter.model.magic.Spell;
 import harrypotter.model.tournament.FirstTask;
 import harrypotter.model.tournament.Tournament;
 import harrypotter.model.world.Cell;
@@ -196,6 +197,8 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		//JPanel north            = firstTaskView.getNorth();
 		//JPanel east             = firstTaskView.getEast();
 		//JPanel west             = firstTaskView.getWest();
+		firstTaskView.getSpellsInfo().removeAll();
+		firstTaskView.getSpellsInfo().revalidate();
 		Wizard w                = (Wizard) firstTask.getCurrentChamp();
 		Point p                 = w.getLocation();
 		firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.ORANGE);
@@ -215,7 +218,22 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		else{
 			house = "Ravenclaw";
 		}
+		ArrayList <Spell> s = w.getSpells();
+		JButton spell1 = new JButton(s.get(0).getName());
+		spell1.setName(s.get(0).getName());
+		spell1.addActionListener(this);
+		JButton spell2 = new JButton(s.get(1).getName());
+		spell2.setName(s.get(1).getName());
+		spell2.addActionListener(this);
+		JButton spell3 = new JButton(s.get(2).getName());
+		spell3.setName(s.get(2).getName());
+		spell3.addActionListener(this);
+		ArrayList <JButton> bs = new ArrayList <JButton>();
+		bs.add(spell1);
+		bs.add(spell2);
+		bs.add(spell3);
 		//int wizardtraitcooldown = w.getTraitCooldown();
 		firstTaskView.addChampInfo(house, name, wizardhp, wizardip);
+		firstTaskView.addSpells(bs);
 	}
 }
