@@ -141,7 +141,8 @@ public class FirstTask extends Task{
 		 ChampionCell a = (ChampionCell) super.getMap()[one.x][one.y];
 		 if(checkBeforeFire())
 		 {
-            ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);  
+            ((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);
+            this.taskActionListener.showFire();
 		    if(!super.isAlive(a.getChamp()))
 		    {
 			   super.removeWizard(a.getChamp());
