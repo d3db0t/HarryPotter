@@ -220,13 +220,16 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		}
 		ArrayList <Spell> s = w.getSpells();
 		JButton spell1 = new JButton(s.get(0).getName());
-		spell1.setName(s.get(0).getName());
+		spell1.setName("Spell1");
+		spell1.setBackground(Color.GREEN);
 		spell1.addActionListener(this);
 		JButton spell2 = new JButton(s.get(1).getName());
-		spell2.setName(s.get(1).getName());
+		spell2.setName("Spell2");
+		spell2.setBackground(Color.GREEN);
 		spell2.addActionListener(this);
 		JButton spell3 = new JButton(s.get(2).getName());
-		spell3.setName(s.get(2).getName());
+		spell3.setName("Spell3");
+		spell3.setBackground(Color.GREEN);
 		spell3.addActionListener(this);
 		ArrayList <JButton> bs = new ArrayList <JButton>();
 		bs.add(spell1);
