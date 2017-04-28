@@ -16,7 +16,7 @@ public class RelocatingSpell extends Spell{
 	public String toString()
 	{
 		return "Name :" + getName() + "\n" + "Type :RelocatingSpell" + "\n" + "Cost :" + getCost() +
-				"\n" + "Range :" + this.range;
+				"\n" + "Range :" + this.range + "\n" + "Cooldown :"+ getCoolDown();
 	}	
 
 }
