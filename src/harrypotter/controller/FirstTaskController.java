@@ -246,6 +246,19 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		JOptionPane.showMessageDialog(launcher, "The champion hp is : " + w.getHp());
 	}
 	
+	public String spellType(Spell s){
+		String type;
+		if (s instanceof HealingSpell){
+			type = "Healing";
+		}
+		else if (s instanceof DamagingSpell){
+			type = "Damaging";
+		}
+		else{
+			type = "Relocating";
+		}
+		return type;
+	}
 	
 	public void castHealing(){
 		
