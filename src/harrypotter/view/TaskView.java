@@ -19,7 +19,8 @@ public abstract class TaskView extends JPanel
     private JPanel south;
     private JPanel east;
     private JPanel west;
-    private JTextArea champInfo;
+    private JTextArea champInfo;    
+    private JTextArea info;
     private JPanel traitInfo;
     private JPanel spellsInfo;
     private JPanel potionInfo;
@@ -37,6 +38,7 @@ public abstract class TaskView extends JPanel
     	this.map = new JButton[10][10];
     	this.center.setLayout(new GridLayout(10,10));
         this.champInfo = new JTextArea();
+        this.info = new JTextArea();
         this.traitInfo = new JPanel();
         this.spellsInfo = new JPanel(new GridLayout(3,0));
         this.potionInfo = new JPanel();
@@ -44,11 +46,11 @@ public abstract class TaskView extends JPanel
         this.west.add(traitInfo);
         this.west.add(potionInfo);
         this.champInfo.setLayout(new BorderLayout());
+        this.info.setLayout(new BorderLayout());
         north.add(champInfo);
+        east.add(info);
         //south.add(spellsInfo);
         //south.setSize(100, 100);
-        east.add(traitInfo);
-        west.add(potionInfo);
         generateEmptyMap();
         //addChampInfo();
         //addInventory();
@@ -194,6 +196,10 @@ public abstract class TaskView extends JPanel
 		this.map = map;
 	}
     
+	public JTextArea getInfo()
+	{
+		return this.info;
+	}
     
     public void addChampInfo(String house, String name, int hp, int ip)
     {
@@ -211,6 +217,12 @@ public abstract class TaskView extends JPanel
     	this.spellsInfo.add(spells.get(1));
     	this.spellsInfo.add(spells.get(2));
     	
+    }
+    
+    public void showEast(String i)
+    {
+    	this.info.setText(i);
+    	this.info.setVisible(true);
     }
     /*
     public void addInventory()
