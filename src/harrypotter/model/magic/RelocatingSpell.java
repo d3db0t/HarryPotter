@@ -12,6 +12,11 @@ public class RelocatingSpell extends Spell{
 		return range;
 	}
 	
-	
+	@Override
+	public String toString()
+	{
+		return "Name :" + getName() + "\n" + "Type :RelocatingSpell" + "\n" + "Cost :" + getCost() +
+				"\n" + "Range :" + this.range;
+	}	
 
 }
