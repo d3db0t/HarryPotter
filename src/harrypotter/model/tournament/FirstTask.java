@@ -242,6 +242,7 @@ public class FirstTask extends Task{
 	@Override
 	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
 		super.castHealingSpell(s);
+		taskActionListener.castHealing();
 		finalizeAction();
 	}
     @Override

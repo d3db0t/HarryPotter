@@ -246,6 +246,14 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		JOptionPane.showMessageDialog(launcher, "The champion hp is : " + w.getHp());
 	}
 	
+	
+	public void castHealing(){
+		
+		//JOptionPane.showMessageDialog(launcher, "You have been healed by " + s.getCost());
+		Wizard a = (Wizard) firstTask.getCurrentChamp();
+		Point p = a.getLocation();
+		firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.BLACK);
+	}
 	public void updatePotions()
 	{
 		

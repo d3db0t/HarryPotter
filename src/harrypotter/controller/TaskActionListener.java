@@ -3,6 +3,7 @@ package harrypotter.controller;
 import java.io.IOException;
 
 import harrypotter.exceptions.OutOfBordersException;
+import harrypotter.model.magic.Spell;
 
 public interface TaskActionListener {
 
@@ -13,6 +14,7 @@ public interface TaskActionListener {
 	public void updateNEWPanels() throws OutOfBordersException, IOException;
 	public void showFire();
 	public void updatePotions();
+	public void castHealing();
 	//public void removeChamp();
 	//public void removeObstacle();
 	//public void activateTrait();
