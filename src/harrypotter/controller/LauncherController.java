@@ -238,6 +238,7 @@ public class LauncherController implements ActionListener , MouseListener {
 		}
 		choosingSpells.getSpellsSelected().add(btn);
 		selectedSpells.add(spells.get(btnID));
+		this.tournament.getSpells().remove(btnID);
 	}
 
 	@Override
