@@ -114,4 +114,5 @@ public abstract class Wizard {
 		this.listener = listener;
 	}
 	
+	public abstract String getTraitInfo(String task);
 }

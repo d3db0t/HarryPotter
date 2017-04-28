@@ -30,5 +30,10 @@ public class SlytherinWizard extends Wizard implements Champion{
 		if(super.getListener() != null)
 			super.getListener().onSlytherinTrait(traitDirection);
 	}
-
+    
+	public String getTraitInfo(String task)
+	{
+	   return "TraitInfo : Traversing two \n cells instead of one \n "
+				+ "Cooldown : " + this.getTraitCooldown();
+	}
 }

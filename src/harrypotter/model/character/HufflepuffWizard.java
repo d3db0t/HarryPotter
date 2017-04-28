@@ -16,4 +16,18 @@ public class HufflepuffWizard extends Wizard implements Champion{
 		  super.getListener().onHufflepuffTrait();	
 	}
 
+	public String getTraitInfo(String task)
+	{
+		switch(task)
+		{
+		case "First" : return "TraitInfo : This Turn the \n dragon won't attack \n Cooldown : " + this.getTraitCooldown();
+		
+		case "Second": return "TraitInfo : This Turn the \n merpersons won't attack \n Cooldown : "+ this.getTraitCooldown();
+		
+		case "Third" : return "TraitInfo : Attacks from \n other champions will only deal half the damage \n "
+				+ "Cooldown : 0";
+		
+		}
+		return null;
+	}
 }
