@@ -5,6 +5,8 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.OutOfBordersException;
@@ -32,7 +35,8 @@ import harrypotter.model.world.WallCell;
 import harrypotter.view.FirstTaskView;
 import harrypotter.view.Launcher;
 
-public class FirstTaskController implements TaskActionListener , TournamentListener ,ActionListener {
+public class FirstTaskController implements TaskActionListener , TournamentListener ,ActionListener , MouseListener
+{
 
 	private FirstTask firstTask;
 	private FirstTaskView firstTaskView;
@@ -220,14 +224,17 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		}
 		ArrayList <Spell> s = w.getSpells();
 		JButton spell1 = new JButton(s.get(0).getName());
-		spell1.setName(s.get(0).getName());
+		spell1.setName("spell1");
 		spell1.addActionListener(this);
+		spell1.addMouseListener(this);
 		JButton spell2 = new JButton(s.get(1).getName());
-		spell2.setName(s.get(1).getName());
+		spell2.setName("spell2");
 		spell2.addActionListener(this);
+		spell2.addMouseListener(this);
 		JButton spell3 = new JButton(s.get(2).getName());
-		spell3.setName(s.get(2).getName());
+		spell3.setName("spell3");
 		spell3.addActionListener(this);
+		spell3.addMouseListener(this);
 		ArrayList <JButton> bs = new ArrayList <JButton>();
 		bs.add(spell1);
 		bs.add(spell2);
@@ -246,5 +253,45 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	public void updatePotions()
 	{
 		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	   Wizard w = (Wizard) firstTask.getCurrentChamp();
+	   JButton btn = (JButton) e.getSource();
+	   switch(btn.getName())
+	   {
+	   case "spell1": this.firstTaskView.showEast(w.getSpells().get(0).toString());
+	                  break;
+	   case "spell2": this.firstTaskView.showEast(w.getSpells().get(1).toString());
+	                  break;
+	   case "spell3": this.firstTaskView.showEast(w.getSpells().get(2).toString());
+	                  break;
+	   }
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		this.firstTaskView.getInfo().removeAll();
+		this.firstTaskView.getInfo().revalidate();
+	    this.firstTaskView.getInfo().setVisible(false);
 	}
 }
