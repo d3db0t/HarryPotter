@@ -105,6 +105,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		JButton down = new JButton("Down");
 		JButton right = new JButton("Right");
 		JButton left = new JButton("Left");
+		JButton trait = new JButton("Activate Trait");
 		ArrayList<JButton> btns = new ArrayList<JButton>();
 		up.setName("Up");
 		down.setName("Down");
@@ -118,6 +119,10 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		btns.add(down);
 		btns.add(right);
 		btns.add(left);
+		trait.setName("Trait");
+		trait.addActionListener(this);
+		trait.addMouseListener(this);
+		firstTaskView.addTrait(trait);
 		firstTaskView.generateSouthPanel(btns);
 	}
 	
@@ -285,6 +290,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	                  break;
 	   case "spell3": this.firstTaskView.showEast(w.getSpells().get(2).toString());
 	                  break;
+	   case "Trait" : this.firstTaskView.showEast(w.getTraitInfo("First"));
 	   }
 	}
 
