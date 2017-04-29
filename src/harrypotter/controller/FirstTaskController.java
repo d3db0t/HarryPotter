@@ -508,6 +508,14 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		Point p = a.getLocation();
 		firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.BLACK);
 	}
+	
+	public void castDamaging(Point p){ // p is the point of the cell that has been hit
+		// x and y
+		int i = p.x;
+		int j = p.y;
+		firstTaskView.getButtonsMap()[p.x][p.y].setIcon(null);;		
+		
+	}
 
 	public void moveSlytherin(Direction d)
 	{
