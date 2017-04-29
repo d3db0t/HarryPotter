@@ -26,8 +26,10 @@ import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.RavenclawWizard;
 import harrypotter.model.character.SlytherinWizard;
 import harrypotter.model.character.Wizard;
+import harrypotter.model.magic.Collectible;
 import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.HealingSpell;
+import harrypotter.model.magic.Potion;
 import harrypotter.model.magic.Spell;
 import harrypotter.model.tournament.FirstTask;
 import harrypotter.model.tournament.Tournament;
@@ -512,10 +514,19 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		}
 	}
 
-	public void showMarkedCells(ArrayList <Point> cells)
+	public void showMarkedCells(ArrayList <Point> cells , String case1)
 	{
-		this.firstTaskView.getButtonsMap()[cells.get(0).x][cells.get(0).y].setBackground(Color.WHITE);
-		this.firstTaskView.getButtonsMap()[cells.get(1).x][cells.get(1).y].setBackground(Color.WHITE);
+		switch(case1)
+		{
+		case "Trait":
+			this.firstTaskView.getButtonsMap()[cells.get(0).x][cells.get(0).y].setBackground(Color.WHITE);
+			this.firstTaskView.getButtonsMap()[cells.get(1).x][cells.get(1).y].setBackground(Color.WHITE);
+			break;
+		case "Fire":
+			this.firstTaskView.getButtonsMap()[cells.get(0).x][cells.get(0).y].setBackground(Color.RED);
+			this.firstTaskView.getButtonsMap()[cells.get(1).x][cells.get(1).y].setBackground(Color.RED);
+			break;		
+	    }
 	}
 	
 	public void moveGryffindorOnTrait()
