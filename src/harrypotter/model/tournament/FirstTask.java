@@ -178,6 +178,11 @@ public class FirstTask extends Task{
     	Point p  = w.getLocation();
     	int x = (int) p.getX();
     	int y = (int) p.getY();
+    	if(super.getFoundCollectible())
+    	{
+    		this.taskActionListener.showCollectible();
+    		this.setFoundCollectible(false);
+    	}
     	if (x == 4 && y == 4)
     	{  
     		this.taskActionListener.removeChamp(w, "Winner");

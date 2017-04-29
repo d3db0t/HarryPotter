@@ -39,6 +39,7 @@ public abstract class Task implements WizardListener{
     private boolean traitActivated ;
     private ArrayList <Potion> potions ;
     private TaskListener listener;
+    private boolean foundCollectible;
     
     public Task(ArrayList<Champion> champions)throws IOException
     {
@@ -47,6 +48,7 @@ public abstract class Task implements WizardListener{
       allowedMoves = 1 ;
       traitActivated = false ;
       potions = new ArrayList<Potion>();
+      this.foundCollectible = false;
       loadPotions("Potions.csv");
       restoreStats();
       setListeners();
@@ -71,6 +73,14 @@ public abstract class Task implements WizardListener{
     		Wizard c = (Wizard) this.champions.get(i);
     		c.setListener(this);
     	}
+    }
+    public boolean getFoundCollectible()
+    {
+    	return this.foundCollectible;
+    }
+    public void setFoundCollectible(boolean f)
+    {
+    	this.foundCollectible = f;
     }
     public ArrayList <Champion> getChampions()
     {
@@ -338,6 +348,7 @@ public abstract class Task implements WizardListener{
     		this.map[e][f] = new EmptyCell();
     		c.setLocation(a);
     		this.allowedMoves = this.allowedMoves - 1;
+    		this.foundCollectible = true;
     	}
     	else if(new1 instanceof TreasureCell)
     	{ 
