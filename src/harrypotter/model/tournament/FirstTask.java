@@ -293,7 +293,7 @@ public class FirstTask extends Task{
     	Cell cellofchamp  = this.getMap()[cpx][cpy];
     	Cell firstcell    = this.getMap()[fpx][fpy];
     	Cell secondcell   = this.getMap()[spx][spy];
-    	if(!(secondcell instanceof EmptyCell))
+    	if(!(secondcell instanceof EmptyCell || secondcell instanceof CollectibleCell))
     		throw new InvalidTargetCellException();
     	if (secondcell instanceof EmptyCell && 
     			(firstcell instanceof EmptyCell ||
