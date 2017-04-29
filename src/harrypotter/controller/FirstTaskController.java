@@ -98,7 +98,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
 				   //ImageIcon champgif = this.firstTaskView.getGifs().get(c);
-				   //btn.setIcon(new ImageIcon(champgif.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+				   //btn.setIcon(new ImageIcon(champgif.getImage().getScaledInstance(150, 200, Image.SCALE_SMOOTH)));
 				   btn.setIcon(this.firstTaskView.getGifs().get(c));
 				   c++; 
 				}
@@ -541,6 +541,29 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		JPanel p = this.firstTaskView.getPotionInfo();
 		p.remove(p.getComponent(i));
 		this.updateNEWPanels();
+	}
+	
+	public void removeChamp(Wizard w , String case1)
+	{
+		switch(case1)
+		{
+		case "Dead":
+				JOptionPane.showMessageDialog(launcher, w.getName() + " is dead");
+				Point p = w.getLocation();
+				ImageIcon broom = new  ImageIcon("Broom.gif");
+				this.firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.BLACK);
+				this.firstTaskView.getButtonsMap()[p.x][p.y].setIcon((new ImageIcon(broom.getImage()
+						.getScaledInstance(50, 50, Image.SCALE_SMOOTH))));
+				break;
+		case "Winner":
+				JOptionPane.showMessageDialog(launcher, w.getName() + " won");
+				Point p1 = w.getLocation();
+				ImageIcon eggimg = new ImageIcon("egg-icon.png");
+				this.firstTaskView.getButtonsMap()[p1.x][p1.y].setBackground(Color.BLACK);
+				this.firstTaskView.getButtonsMap()[p1.x][p1.y].setIcon((new ImageIcon(eggimg.getImage()
+						.getScaledInstance(50, 50, Image.SCALE_SMOOTH))));
+				break;
+		}
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
