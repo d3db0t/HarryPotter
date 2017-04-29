@@ -13,13 +13,17 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.InvalidTargetCellException;
+import harrypotter.exceptions.NotEnoughIPException;
 import harrypotter.exceptions.OutOfBordersException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.GryffindorWizard;
 import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.SlytherinWizard;
 import harrypotter.model.character.Wizard;
+import harrypotter.model.magic.DamagingSpell;
+import harrypotter.model.magic.HealingSpell;
 import harrypotter.model.magic.Spell;
 import harrypotter.model.tournament.FirstTask;
 import harrypotter.model.tournament.Tournament;
@@ -129,6 +133,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	public void actionPerformed(ActionEvent e)
 	{
 		JButton btn = (JButton) e.getSource();
+		Wizard w    = (Wizard) firstTask.getCurrentChamp();
 		switch(btn.getName())
 		{
 		case"Up": try {
@@ -163,6 +168,123 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 			e1.printStackTrace();
 		}
 	    break;
+		case "Spell1" : String type1 = spellType(w.getSpells().get(0));
+						if (spellsActivated.get(1) || spellsActivated.get(2)){
+							JOptionPane.showMessageDialog(launcher, "Only one spell can be activated at a time!");
+							break;
+						}
+						if (type1 == "Healing"){
+							HealingSpell s1 = (HealingSpell) w.getSpells().get(0);
+							try {
+								firstTask.castHealingSpell(s1);
+								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s1.getCost());
+							} catch (NotEnoughIPException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "IP is not enough");
+								e1.printStackTrace();
+							} catch (InCooldownException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Can not use the spell, try again later");
+								e1.printStackTrace();
+							} catch (OutOfBordersException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Out of border");
+								e1.printStackTrace();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+								e1.printStackTrace();
+							}
+							break;
+						}
+						if (spellsActivated.get(0)){
+							spellsActivated.set(0, false);
+							spell1.setBackground(Color.GREEN);
+							break;
+						}
+						else if (type1 == "Damaging" || type1 == "Relocating"){
+							spellsActivated.set(0, true);
+							spell1.setBackground(Color.BLUE);
+							break;
+						}
+		case "Spell2" : String type2 = spellType(w.getSpells().get(1));
+					    if (spellsActivated.get(0) || spellsActivated.get(2)){
+							JOptionPane.showMessageDialog(launcher, "Only one spell can be activated at a time!");
+							break;
+						}
+						if (type2 == "Healing"){
+							HealingSpell s2 = (HealingSpell) w.getSpells().get(1);
+							try {
+								firstTask.castHealingSpell(s2);
+								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s2.getCost());
+							} catch (NotEnoughIPException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "IP is not enough");
+								e1.printStackTrace();
+							} catch (InCooldownException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Can not use the spell, try again later");
+								e1.printStackTrace();
+							} catch (OutOfBordersException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Out of border");
+								e1.printStackTrace();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+								e1.printStackTrace();
+							}
+							break;
+						}
+						if (spellsActivated.get(1)){
+							spellsActivated.set(1, false);
+							spell2.setBackground(Color.GREEN);
+							break;
+						}
+						else if (type2 == "Damaging" || type2 == "Relocating"){
+							spellsActivated.set(1, true);
+							spell2.setBackground(Color.BLUE);
+							break;
+						}
+		case "Spell3" : String type3 = spellType(w.getSpells().get(2));
+						if (spellsActivated.get(0) || spellsActivated.get(1)){
+							JOptionPane.showMessageDialog(launcher, "Only one spell can be activated at a time!");
+							break;
+						}
+						if (type3 == "Healing"){
+							HealingSpell s3 = (HealingSpell) w.getSpells().get(2);
+							try {
+								firstTask.castHealingSpell(s3);
+								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s3.getCost());
+							} catch (NotEnoughIPException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "IP is not enough");
+								e1.printStackTrace();
+							} catch (InCooldownException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Can not use the spell, try again later");
+								e1.printStackTrace();
+							} catch (OutOfBordersException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Out of border");
+								e1.printStackTrace();
+							} catch (IOException e1) {
+									// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+								e1.printStackTrace();
+							}
+							break;
+						}
+						if (spellsActivated.get(2)){
+							spellsActivated.set(2, false);
+							spell3.setBackground(Color.GREEN);
+							break;
+						}
+						else if (type3 == "Damaging" || type3 == "Relocating"){
+							spellsActivated.set(2, true);
+							spell3.setBackground(Color.BLUE);
+							break;
+						}
 		}
 	}
 	public void moveUp()
