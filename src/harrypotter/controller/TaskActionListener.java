@@ -16,11 +16,11 @@ public interface TaskActionListener {
 	public void moveLeft();
 	public void updateNEWPanels() throws OutOfBordersException, IOException;
 	public void showFire();
-	public void updatePotions();
 	public void castHealing();
 	public void moveSlytherin(Direction d);
-	public void showMarkedCells(ArrayList <Point> p);
+	public void showMarkedCells(ArrayList <Point> p , String case1);
 	public void moveGryffindorOnTrait();
+	public void updateAfterPotion(int index) throws OutOfBordersException, IOException;
 	//public void removeChamp();
 	//public void removeObstacle();
 	//public void activateTrait();
