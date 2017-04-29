@@ -383,51 +383,7 @@ public abstract class Task implements WizardListener{
     	this.allowedMoves = this.allowedMoves - 1;
     }
     
-    public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException
-    {
-    	//Checks the spell cooldown
-    	if (s.getCoolDown() > 0){
-    		throw new InCooldownException(s.getCoolDown());
-    	}
-    	//Checks enough ip
-    	int cost = s.getCost();
-    	int remainingip = cost - ((Wizard)currentChamp).getIp();
-    	if(remainingip >= 0)
-    		throw new NotEnoughIPException(cost, remainingip);
-    	//Checks if point not OutOfMap
-    	Point p = getTargetPoint(d);
-    	if(p == null)
-    		throw new OutOfBordersException();
-    	//Checks if the cell is valid to make action
-    	int x = (int) p.getX();
-    	int y = (int) p.getY();
-    	Cell cl = this.getMap()[x][y];
-    	if(map[p.x][p.y] instanceof CollectibleCell || 
-    			map[p.x][p.y] instanceof EmptyCell ||
-    			map[p.x][p.y] instanceof TreasureCell ||
-    			map[p.x][p.y] instanceof CupCell || 
-    			map[p.x][p.y] instanceof WallCell)
-    		throw new InvalidTargetCellException();
-    	
-    	if (cl instanceof ObstacleCell){
-    		ObstacleCell o = (ObstacleCell) cl;
-    		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
-    		if(o.getObstacle().getHp() <= 0)
-    			this.map[x][y] = new EmptyCell();
-    	}
-    	else if (cl instanceof ChampionCell){
-    		ChampionCell c = (ChampionCell) cl;
-    		Wizard w = (Wizard) c.getChamp();
-    		w.setHp(w.getHp() - s.getDamageAmount());
-    		if(!isAlive(c.getChamp()))
-    		{
-    			this.map[x][y] = new EmptyCell();
-    			removeWizard(c.getChamp());
-    		}
-        
-    	}
-    	useSpell(s);
-    }
+   public abstract void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException;
     
     public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
