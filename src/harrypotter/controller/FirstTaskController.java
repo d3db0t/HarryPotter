@@ -294,6 +294,41 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							spell3.setBackground(Color.BLUE);
 							break;
 						}
+		case "Trait": if(w instanceof SlytherinWizard)
+					  {
+						String name = JOptionPane.showInputDialog(launcher, 
+										"Please state your desired direction (UP ,DOWN"
+										+ ", RIGHT , LEFT", null);
+						switch(name.toLowerCase())
+						{
+						case "up" : ((SlytherinWizard) w).setTraitDirection(Direction.FORWARD);
+							break;
+						case "down": ((SlytherinWizard) w).setTraitDirection(Direction.BACKWARD);
+							break;
+						case "right": ((SlytherinWizard) w).setTraitDirection(Direction.RIGHT);
+						    break;
+						case "left": ((SlytherinWizard) w).setTraitDirection(Direction.LEFT);
+						    break;
+						    default : JOptionPane.showMessageDialog(launcher, "Please enter a valid position");
+						              return;
+						}
+					  }
+					 try {
+						firstTask.getCurrentChamp().useTrait();
+					 } catch (InCooldownException e1) {
+						JOptionPane.showMessageDialog(launcher, "Trait is in cooldown");
+						e1.printStackTrace();
+					 } catch (OutOfBordersException e1) {
+						JOptionPane.showMessageDialog(launcher, "Direction is out of borders");								
+						e1.printStackTrace();
+					 } catch (InvalidTargetCellException e1) {
+						JOptionPane.showMessageDialog(launcher, "Target cell is not empty");								
+						e1.printStackTrace();
+					 } catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					 }
+					 break;
 		}
 	}
 	public void moveUp()
