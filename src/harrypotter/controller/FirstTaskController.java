@@ -20,6 +20,7 @@ import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.NotEnoughIPException;
 import harrypotter.exceptions.OutOfBordersException;
+import harrypotter.exceptions.OutOfRangeException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.GryffindorWizard;
 import harrypotter.model.character.HufflepuffWizard;
@@ -30,6 +31,7 @@ import harrypotter.model.magic.Collectible;
 import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.HealingSpell;
 import harrypotter.model.magic.Potion;
+import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.magic.Spell;
 import harrypotter.model.tournament.FirstTask;
 import harrypotter.model.tournament.Tournament;
@@ -362,6 +364,63 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 										  return;
 							}
 						}
+						else if (type1 == "Relocating"){
+							RelocatingSpell rel1 = (RelocatingSpell) w.getSpells().get(0);
+							String objectd = JOptionPane.showInputDialog(launcher, 
+									"Please state the object direction (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							String objectmove = JOptionPane.showInputDialog(launcher, 
+									"Please state where you want to move the object (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							String range = JOptionPane.showInputDialog(launcher, 
+									"Please state your desired range (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							if (!(Integer.parseInt(range) > 0) && 
+									!(returnDirection(objectd.toLowerCase()) instanceof Direction) && 
+									!(returnDirection(objectmove.toLowerCase()) instanceof Direction)){
+								JOptionPane.showMessageDialog(launcher, "Please enter a valid position");
+								return;
+							}
+							try {
+								firstTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
+										returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+							} catch (NotEnoughIPException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "IP is not enough");
+								e1.printStackTrace();
+								return;
+							} catch (InCooldownException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+								e1.printStackTrace();
+								return;
+							} catch (NumberFormatException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Number format is incorrect");	
+								e1.printStackTrace();
+								return;
+							} catch (OutOfRangeException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Out of range");	
+								e1.printStackTrace();
+								return;
+							} catch (OutOfBordersException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+								e1.printStackTrace();
+								return;
+							} catch (InvalidTargetCellException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "InvalidTarget cell");
+								e1.printStackTrace();
+								return;
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+								e1.printStackTrace();
+								return;
+							}
+						}
 						/*
 						else if (type1 == "Relocating"){
 							spellsActivated.set(0, true);
@@ -547,6 +606,63 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 										  return;
 							}
 						}
+							else if (type2 == "Relocating"){
+								RelocatingSpell rel1 = (RelocatingSpell) w.getSpells().get(1);
+								String objectd = JOptionPane.showInputDialog(launcher, 
+										"Please state the object direction (UP ,DOWN"
+										+ ", RIGHT , LEFT", null);
+								String objectmove = JOptionPane.showInputDialog(launcher, 
+										"Please state where you want to move the object (UP ,DOWN"
+										+ ", RIGHT , LEFT", null);
+								String range = JOptionPane.showInputDialog(launcher, 
+										"Please state your desired range (UP ,DOWN"
+										+ ", RIGHT , LEFT", null);
+								if (!(Integer.parseInt(range) > 0) && 
+										!(returnDirection(objectd.toLowerCase()) instanceof Direction) && 
+										!(returnDirection(objectmove.toLowerCase()) instanceof Direction)){
+									JOptionPane.showMessageDialog(launcher, "Please enter a valid position");
+									return;
+								}
+								try {
+									firstTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
+											returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (NumberFormatException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Number format is incorrect");	
+									e1.printStackTrace();
+									return;
+								} catch (OutOfRangeException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Out of range");	
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "InvalidTarget cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+							}
 						/*
 						else if (type2 == "Relocating"){
 							spellsActivated.set(1, true);
@@ -732,6 +848,63 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 										  return;
 							}
 						}
+						else if (type3 == "Relocating"){
+							RelocatingSpell rel1 = (RelocatingSpell) w.getSpells().get(2);
+							String objectd = JOptionPane.showInputDialog(launcher, 
+									"Please state the object direction (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							String objectmove = JOptionPane.showInputDialog(launcher, 
+									"Please state where you want to move the object (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							String range = JOptionPane.showInputDialog(launcher, 
+									"Please state your desired range (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							if (!(Integer.parseInt(range) > 0) && 
+									!(returnDirection(objectd.toLowerCase()) instanceof Direction) && 
+									!(returnDirection(objectmove.toLowerCase()) instanceof Direction)){
+								JOptionPane.showMessageDialog(launcher, "Please enter a valid position");
+								return;
+							}
+							try {
+								firstTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
+										returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+							} catch (NotEnoughIPException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "IP is not enough");
+								e1.printStackTrace();
+								return;
+							} catch (InCooldownException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+								e1.printStackTrace();
+								return;
+							} catch (NumberFormatException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Number format is incorrect");	
+								e1.printStackTrace();
+								return;
+							} catch (OutOfRangeException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Out of range");	
+								e1.printStackTrace();
+								return;
+							} catch (OutOfBordersException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+								e1.printStackTrace();
+								return;
+							} catch (InvalidTargetCellException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "InvalidTarget cell");
+								e1.printStackTrace();
+								return;
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+								e1.printStackTrace();
+								return;
+							}
+						}
 						/*
 						else if (type3 == "Relocating"){
 							spellsActivated.set(2, true);
@@ -788,6 +961,18 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		               }
 		             break;
 		}
+	}
+	
+	public Direction returnDirection(String s){
+		Direction d = Direction.FORWARD;
+		switch(s){
+		case "up"    : d = Direction.FORWARD; break;
+		case "down"  : d = Direction.BACKWARD; break;
+		case "right" : d = Direction.RIGHT; break;
+		case "left"  : d = Direction.LEFT; break;
+		//default      : JOptionPane.showMessageDialog(launcher, "Please enter a valid position"); break;
+		}
+		return d;
 	}
 	public void moveUp()
 	{
@@ -932,6 +1117,12 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		int j = p.y;
 		firstTaskView.getButtonsMap()[p.x][p.y].setIcon(null);;		
 		
+	}
+	
+	public void castRelocating(Point pre , Point new1){
+		this.firstTaskView.getButtonsMap()[new1.x][new1.y].setIcon(
+				this.firstTaskView.getButtonsMap()[pre.x][pre.y].getIcon());
+		this.firstTaskView.getButtonsMap()[pre.x][pre.y].setIcon(null);
 	}
 
 	public void moveSlytherin(Direction d)

@@ -398,7 +398,7 @@ public abstract class Task implements WizardListener{
     		throw new NotEnoughIPException(cost, remainingip);
     	//Checks next and current inside the Map
     	Point current = getTargetPoint(d);
-    	Point next = getExactPosition(getTargetPoint(t),t,r - 1);
+    	Point next = getExactPosition(getTargetPoint(t),t,r -1);
     	if(next == null || current == null || !insideBoundary(next) || !insideBoundary(current))
     		throw new OutOfBordersException();
     	//Checks if the target cells are valid

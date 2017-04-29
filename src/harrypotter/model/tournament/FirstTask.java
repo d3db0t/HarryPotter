@@ -313,6 +313,7 @@ public class FirstTask extends Task{
     public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
     	super.castRelocatingSpell(s, d, t, r);
+    	this.taskActionListener.castRelocating(super.directionToPoint(d, super.getCurrentChamp()), super.getExactPosition(super.getTargetPoint(t), t, r-1));
     	finalizeAction();
     }
     @Override
