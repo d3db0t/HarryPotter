@@ -39,9 +39,9 @@ public abstract class TaskView extends JPanel
     	this.center.setLayout(new GridLayout(10,10));
         this.champInfo = new JTextArea();
         this.info = new JTextArea();
-        this.traitInfo = new JPanel();
+        this.traitInfo = new JPanel(new GridLayout(2,0));
         this.spellsInfo = new JPanel(new GridLayout(4,0));
-        this.potionInfo = new JPanel();
+        this.potionInfo = new JPanel(new GridLayout(10,0));
         this.west.add(spellsInfo);
         this.west.add(traitInfo);
         this.west.add(potionInfo);
@@ -228,6 +228,11 @@ public abstract class TaskView extends JPanel
     public void addTrait(JButton trait)
     {
     	this.traitInfo.add(trait);
+    }
+    
+    public void addPotions(JButton btn)
+    {
+    	this.potionInfo.add(btn);
     }
     /*
     public void addInventory()
