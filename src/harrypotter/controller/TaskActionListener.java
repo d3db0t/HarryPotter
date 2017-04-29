@@ -24,6 +24,7 @@ public interface TaskActionListener {
 	public void updateAfterPotion(int index) throws OutOfBordersException, IOException;
 	public void castDamaging(Point p);
 	public void removeChamp(Wizard w, String case1);
+	public void showCollectible();
 	//public void removeObstacle();
 	//public void activateTrait();
 	//public void castSpell();

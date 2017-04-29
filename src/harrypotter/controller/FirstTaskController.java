@@ -97,7 +97,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 				if(a instanceof ChampionCell)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
-				   btn.setName(""+i+j);
+				   //btn.setName(""+i+j);
 				   //ImageIcon champgif = this.firstTaskView.getGifs().get(c);
 				   //btn.setIcon(new ImageIcon(champgif.getImage().getScaledInstance(150, 200, Image.SCALE_SMOOTH)));
 				   btn.setIcon(this.firstTaskView.getGifs().get(c));
@@ -106,14 +106,14 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 				else if (a instanceof ObstacleCell)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
-				   btn.setName(""+i+j);
+				   //btn.setName(""+i+j);
 				   ImageIcon wallimg = this.firstTaskView.getGifs().get(5);
 				   btn.setIcon(new ImageIcon(wallimg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				}
 				else if (i == 4 && j == 4)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
-				   btn.setName(""+i+j);
+				   //btn.setName(""+i+j);
 				   ImageIcon eggimg = this.firstTaskView.getGifs().get(4);
                    btn.setIcon(new ImageIcon(eggimg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				}
@@ -413,7 +413,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 						}
 						*/
 						else if (type2 == "Damaging"){
-							DamagingSpell dmg2 = (DamagingSpell) w.getSpells().get(0);
+							DamagingSpell dmg2 = (DamagingSpell) w.getSpells().get(1);
 							String direction = JOptionPane.showInputDialog(launcher, 
 									"Please state your desired direction (UP ,DOWN"
 									+ ", RIGHT , LEFT", null);
@@ -598,7 +598,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 						}
 						*/
 						else if (type3 == "Damaging"){
-							DamagingSpell dmg3 = (DamagingSpell) w.getSpells().get(0);
+							DamagingSpell dmg3 = (DamagingSpell) w.getSpells().get(2);
 							String direction = JOptionPane.showInputDialog(launcher, 
 									"Please state your desired direction (UP ,DOWN"
 									+ ", RIGHT , LEFT", null);
@@ -1013,6 +1013,11 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 						.getScaledInstance(50, 50, Image.SCALE_SMOOTH))));
 				break;
 		}
+	}
+	
+	public void showCollectible()
+	{
+		JOptionPane.showMessageDialog(launcher, "You found a collectible");
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {

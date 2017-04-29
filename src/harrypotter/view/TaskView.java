@@ -80,7 +80,7 @@ public abstract class TaskView extends JPanel
     		for(int j = 0 ; j < 10 ; j++)
     		{
     			JButton a = new JButton();
-    			a.setName(""+i+j);
+    			//a.setName(""+i+j);
     			a.setBackground(Color.BLACK);
     			this.map[i][j] = a;
     			center.add(a);
