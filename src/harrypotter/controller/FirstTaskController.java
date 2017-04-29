@@ -361,8 +361,10 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		spell1 = new JButton(s.get(0).getName());
 		spell1.setName("Spell1");
 		spell1.addActionListener(this);
+		spell1.addMouseListener(this);
 		spell2 = new JButton(s.get(1).getName());
 		spell2.setName("Spell2");
+		spell2.addMouseListener(this);
 		spell2.addActionListener(this);
 		spell3 = new JButton(s.get(2).getName());
 		spell3.setName("Spell3");
@@ -389,7 +391,8 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	public void showFire()
 	{
 		Wizard w  = (Wizard) firstTask.getCurrentChamp();
-		JOptionPane.showMessageDialog(launcher, "The champion hp is : " + w.getHp());
+		JOptionPane.showMessageDialog(launcher, w.getName() + "is fired by a dragon"
+				+ " hp is now : " + w.getHp());
 	}
 	
 	public String spellType(Spell s){
@@ -442,11 +445,11 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	   JButton btn = (JButton) e.getSource();
 	   switch(btn.getName())
 	   {
-	   case "spell1": this.firstTaskView.showEast(w.getSpells().get(0).toString());
+	   case "Spell1": this.firstTaskView.showEast(w.getSpells().get(0).toString());
 	                  break;
-	   case "spell2": this.firstTaskView.showEast(w.getSpells().get(1).toString());
+	   case "Spell2": this.firstTaskView.showEast(w.getSpells().get(1).toString());
 	                  break;
-	   case "spell3": this.firstTaskView.showEast(w.getSpells().get(2).toString());
+	   case "Spell3": this.firstTaskView.showEast(w.getSpells().get(2).toString());
 	                  break;
 	   case "Trait" : this.firstTaskView.showEast(w.getTraitInfo("First"));
 	   }
