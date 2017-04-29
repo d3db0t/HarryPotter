@@ -12,6 +12,12 @@ public class HealingSpell extends Spell{
 		return healingAmount;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "Name :" + getName() + "\n" + "Type :HealingSpell" + "\n" + "Cost :" + getCost() +
+				"\n" + "HealingAmount :" + this.healingAmount + "\n" + "Cooldown :"+ getCoolDown();
+	}
 	
 
 }

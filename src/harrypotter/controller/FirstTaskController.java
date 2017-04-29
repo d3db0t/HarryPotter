@@ -5,6 +5,8 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.InvalidTargetCellException;
@@ -36,7 +39,8 @@ import harrypotter.model.world.WallCell;
 import harrypotter.view.FirstTaskView;
 import harrypotter.view.Launcher;
 
-public class FirstTaskController implements TaskActionListener , TournamentListener ,ActionListener {
+public class FirstTaskController implements TaskActionListener , TournamentListener ,ActionListener , MouseListener
+{
 
 	private FirstTask firstTask;
 	private FirstTaskView firstTaskView;
@@ -113,6 +117,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		JButton down = new JButton("Down");
 		JButton right = new JButton("Right");
 		JButton left = new JButton("Left");
+		JButton trait = new JButton("Activate Trait");
 		ArrayList<JButton> btns = new ArrayList<JButton>();
 		up.setName("Up");
 		down.setName("Down");
@@ -126,6 +131,10 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		btns.add(down);
 		btns.add(right);
 		btns.add(left);
+		trait.setName("Trait");
+		trait.addActionListener(this);
+		trait.addMouseListener(this);
+		firstTaskView.addTrait(trait);
 		firstTaskView.generateSouthPanel(btns);
 	}
 	
@@ -358,6 +367,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		spell3 = new JButton(s.get(2).getName());
 		spell3.setName("Spell3");
 		spell3.addActionListener(this);
+		spell3.addMouseListener(this);
 		ArrayList <JButton> bs = new ArrayList <JButton>();
 		bs.add(spell1);
 		bs.add(spell2);
@@ -406,5 +416,46 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	public void updatePotions()
 	{
 		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	   Wizard w = (Wizard) firstTask.getCurrentChamp();
+	   JButton btn = (JButton) e.getSource();
+	   switch(btn.getName())
+	   {
+	   case "spell1": this.firstTaskView.showEast(w.getSpells().get(0).toString());
+	                  break;
+	   case "spell2": this.firstTaskView.showEast(w.getSpells().get(1).toString());
+	                  break;
+	   case "spell3": this.firstTaskView.showEast(w.getSpells().get(2).toString());
+	                  break;
+	   case "Trait" : this.firstTaskView.showEast(w.getTraitInfo("First"));
+	   }
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		this.firstTaskView.getInfo().removeAll();
+		this.firstTaskView.getInfo().revalidate();
+	    this.firstTaskView.getInfo().setVisible(false);
 	}
 }

@@ -16,4 +16,8 @@ public class GryffindorWizard extends Wizard implements Champion{
 		  super.getListener().onGryffindorTrait();	
 	}
 
+	public String getTraitInfo(String task)
+	{
+		return "TraitInfo : This trait allows \n the wizard to make two \n moves instead of one \n Cooldown : " + this.getTraitCooldown();
+	}
 }

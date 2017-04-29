@@ -12,6 +12,11 @@ public class DamagingSpell extends Spell{
 		return damageAmount;
 	}
 	
-	
+	@Override
+	public String toString()
+	{
+		return "Name :" + getName() + "\n" + "Type :DamagingSpell" + "\n" + "Cost :" + getCost() +
+				"\n" + "DamageAmount :" + this.damageAmount + "\n" + "Cooldown :"+ getCoolDown();
+	}
 
 }
