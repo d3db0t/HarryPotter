@@ -50,7 +50,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	private FirstTaskView firstTaskView;
 	private Tournament tournament;
 	private Launcher launcher;
-	private ArrayList <Boolean> spellsActivated;
+	//private ArrayList <Boolean> spellsActivated;
 	private JButton spell1;
 	private JButton spell2;
 	private JButton spell3;
@@ -63,10 +63,10 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		firstTaskView = new FirstTaskView();
 		this.tournament.setTournamentListener(this);
 		this.launcher.add(firstTaskView);
-		spellsActivated = new ArrayList<Boolean>();
-		spellsActivated.add(false);
-		spellsActivated.add(false);
-		spellsActivated.add(false);
+		//spellsActivated = new ArrayList<Boolean>();
+		//spellsActivated.add(false);
+		//spellsActivated.add(false);
+		//spellsActivated.add(false);
 		try {
 			this.tournament.beginTournament();
 			this.firstTask = this.tournament.getFirstTask();
@@ -185,10 +185,12 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		}
 	    break;
 		case "Spell1" : String type1 = spellType(w.getSpells().get(0));
+						/*
 						if (spellsActivated.get(1) || spellsActivated.get(2)){
 							JOptionPane.showMessageDialog(launcher, "Only one spell can be activated at a time!");
 							break;
 						}
+						*/
 						if (type1 == "Healing"){
 							HealingSpell s1 = (HealingSpell) w.getSpells().get(0);
 							try {
@@ -213,21 +215,28 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							}
 							break;
 						}
+						/*
 						if (spellsActivated.get(0)){
 							spellsActivated.set(0, false);
 							spell1.setBackground(Color.GREEN);
 							break;
 						}
 						else if (type1 == "Damaging" || type1 == "Relocating"){
+						*/
+						/*
+						else if (type1 == "Relocating"){
 							spellsActivated.set(0, true);
 							spell1.setBackground(Color.BLUE);
 							break;
 						}
+						*/
 		case "Spell2" : String type2 = spellType(w.getSpells().get(1));
+						/*
 					    if (spellsActivated.get(0) || spellsActivated.get(2)){
 							JOptionPane.showMessageDialog(launcher, "Only one spell can be activated at a time!");
 							break;
 						}
+						*/
 						if (type2 == "Healing"){
 							HealingSpell s2 = (HealingSpell) w.getSpells().get(1);
 							try {
@@ -252,21 +261,28 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							}
 							break;
 						}
+						/*
 						if (spellsActivated.get(1)){
 							spellsActivated.set(1, false);
 							spell2.setBackground(Color.GREEN);
 							break;
 						}
 						else if (type2 == "Damaging" || type2 == "Relocating"){
+						*/
+						/*
+						else if (type2 == "Relocating"){
 							spellsActivated.set(1, true);
 							spell2.setBackground(Color.BLUE);
 							break;
 						}
+						*/
 		case "Spell3" : String type3 = spellType(w.getSpells().get(2));
+						/*
 						if (spellsActivated.get(0) || spellsActivated.get(1)){
 							JOptionPane.showMessageDialog(launcher, "Only one spell can be activated at a time!");
 							break;
 						}
+						*/
 						if (type3 == "Healing"){
 							HealingSpell s3 = (HealingSpell) w.getSpells().get(2);
 							try {
@@ -291,16 +307,21 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							}
 							break;
 						}
+						/*
 						if (spellsActivated.get(2)){
 							spellsActivated.set(2, false);
 							spell3.setBackground(Color.GREEN);
 							break;
 						}
 						else if (type3 == "Damaging" || type3 == "Relocating"){
+						*/
+						/*
+						else if (type3 == "Relocating"){
 							spellsActivated.set(2, true);
 							spell3.setBackground(Color.BLUE);
 							break;
 						}
+						*/
 		case "Trait": if(w instanceof SlytherinWizard)
 					  {
 						String name = JOptionPane.showInputDialog(launcher, 
@@ -548,8 +569,55 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		/*
+		JButton btn    = (JButton) e.getSource();
+		String btnID   = btn.getText(); // i and j as string
+		// i and j as int | this represents the point of the cell (button) clicked
+		int i          = Integer.parseInt("" + btnID.charAt(0));
+		int j          = Integer.parseInt("" + btnID.charAt(1));
+		Wizard w       = (Wizard) firstTask.getCurrentChamp();
+		int spellindex = activatedSpellIndex();
+		Spell s        = w.getSpells().get(spellindex);
+		if (spellType(s) == "Damaging" && spellindex != 404){
+			String direction = JOptionPane.showInputDialog(launcher, 
+					"Please state your desired direction (UP ,DOWN"
+					+ ", RIGHT , LEFT", null);
+			DamagingSpell s2 = (DamagingSpell) s;
+			switch(direction.toLowerCase())
+			{
+			case "up" : 
+				break;
+			case "down": 
+				break;
+			case "right": 
+			    break;
+			case "left": 
+			    break;
+			    default : JOptionPane.showMessageDialog(launcher, "Please enter a valid position");
+			              return;
+			}
+			firstTask.castDamagingSpell(s, direction);
+		}
+		*/
 	}
+	/*
+	public int activatedSpellIndex(){
+		int i;
+		if (spellsActivated.get(0)){
+			i = 0;
+		}
+		else if (spellsActivated.get(1)){
+			i = 1;
+		}
+		else if (spellsActivated.get(2)){
+			i = 2;
+		}
+		else{
+			i = 404; // HAHA
+		}
+		return i;
+	}
+	*/
 
 	@Override
 	public void mousePressed(MouseEvent e) {
