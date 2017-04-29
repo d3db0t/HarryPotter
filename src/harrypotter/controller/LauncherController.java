@@ -264,7 +264,7 @@ public class LauncherController implements ActionListener , MouseListener {
         	String type = "DamagingSpell";
         	int damage = ((DamagingSpell) s).getDamageAmount();
         	int cost = s.getCost();
-        	choosingSpells.showSpellInfo(name,type,damage,cost);
+        	choosingSpells.showSpellInfo(name,type,damage,cost,s.getDefaultCooldown());
         }
         else if(s instanceof HealingSpell)
         {
@@ -272,7 +272,7 @@ public class LauncherController implements ActionListener , MouseListener {
         	String type = "HealingSpell";
         	int heal = ((HealingSpell) s).getHealingAmount();
         	int cost = s.getCost();
-        	choosingSpells.showSpellInfo(name,type,heal,cost);
+        	choosingSpells.showSpellInfo(name,type,heal,cost , s.getDefaultCooldown());
         }
         else
         {
@@ -280,7 +280,7 @@ public class LauncherController implements ActionListener , MouseListener {
         	String type = "RelocatingSpell";
         	int range = ((RelocatingSpell) s).getRange();
         	int cost = s.getCost();
-        	choosingSpells.showSpellInfo(name,type,range,cost);
+        	choosingSpells.showSpellInfo(name,type,range,cost,s.getDefaultCooldown());
         }
 	}
 
