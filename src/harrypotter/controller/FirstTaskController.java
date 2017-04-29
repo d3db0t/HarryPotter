@@ -23,6 +23,7 @@ import harrypotter.exceptions.OutOfBordersException;
 import harrypotter.model.character.Champion;
 import harrypotter.model.character.GryffindorWizard;
 import harrypotter.model.character.HufflepuffWizard;
+import harrypotter.model.character.RavenclawWizard;
 import harrypotter.model.character.SlytherinWizard;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.magic.DamagingSpell;
@@ -34,6 +35,7 @@ import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
 import harrypotter.model.world.CupCell;
+import harrypotter.model.world.Direction;
 import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.WallCell;
 import harrypotter.view.FirstTaskView;
@@ -373,6 +375,11 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		//JPanel west             = firstTaskView.getWest();
 		firstTaskView.getSpellsInfo().removeAll();
 		firstTaskView.getSpellsInfo().revalidate();
+		for(int i = 0 ; i < 10 ; i++)
+		{
+			for(int j = 0; j < 10 ; j++)
+				this.firstTaskView.getButtonsMap()[i][j].setBackground(Color.BLACK);
+		}
 		Wizard w                = (Wizard) firstTask.getCurrentChamp();
 		Point p                 = w.getLocation();
 		firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.ORANGE);
@@ -427,7 +434,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	{
 		Wizard w  = (Wizard) firstTask.getCurrentChamp();
 		JOptionPane.showMessageDialog(launcher, w.getName() + "is fired by a dragon"
-				+ " hp is now : " + w.getHp());
+				+ "  your hp is now : " + w.getHp());
 	}
 	
 	public String spellType(Spell s){
