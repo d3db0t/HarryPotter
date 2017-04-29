@@ -12,5 +12,8 @@ public class Potion extends Collectible{
 		return amount;
 	}
 	
-
+    public String toString()
+    {
+    	return "Name : " + getName() + "\n" + "Amount : "+ this.amount;
+    }
 }

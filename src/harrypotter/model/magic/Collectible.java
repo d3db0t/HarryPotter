@@ -11,5 +11,5 @@ public abstract class Collectible {
 	{
 		return name ;
 	}
-
+    public abstract String toString();
 }
