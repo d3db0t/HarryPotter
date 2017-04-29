@@ -186,7 +186,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							HealingSpell s1 = (HealingSpell) w.getSpells().get(0);
 							try {
 								firstTask.castHealingSpell(s1);
-								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s1.getCost());
+								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s1.getHealingAmount());
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
@@ -225,7 +225,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							HealingSpell s2 = (HealingSpell) w.getSpells().get(1);
 							try {
 								firstTask.castHealingSpell(s2);
-								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s2.getCost());
+								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s2.getHealingAmount());
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
@@ -264,7 +264,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							HealingSpell s3 = (HealingSpell) w.getSpells().get(2);
 							try {
 								firstTask.castHealingSpell(s3);
-								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s3.getCost());
+								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s3.getHealingAmount());
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
