@@ -196,24 +196,29 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							try {
 								firstTask.castHealingSpell(s1);
 								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s1.getHealingAmount());
+								return;
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
 								e1.printStackTrace();
+								return;
 							} catch (InCooldownException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Can not use the spell, try again later");
 								e1.printStackTrace();
+								return;
 							} catch (OutOfBordersException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Out of border");
 								e1.printStackTrace();
+								return;
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Can not read from csv");
 								e1.printStackTrace();
+								return;
 							}
-							break;
+							
 						}
 						/*
 						if (spellsActivated.get(0)){
@@ -221,8 +226,142 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							spell1.setBackground(Color.GREEN);
 							break;
 						}
-						else if (type1 == "Damaging" || type1 == "Relocating"){
 						*/
+						else if (type1 == "Damaging"){
+							DamagingSpell dmg1 = (DamagingSpell) w.getSpells().get(0);
+							String direction = JOptionPane.showInputDialog(launcher, 
+									"Please state your desired direction (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							switch(direction.toLowerCase())
+							{
+							case "up"   : try {
+									firstTask.castDamagingSpell(dmg1, Direction.FORWARD);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg1.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "down" : try {
+									firstTask.castDamagingSpell(dmg1, Direction.BACKWARD);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg1.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "right": try {
+									firstTask.castDamagingSpell(dmg1, Direction.RIGHT);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg1.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "left" : try {
+									firstTask.castDamagingSpell(dmg1, Direction.LEFT);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg1.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							default     : JOptionPane.showMessageDialog(launcher, "Please enter a valid position");
+										  return;
+							}
+						}
 						/*
 						else if (type1 == "Relocating"){
 							spellsActivated.set(0, true);
@@ -242,24 +381,29 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							try {
 								firstTask.castHealingSpell(s2);
 								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s2.getHealingAmount());
+								return;
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
 								e1.printStackTrace();
+								return;
 							} catch (InCooldownException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Can not use the spell, try again later");
 								e1.printStackTrace();
+								return;
 							} catch (OutOfBordersException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Out of border");
 								e1.printStackTrace();
+								return;
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Can not read from csv");
 								e1.printStackTrace();
+								return;
 							}
-							break;
+							
 						}
 						/*
 						if (spellsActivated.get(1)){
@@ -267,8 +411,142 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							spell2.setBackground(Color.GREEN);
 							break;
 						}
-						else if (type2 == "Damaging" || type2 == "Relocating"){
 						*/
+						else if (type2 == "Damaging"){
+							DamagingSpell dmg2 = (DamagingSpell) w.getSpells().get(0);
+							String direction = JOptionPane.showInputDialog(launcher, 
+									"Please state your desired direction (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							switch(direction.toLowerCase())
+							{
+							case "up"   : try {
+									firstTask.castDamagingSpell(dmg2, Direction.FORWARD);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg2.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "down" : try {
+									firstTask.castDamagingSpell(dmg2, Direction.BACKWARD);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg2.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "right": try {
+									firstTask.castDamagingSpell(dmg2, Direction.RIGHT);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg2.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "left" : try {
+									firstTask.castDamagingSpell(dmg2, Direction.LEFT);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg2.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							default     : JOptionPane.showMessageDialog(launcher, "Please enter a valid position");
+										  return;
+							}
+						}
 						/*
 						else if (type2 == "Relocating"){
 							spellsActivated.set(1, true);
@@ -288,24 +566,29 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							try {
 								firstTask.castHealingSpell(s3);
 								JOptionPane.showMessageDialog(launcher, "You have been healed by " + s3.getHealingAmount());
+								return;
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
 								e1.printStackTrace();
+								return;
 							} catch (InCooldownException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Can not use the spell, try again later");
 								e1.printStackTrace();
+								return;
 							} catch (OutOfBordersException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Out of border");
 								e1.printStackTrace();
+								return;
 							} catch (IOException e1) {
 									// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "Can not read from csv");
 								e1.printStackTrace();
+								return;
 							}
-							break;
+							
 						}
 						/*
 						if (spellsActivated.get(2)){
@@ -313,8 +596,142 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							spell3.setBackground(Color.GREEN);
 							break;
 						}
-						else if (type3 == "Damaging" || type3 == "Relocating"){
 						*/
+						else if (type3 == "Damaging"){
+							DamagingSpell dmg3 = (DamagingSpell) w.getSpells().get(0);
+							String direction = JOptionPane.showInputDialog(launcher, 
+									"Please state your desired direction (UP ,DOWN"
+									+ ", RIGHT , LEFT", null);
+							switch(direction.toLowerCase())
+							{
+							case "up"   : try {
+									firstTask.castDamagingSpell(dmg3, Direction.FORWARD);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg3.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "down" : try {
+									firstTask.castDamagingSpell(dmg3, Direction.BACKWARD);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg3.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "right": try {
+									firstTask.castDamagingSpell(dmg3, Direction.RIGHT);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg3.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							case "left" : try {
+									firstTask.castDamagingSpell(dmg3, Direction.LEFT);
+									JOptionPane.showMessageDialog(launcher, "Damage dealt " + dmg3.getDamageAmount());
+									return;
+								} catch (NotEnoughIPException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "IP is not enough");
+									e1.printStackTrace();
+									return;
+								} catch (InCooldownException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Spell is in cooldown");
+									e1.printStackTrace();
+									return;
+								} catch (OutOfBordersException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Direction is out of borders");	
+									e1.printStackTrace();
+									return;
+								} catch (InvalidTargetCellException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not attack this cell");
+									e1.printStackTrace();
+									return;
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(launcher, "Can not read from csv");
+									e1.printStackTrace();
+									return;
+								}
+								
+							default     : JOptionPane.showMessageDialog(launcher, "Please enter a valid position");
+										  return;
+							}
+						}
 						/*
 						else if (type3 == "Relocating"){
 							spellsActivated.set(2, true);
