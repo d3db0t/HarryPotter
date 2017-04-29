@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import harrypotter.exceptions.OutOfBordersException;
+import harrypotter.model.character.Wizard;
 import harrypotter.model.magic.Spell;
 import harrypotter.model.world.Direction;
 
@@ -21,7 +22,7 @@ public interface TaskActionListener {
 	public void showMarkedCells(ArrayList <Point> p , String case1);
 	public void moveGryffindorOnTrait();
 	public void updateAfterPotion(int index) throws OutOfBordersException, IOException;
-	//public void removeChamp();
+	public void removeChamp(Wizard w, String case1);
 	//public void removeObstacle();
 	//public void activateTrait();
 	//public void castSpell();
