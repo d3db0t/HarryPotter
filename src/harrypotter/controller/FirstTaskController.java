@@ -331,6 +331,19 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 						e1.printStackTrace();
 					 }
 					 break;
+		case "Potion": for(int i = 0; i <w.getInventory().size() ; i++)
+		               {
+			              if(w.getInventory().get(i).getName().equals(btn.getText()))
+			              {
+			            	  try {
+								this.firstTask.usePotion((Potion)w.getInventory().get(i));
+							} catch (OutOfBordersException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+			              }
+		               }
+		             break;
 		}
 	}
 	public void moveUp()
@@ -373,6 +386,8 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		//JPanel north            = firstTaskView.getNorth();
 		//JPanel east             = firstTaskView.getEast();
 		//JPanel west             = firstTaskView.getWest();
+		firstTaskView.getPotionInfo().removeAll();
+		firstTaskView.getPotionInfo().revalidate();
 		firstTaskView.getSpellsInfo().removeAll();
 		firstTaskView.getSpellsInfo().revalidate();
 		for(int i = 0 ; i < 10 ; i++)
@@ -398,6 +413,15 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		}
 		else{
 			house = "Ravenclaw";
+		}
+		ArrayList<Collectible> potions = w.getInventory();
+		for(int i = 0 ; i < potions.size();i++)
+		{
+			JButton btn = new JButton(potions.get(i).getName());
+			btn.setName("Potion");
+			btn.addActionListener(this);
+			btn.addMouseListener(this);
+			this.firstTaskView.addPotions(btn);
 		}
 		ArrayList <Spell> s = w.getSpells();
 		spell1 = new JButton(s.get(0).getName());
@@ -458,11 +482,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		Point p = a.getLocation();
 		firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.BLACK);
 	}
-	public void updatePotions()
-	{
-		
-	}
-	
+
 	public void moveSlytherin(Direction d)
 	{
 		Wizard a = (Wizard) firstTask.getCurrentChamp();
@@ -504,6 +524,13 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		Point p = w.getLocation();
 		this.firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.ORANGE);
 	}
+	
+	public void updateAfterPotion(int i) throws OutOfBordersException, IOException
+	{
+		JPanel p = this.firstTaskView.getPotionInfo();
+		p.remove(p.getComponent(i));
+		this.updateNEWPanels();
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -535,6 +562,16 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	   case "Spell3": this.firstTaskView.showEast(w.getSpells().get(2).toString());
 	                  break;
 	   case "Trait" : this.firstTaskView.showEast(w.getTraitInfo("First"));
+	                  break;
+	   case "Potion": for(int i = 0 ; i <w.getInventory().size() ; i++)
+	                  {
+		                  if(w.getInventory().get(i).getName().equals(btn.getText()))
+		                  {
+		                	  this.firstTaskView.showEast(w.getInventory().get(i).toString());
+		                	  break;
+		                  }
+	                  }
+	                  break;
 	   }
 	}
 
