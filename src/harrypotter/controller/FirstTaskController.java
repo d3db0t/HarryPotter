@@ -490,6 +490,13 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		this.firstTaskView.getButtonsMap()[cells.get(0).x][cells.get(0).y].setBackground(Color.WHITE);
 		this.firstTaskView.getButtonsMap()[cells.get(1).x][cells.get(1).y].setBackground(Color.WHITE);
 	}
+	
+	public void moveGryffindorOnTrait()
+	{
+		Wizard w = (Wizard) this.firstTask.getCurrentChamp();
+		Point p = w.getLocation();
+		this.firstTaskView.getButtonsMap()[p.x][p.y].setBackground(Color.ORANGE);
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
