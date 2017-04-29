@@ -149,6 +149,7 @@ public class FirstTask extends Task{
             this.taskActionListener.showFire();
 		    if(!super.isAlive(a.getChamp()))
 		    {
+		    	this.taskActionListener.removeChamp((Wizard)a.getChamp(), "Dead");
 			   super.removeWizard(a.getChamp());
 			   super.getMap()[one.x][one.y]= new EmptyCell();
 			}
@@ -163,6 +164,7 @@ public class FirstTask extends Task{
             this.taskActionListener.showFire();
 			if(!super.isAlive(a.getChamp())) 
 			{
+		       this.taskActionListener.removeChamp((Wizard)a.getChamp(), "Dead");
 			   super.removeWizard(a.getChamp());
 			   super.getMap()[two.x][two.y] = new EmptyCell();
 		    }
@@ -178,6 +180,7 @@ public class FirstTask extends Task{
     	int y = (int) p.getY();
     	if (x == 4 && y == 4)
     	{  
+    		this.taskActionListener.removeChamp(w, "Winner");
     	    this.winners.add(super.getCurrentChamp());
     	    super.removeWizard(super.getCurrentChamp());
     	    this.getMap()[x][y] = new EmptyCell();
