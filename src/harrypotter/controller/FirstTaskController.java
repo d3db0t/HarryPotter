@@ -455,6 +455,35 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	{
 		
 	}
+	
+	public void moveSlytherin(Direction d)
+	{
+		Wizard a = (Wizard) firstTask.getCurrentChamp();
+		Point p = a.getLocation();
+		switch(d)
+		{
+		case FORWARD :
+					  firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x+2][p.y].getIcon());
+					  firstTaskView.getButtonsMap()[p.x+2][p.y].setBackground(Color.BLACK);
+					  firstTaskView.getButtonsMap()[p.x+2][p.y].setIcon(null);
+					  break;
+		case BACKWARD :
+					  firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x-2][p.y].getIcon());
+					  firstTaskView.getButtonsMap()[p.x-2][p.y].setBackground(Color.BLACK);
+					  firstTaskView.getButtonsMap()[p.x-2][p.y].setIcon(null);
+					  break;
+		case RIGHT    :
+			          firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x][p.y-2].getIcon());
+			          firstTaskView.getButtonsMap()[p.x][p.y-2].setBackground(Color.BLACK);
+			          firstTaskView.getButtonsMap()[p.x][p.y-2].setIcon(null);
+			          break;
+		case LEFT     :
+			          firstTaskView.getButtonsMap()[p.x][p.y].setIcon(firstTaskView.getButtonsMap()[p.x][p.y+2].getIcon());
+			          firstTaskView.getButtonsMap()[p.x][p.y+2].setBackground(Color.BLACK);
+			          firstTaskView.getButtonsMap()[p.x][p.y+2].setIcon(null);
+			          break;
+		}
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
