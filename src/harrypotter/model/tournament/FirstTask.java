@@ -327,4 +327,17 @@ public class FirstTask extends Task{
 		this.taskActionListener.showMarkedCells(this.markedCells);
     	return this.markedCells;
     }
+    
+    public void usePotion(Potion p) throws OutOfBordersException, IOException
+    {
+    	Wizard w = (Wizard)super.getCurrentChamp();
+    	int j = 0 ;
+    	for(int i = 0 ; i < w.getInventory().size() ; i++)
+    	{
+    		if(w.getInventory().get(i).equals(p))
+    			j = i;
+    	}
+    	super.usePotion(p);
+    	this.taskActionListener.updateAfterPotion(j);
+    }
 }

@@ -536,7 +536,7 @@ public abstract class Task implements WizardListener{
     		this.currentChamp = champions.get(i);
     }
     
-    public void usePotion(Potion p)
+    public void usePotion(Potion p) throws OutOfBordersException, IOException
     {
     	Wizard c = (Wizard) this.currentChamp;
     	c.setIp(c.getIp()+ p.getAmount());
