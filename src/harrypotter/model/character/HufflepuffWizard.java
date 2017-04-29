@@ -20,12 +20,14 @@ public class HufflepuffWizard extends Wizard implements Champion{
 	{
 		switch(task)
 		{
-		case "First" : return "TraitInfo : This Turn the \n dragon won't attack \n Cooldown : " + this.getTraitCooldown();
+		case "First" : return "TraitInfo : This Turn the \n dragon won't attack \n Cooldown : " + this.getTraitCooldown()
+		                      + "\n" + "DefaultCooldown :3 ";
 		
-		case "Second": return "TraitInfo : This Turn the \n merpersons won't attack \n Cooldown : "+ this.getTraitCooldown();
+		case "Second": return "TraitInfo : This Turn the \n merpersons won't attack \n Cooldown : "+ this.getTraitCooldown()
+							  + "\n" + "DefaultCooldown :6";
 		
 		case "Third" : return "TraitInfo : Attacks from \n other champions will only deal half the damage \n "
-				+ "Cooldown : 0";
+				+ "Cooldown : 0 + "+ "\n" + "DefaultCooldown : always activated";
 		
 		}
 		return null;

@@ -21,11 +21,11 @@ public class RavenclawWizard extends Wizard implements Champion{
 		switch(task)
 		{
 		case "First" : return "TraitInfo : This turn, the \n champion \n is shown where the dragon \n is going to attack \n"
-				+ "CoolDown : " + this.getTraitCooldown();
+				+ "CoolDown : " + this.getTraitCooldown()+ "\n" + "DefaultCooldown :5";
 		case "Second": return "TraitInfo : This turn, the \n champion \n is given a hint on \n where the target is  hidden \n relative to the current position \n"
-				+ "CoolDown : " + this.getTraitCooldown();
+				+ "CoolDown : " + this.getTraitCooldown()+ "\n" + "DefaultCooldown :7";
 		case "Third" : return "TraitInfo : This turn, the \n champion is given a hint \n on where the cup is hidden \n relative to the current position \n"
-				+ "CoolDown : " + this.getTraitCooldown();
+				+ "CoolDown : " + this.getTraitCooldown()+ "\n" + "DefaultCooldown :7";
 				
 		}
 		return null;
