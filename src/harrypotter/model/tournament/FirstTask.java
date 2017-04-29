@@ -200,7 +200,10 @@ public class FirstTask extends Task{
 			if(super.getAllowedMoves() == 0)
 				return true;
 			else 
+			{
+				this.taskActionListener.moveGryffindorOnTrait();
 				return false;
+			}
 		}
 		return true;
 		
@@ -303,6 +306,7 @@ public class FirstTask extends Task{
     	super.setTraitActivated(true);
 		super.setAllowedMoves(0);
 		w.setTraitCooldown(6);
+		this.taskActionListener.moveSlytherin(d);
 		finalizeAction();
     }
     @Override
@@ -320,6 +324,7 @@ public class FirstTask extends Task{
     	}
     	super.setTraitActivated(true);
     	w.setTraitCooldown(5);
+		this.taskActionListener.showMarkedCells(this.markedCells);
     	return this.markedCells;
     }
 }
