@@ -136,6 +136,7 @@ public class FirstTask extends Task{
 	{
 	  Point one = this.markedCells.get(0);  
 	  Point two = this.markedCells.get(1);
+	  this.taskActionListener.showMarkedCells(markedCells , "Fire");
 	  if(this.getMap()[one.x][one.y] instanceof ChampionCell)  
 	  {  
 		 ChampionCell a = (ChampionCell) super.getMap()[one.x][one.y];
@@ -155,7 +156,8 @@ public class FirstTask extends Task{
 	    ChampionCell a = (ChampionCell) super.getMap()[two.x][two.y];
 		if(checkBeforeFire())
 		{
-			((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);    
+			((Wizard)a.getChamp()).setHp(((Wizard) a.getChamp()).getHp()-150);
+            this.taskActionListener.showFire();
 			if(!super.isAlive(a.getChamp())) 
 			{
 			   super.removeWizard(a.getChamp());
@@ -324,7 +326,7 @@ public class FirstTask extends Task{
     	}
     	super.setTraitActivated(true);
     	w.setTraitCooldown(5);
-		this.taskActionListener.showMarkedCells(this.markedCells);
+		this.taskActionListener.showMarkedCells(this.markedCells , "Trait");
     	return this.markedCells;
     }
     
