@@ -240,6 +240,15 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		bs.add(spell1);
 		bs.add(spell2);
 		bs.add(spell3);
+		for (int i = 0; i < s.size();i++){
+			Spell sp = s.get(i);
+			if (sp.getCoolDown() == 0){
+				bs.get(i).setBackground(Color.GREEN);
+			}
+			else{
+				bs.get(i).setBackground(Color.RED);
+			}
+		}
 		//int wizardtraitcooldown = w.getTraitCooldown();
 		firstTaskView.addChampInfo(house, name, wizardhp, wizardip);
 		firstTaskView.addSpells(bs);
