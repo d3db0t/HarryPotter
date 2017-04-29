@@ -172,7 +172,7 @@ public class SecondTask extends Task {
 	
 	@Override
 	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException{
-    	super.castDamagingSpell(s, d);
+    	//super.castDamagingSpell(s, d);
     	finalizeAction();
     }
 	@Override
