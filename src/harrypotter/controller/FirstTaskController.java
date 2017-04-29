@@ -97,6 +97,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 				if(a instanceof ChampionCell)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
+				   btn.setName(""+i+j);
 				   //ImageIcon champgif = this.firstTaskView.getGifs().get(c);
 				   //btn.setIcon(new ImageIcon(champgif.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				   btn.setIcon(this.firstTaskView.getGifs().get(c));
@@ -105,12 +106,14 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 				else if (a instanceof ObstacleCell)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
+				   btn.setName(""+i+j);
 				   ImageIcon wallimg = this.firstTaskView.getGifs().get(5);
 				   btn.setIcon(new ImageIcon(wallimg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				}
 				else if (i == 4 && j == 4)
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
+				   btn.setName(""+i+j);
 				   ImageIcon eggimg = this.firstTaskView.getGifs().get(4);
                    btn.setIcon(new ImageIcon(eggimg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				}
