@@ -485,6 +485,11 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		}
 	}
 
+	public void showMarkedCells(ArrayList <Point> cells)
+	{
+		this.firstTaskView.getButtonsMap()[cells.get(0).x][cells.get(0).y].setBackground(Color.WHITE);
+		this.firstTaskView.getButtonsMap()[cells.get(1).x][cells.get(1).y].setBackground(Color.WHITE);
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
