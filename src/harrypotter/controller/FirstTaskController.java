@@ -38,6 +38,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	private FirstTaskView firstTaskView;
 	private Tournament tournament;
 	private Launcher launcher;
+	private ArrayList <Boolean> spellsActivated;
 
 	public FirstTaskController(Launcher launcher, ArrayList <Champion> champs , Tournament tournament)
 	{
@@ -47,6 +48,10 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		firstTaskView = new FirstTaskView();
 		this.tournament.setTournamentListener(this);
 		this.launcher.add(firstTaskView);
+		spellsActivated = new ArrayList<Boolean>();
+		spellsActivated.add(false);
+		spellsActivated.add(false);
+		spellsActivated.add(false);
 		try {
 			this.tournament.beginTournament();
 			this.firstTask = this.tournament.getFirstTask();
