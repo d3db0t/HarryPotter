@@ -16,7 +16,8 @@ public class HealingSpell extends Spell{
 	public String toString()
 	{
 		return "Name :" + getName() + "\n" + "Type :HealingSpell" + "\n" + "Cost :" + getCost() +
-				"\n" + "HealingAmount :" + this.healingAmount + "\n" + "Cooldown :"+ getCoolDown();
+				"\n" + "HealingAmount :" + this.healingAmount + "\n" + "Cooldown :"+ getCoolDown()+ "\n" + "DefaultCooldown :"+
+						 getDefaultCooldown();
 	}
 	
 
