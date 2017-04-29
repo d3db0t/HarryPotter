@@ -598,7 +598,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 						}
 						*/
 						else if (type3 == "Damaging"){
-							DamagingSpell dmg3 = (DamagingSpell) w.getSpells().get(0);
+							DamagingSpell dmg3 = (DamagingSpell) w.getSpells().get(2);
 							String direction = JOptionPane.showInputDialog(launcher, 
 									"Please state your desired direction (UP ,DOWN"
 									+ ", RIGHT , LEFT", null);
