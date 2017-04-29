@@ -22,10 +22,13 @@ import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
 import harrypotter.model.world.CollectibleCell;
+import harrypotter.model.world.CupCell;
 import harrypotter.model.world.Direction;
 import harrypotter.model.world.EmptyCell;
 import harrypotter.model.world.ObstacleCell;
 import harrypotter.model.world.PhysicalObstacle;
+import harrypotter.model.world.TreasureCell;
+import harrypotter.model.world.WallCell;
 
 public class FirstTask extends Task{
 	private ArrayList<Point> markedCells;
@@ -238,19 +241,72 @@ public class FirstTask extends Task{
 		this.taskActionListener.moveLeft();
 		finalizeAction();
 	}
-	@Override
-	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException
-	{
-    	super.castDamagingSpell(s, d);
-    	finalizeAction();
-    }
+	//@Override
+	//public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException
+	//{
+    	//super.castDamagingSpell(s, d);
+    	//Point p = super.getTargetPoint(d);
+    	//this.taskActionListener.castDamaging(p);
+    	//finalizeAction();
+    //}
 	@Override
 	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
 		super.castHealingSpell(s);
 		taskActionListener.castHealing();
 		finalizeAction();
 	}
-    @Override
+	@Override
+	 public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException, InvalidTargetCellException
+	    {
+	    	//Checks the spell cooldown
+	    	if (s.getCoolDown() > 0){
+	    		throw new InCooldownException(s.getCoolDown());
+	    	}
+	    	//Checks enough ip
+	    	int cost = s.getCost();
+	    	int remainingip = cost - ((Wizard)getCurrentChamp()).getIp();
+	    	if(remainingip > 0)
+	    		throw new NotEnoughIPException(cost, remainingip);
+	    	//Checks if point not OutOfMap
+	    	Point p = getTargetPoint(d);
+	    	if(p == null)
+	    		throw new OutOfBordersException();
+	    	//Checks if the cell is valid to make action
+	    	int x = (int) p.getX();
+	    	int y = (int) p.getY();
+	    	Cell cl = this.getMap()[x][y];
+	    	if(getMap()[p.x][p.y] instanceof CollectibleCell || 
+	    		    getMap()[p.x][p.y] instanceof EmptyCell ||
+	    			getMap()[p.x][p.y] instanceof TreasureCell ||
+	    			getMap()[p.x][p.y] instanceof CupCell || 
+	    			getMap()[p.x][p.y] instanceof WallCell)
+	    		throw new InvalidTargetCellException();
+	    	
+	    	if (cl instanceof ObstacleCell){
+	    		ObstacleCell o = (ObstacleCell) cl;
+	    		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
+	    		if(o.getObstacle().getHp() <= 0)
+	    		{
+	    			this.taskActionListener.castDamaging(p);
+	    			this.getMap()[x][y] = new EmptyCell();
+	    		}
+	    	}
+	    	else if (cl instanceof ChampionCell){
+	    		ChampionCell c = (ChampionCell) cl;
+	    		Wizard w = (Wizard) c.getChamp();
+	    		w.setHp(w.getHp() - s.getDamageAmount());
+	    		if(!isAlive(c.getChamp()))
+	    		{
+	    			this.taskActionListener.castDamaging(p);
+	    			this.getMap()[x][y] = new EmptyCell();
+	    			removeWizard(c.getChamp());
+	    		}
+	        
+	    	}
+	    	useSpell(s);
+	    	finalizeAction();
+	    }
+
     public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
     	super.castRelocatingSpell(s, d, t, r);

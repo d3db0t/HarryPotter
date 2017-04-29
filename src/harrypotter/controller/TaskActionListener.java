@@ -21,6 +21,7 @@ public interface TaskActionListener {
 	public void showMarkedCells(ArrayList <Point> p , String case1);
 	public void moveGryffindorOnTrait();
 	public void updateAfterPotion(int index) throws OutOfBordersException, IOException;
+	public void castDamaging(Point p);
 	//public void removeChamp();
 	//public void removeObstacle();
 	//public void activateTrait();
