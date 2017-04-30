@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import harrypotter.controller.TaskActionListener;
 import harrypotter.exceptions.InCooldownException;
 import harrypotter.exceptions.InvalidTargetCellException;
 import harrypotter.exceptions.NotEnoughIPException;
@@ -31,7 +32,8 @@ import harrypotter.model.world.WallCell;
 
 public class ThirdTask extends Task {
 	private Point cupCell;
-	
+	private TaskActionListener taskActionListener;
+
 	public ThirdTask(ArrayList<Champion> champions)throws IOException
 	{
 		super(champions);
@@ -111,6 +113,14 @@ public class ThirdTask extends Task {
     	   c++;
     	}
 	}
+	public void setTaskActionListener(TaskActionListener taskActionListener)
+	{
+		this.taskActionListener = taskActionListener;
+	}
+	public TaskActionListener getTaskActionListener()
+	{
+		return this.taskActionListener;
+	}
 	@Override
 	public void finalizeAction() throws IOException, OutOfBordersException
 	{
@@ -118,6 +128,11 @@ public class ThirdTask extends Task {
 		Point p = c.getLocation();
 		int x = (int) p.getX();
     	int y = (int) p.getY();
+    	if(super.getFoundCollectible())
+    	{
+    		this.taskActionListener.showCollectible();
+    		this.setFoundCollectible(false);
+    	}
 		if(this.getMap()[x][y] instanceof CupCell)
 		{
 			if(super.getListener() != null)
@@ -128,31 +143,53 @@ public class ThirdTask extends Task {
 		}
 	    this.getMap()[x][y] = new ChampionCell(super.getCurrentChamp());
 	    if(super.getAllowedMoves() == 0)
+	    {
 	    	endTurn();
+	    	this.taskActionListener.updateNEWPanels();
+	    }
+	    else
+			this.taskActionListener.moveGryffindorOnTrait();
 	}
 	@Override
 	public void moveForward() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveForward();
+		this.taskActionListener.moveUp();
 		finalizeAction();
 	}
 	@Override
 	public void moveBackward() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveBackward();
+		this.taskActionListener.moveDown();
 		finalizeAction();
 	}
 	@Override
 	public void moveRight() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveRight();
+		this.taskActionListener.moveRight();
 		finalizeAction();
 	}
 	@Override
 	public void moveLeft() throws IOException, OutOfBordersException, InvalidTargetCellException
 	{
 		super.moveLeft();
+		this.taskActionListener.moveLeft();
 		finalizeAction();
+	}
+	@Override
+	public void endTurn() throws IOException, OutOfBordersException
+	{
+	   if(super.getChampions().size() != 0){
+	     super.endTurn();
+	     this.taskActionListener.updateNEWPanels();
+	   }
+	   else
+	   {
+		 if(super.getListener() != null)
+			 super.getListener().onFinishingThirdTask(null);
+	   }
 	}
 	@Override
 	public void castDamagingSpell(DamagingSpell s, Direction d) throws IOException, NotEnoughIPException, OutOfBordersException, InvalidTargetCellException , InCooldownException{
@@ -178,7 +215,10 @@ public class ThirdTask extends Task {
     		ObstacleCell o = (ObstacleCell) cl;
     		o.getObstacle().setHp(o.getObstacle().getHp() - s.getDamageAmount());
     		if(o.getObstacle().getHp() <= 0)
+    		{
+    			this.taskActionListener.castDamaging(p);
     			this.getMap()[x][y] = new EmptyCell();
+    	    }
     	}
     	else if (cl instanceof ChampionCell){
     		ChampionCell c = (ChampionCell) cl;
@@ -192,6 +232,7 @@ public class ThirdTask extends Task {
     		}
     		if(!isAlive(c.getChamp()))
     		{
+    			this.taskActionListener.removeChamp(w, "Dead");
     			this.getMap()[x][y] = new EmptyCell();
     			removeWizard(c.getChamp());
     		}
@@ -202,12 +243,14 @@ public class ThirdTask extends Task {
 	@Override
 	public void castHealingSpell(HealingSpell s) throws IOException, NotEnoughIPException, InCooldownException, OutOfBordersException{
 		super.castHealingSpell(s);
+		taskActionListener.castHealing();
 		finalizeAction();
 	}
 	@Override
 	 public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
 		super.castRelocatingSpell(s, d, t, r);
+    	this.taskActionListener.castRelocating(super.directionToPoint(d, super.getCurrentChamp()), super.getExactPosition(super.getTargetPoint(t), t, r-1));
 	    finalizeAction();
 	}
 	@Override
@@ -273,6 +316,7 @@ public class ThirdTask extends Task {
 			hint.add(Direction.BACKWARD);
 		super.setTraitActivated(true);
 		c.setTraitCooldown(7);
+	    this.taskActionListener.showHint(hint);
 		return hint;
 	}
 	public void useSpell(Spell s) throws NotEnoughIPException{
