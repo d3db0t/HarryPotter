@@ -109,7 +109,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 				{
 				   JButton btn = this.firstTaskView.getButtonsMap()[i][j];
 				   //btn.setName(""+i+j);
-				   ImageIcon wallimg = this.firstTaskView.getGifs().get(5);
+				   ImageIcon wallimg = new ImageIcon("stone.png");
 				   btn.setIcon(new ImageIcon(wallimg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
 				}
 				else if (i == 4 && j == 4)

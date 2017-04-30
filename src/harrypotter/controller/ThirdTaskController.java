@@ -110,8 +110,8 @@ public class ThirdTaskController implements TaskActionListener , TournamentListe
 				else if (a instanceof ObstacleCell)
 				{
 					   JButton btn = this.thirdTaskView.getButtonsMap()[i][j];
-					   btn.setText("Obstacle");
-				   //JButton btn = this.thirdTaskView.getButtonsMap()[i][j];
+					   btn.setIcon(new ImageIcon("stone.png"));
+              				   //JButton btn = this.thirdTaskView.getButtonsMap()[i][j];
 				   //btn.setName(""+i+j);
 				   //ImageIcon wallimg = this.thirdTaskView.getGifs().get(5);
 				   //btn.setIcon(new ImageIcon(wallimg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
