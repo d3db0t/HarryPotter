@@ -1038,6 +1038,8 @@ public Direction returnDirection(String s){
 		secondTaskView.getPotionInfo().revalidate();
 		secondTaskView.getSpellsInfo().removeAll();
 		secondTaskView.getSpellsInfo().revalidate();
+		secondTaskView.getWinners().removeAll();
+		secondTaskView.getWinners().revalidate();
 		for(int i = 0 ; i < 10 ; i++)
 		{
 			for(int j = 0; j < 10 ; j++)
@@ -1096,6 +1098,9 @@ public Direction returnDirection(String s){
 			else{
 				bs.get(i).setBackground(Color.RED);
 			}
+		}
+		if (secondTask.getWinners().size() > 0){
+			secondTaskView.addWinners(secondTask.getWinners());
 		}
 		//int wizardtraitcooldown = w.getTraitCooldown();
 		secondTaskView.addChampInfo(house, name, wizardhp, wizardip);
