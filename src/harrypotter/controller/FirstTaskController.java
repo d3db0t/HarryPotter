@@ -1316,4 +1316,26 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		this.firstTaskView.getInfo().revalidate();
 	    this.firstTaskView.getInfo().setVisible(false);
 	}
+
+	@Override
+	public void showHint(ArrayList<Direction> hint) {
+		// TODO Auto-generated method stub
+		
+	}
+	 public void showAttack()
+	    {
+	    	
+	    }
+	public void gameOver()
+	{
+		JOptionPane.showMessageDialog(launcher, "The game is over all champions dead");
+		this.firstTaskView.removeAll();
+		this.firstTaskView.revalidate();
+		try {
+			new LauncherController();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

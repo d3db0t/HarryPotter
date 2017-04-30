@@ -15,6 +15,7 @@ import harrypotter.model.character.HufflepuffWizard;
 import harrypotter.model.character.Wizard;
 import harrypotter.model.magic.DamagingSpell;
 import harrypotter.model.magic.HealingSpell;
+import harrypotter.model.magic.Potion;
 import harrypotter.model.magic.RelocatingSpell;
 import harrypotter.model.world.Cell;
 import harrypotter.model.world.ChampionCell;
@@ -122,8 +123,10 @@ public class SecondTask extends Task {
 			  ObstacleCell m =(ObstacleCell)this.getMap()[x][y];
 			  Merperson n = (Merperson)m.getObstacle();
 			  c.setHp(c.getHp()-n.getDamage());
+			  this.taskActionListener.showAttack();
 			  if(!super.isAlive(this.getCurrentChamp()))
 			  {   
+				  this.taskActionListener.removeChamp(c,"Dead");
 				  this.getMap()[p.x][p.y] = new EmptyCell();
 				  super.removeWizard(super.getCurrentChamp());
 			  }
@@ -139,6 +142,7 @@ public class SecondTask extends Task {
     	int y = (int) p.getY();
 		if(this.getMap()[x][y] instanceof TreasureCell)
 		{
+			this.taskActionListener.removeChamp(c, "Winner");
 			this.winners.add(super.getCurrentChamp());
 			super.removeWizard(super.getCurrentChamp());
 			this.getMap()[x][y] = new EmptyCell();
@@ -158,6 +162,8 @@ public class SecondTask extends Task {
 	    	else encounterMerPerson();
 	    	endTurn();
 	    }
+	    else
+	    	this.taskActionListener.moveGryffindorOnTrait();
     	
 	}
 	@Override
@@ -231,7 +237,7 @@ public class SecondTask extends Task {
 	    		w.setHp(w.getHp() - s.getDamageAmount());
 	    		if(!isAlive(c.getChamp()))
 	    		{
-	    			this.taskActionListener.castDamaging(p);
+	    			this.taskActionListener.removeChamp(w, "Dead");
 	    			this.getMap()[x][y] = new EmptyCell();
 	    			removeWizard(c.getChamp());
 	    		}
@@ -251,6 +257,7 @@ public class SecondTask extends Task {
 	public void castRelocatingSpell(RelocatingSpell s,Direction d,Direction t,int r) throws IOException, NotEnoughIPException, InCooldownException, OutOfRangeException, OutOfBordersException, InvalidTargetCellException
     {
 	   super.castRelocatingSpell(s, d, t, r);
+       this.taskActionListener.castRelocating(super.directionToPoint(d, super.getCurrentChamp()), super.getExactPosition(super.getTargetPoint(t), t, r-1));
 	   finalizeAction();
 	}
 	@Override
@@ -362,8 +369,20 @@ public class SecondTask extends Task {
 	    
 	    super.setTraitActivated(true);
 	    w.setTraitCooldown(7);
+	    this.taskActionListener.showHint(hint);
 	    return hint;
 	}
-	
+	   public void usePotion(Potion p) throws OutOfBordersException, IOException
+	    {
+	    	Wizard w = (Wizard)super.getCurrentChamp();
+	    	int j = 0 ;
+	    	for(int i = 0 ; i < w.getInventory().size() ; i++)
+	    	{
+	    		if(w.getInventory().get(i).equals(p))
+	    			j = i;
+	    	}
+	    	super.usePotion(p);
+	    	this.taskActionListener.updateAfterPotion(j);
+	    }
 
 }

@@ -26,6 +26,8 @@ public interface TaskActionListener {
 	public void castRelocating(Point pre , Point new1);
 	public void removeChamp(Wizard w, String case1);
 	public void showCollectible();
+	public void showHint(ArrayList<Direction> hint);
+	public void showAttack();
 	//public void removeObstacle();
 	//public void activateTrait();
 	//public void castSpell();

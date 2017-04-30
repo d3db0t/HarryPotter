@@ -386,6 +386,7 @@ public class SecondTaskController implements TaskActionListener , TournamentList
 			try {
 				secondTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
 						returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+				return;
 			} catch (NotEnoughIPException e1) {
 				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(launcher, "IP is not enough");
@@ -628,6 +629,7 @@ public class SecondTaskController implements TaskActionListener , TournamentList
 							try {
 								secondTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
 										returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+								return;
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
@@ -870,6 +872,7 @@ public class SecondTaskController implements TaskActionListener , TournamentList
 							try {
 								secondTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
 										returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+								return;
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
@@ -1086,7 +1089,7 @@ public Direction returnDirection(String s){
 	public void showFire()
 	{
 		Wizard w  = (Wizard) secondTask.getCurrentChamp();
-		JOptionPane.showMessageDialog(launcher, w.getName() + "is fired by a dragon"
+		JOptionPane.showMessageDialog(launcher, w.getName() + "is attacked by merperson"
 				+ "  your hp is now : " + w.getHp());
 	}
 	
@@ -1116,8 +1119,8 @@ public Direction returnDirection(String s){
 		// x and y
 		int i = p.x;
 		int j = p.y;
-		secondTaskView.getButtonsMap()[p.x][p.y].setIcon(null);;		
-		
+		secondTaskView.getButtonsMap()[p.x][p.y].setIcon(null);		
+		secondTaskView.getButtonsMap()[p.x][p.y].setText("");				
 	}
 
 	public void moveSlytherin(Direction d)
@@ -1191,12 +1194,11 @@ public Direction returnDirection(String s){
 						.getScaledInstance(50, 50, Image.SCALE_SMOOTH))));
 				break;
 		case "Winner":
-				JOptionPane.showMessageDialog(launcher, w.getName() + " won");
+				JOptionPane.showMessageDialog(launcher, w.getName() + " found the treasure");
 				Point p1 = w.getLocation();
-				ImageIcon eggimg = new ImageIcon("egg-icon.png");
+				//ImageIcon eggimg = new ImageIcon("egg-icon.png");
 				this.secondTaskView.getButtonsMap()[p1.x][p1.y].setBackground(Color.BLACK);
-				this.secondTaskView.getButtonsMap()[p1.x][p1.y].setIcon((new ImageIcon(eggimg.getImage()
-						.getScaledInstance(50, 50, Image.SCALE_SMOOTH))));
+				this.secondTaskView.getButtonsMap()[p1.x][p1.y].setIcon(null);
 				break;
 		}
 	}
@@ -1208,6 +1210,13 @@ public Direction returnDirection(String s){
 	
 	public void startSecondTask(){
 		
+	}
+	public void showHint(ArrayList<Direction> hint)
+	{
+		if(hint.size() == 1)
+			JOptionPane.showMessageDialog(launcher, "The hint is "+ hint.get(0));
+		else
+			JOptionPane.showMessageDialog(launcher, "The hint is "+ hint.get(0) + "&" + hint.get(1));			
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -1307,9 +1316,27 @@ public Direction returnDirection(String s){
 	    this.secondTaskView.getInfo().setVisible(false);
 	}
 
-	@Override
-	public void castRelocating(Point pre, Point new1) {
-		// TODO Auto-generated method stub
-		
+
+		public void castRelocating(Point pre , Point new1){
+			this.secondTaskView.getButtonsMap()[new1.x][new1.y].setText(
+					this.secondTaskView.getButtonsMap()[pre.x][pre.y].getText());
+			this.secondTaskView.getButtonsMap()[pre.x][pre.y].setText("");
+		}
+    public void showAttack()
+    {
+    	JOptionPane.showMessageDialog(launcher, "The champion is atttacked by merperson hp is "+ 
+             ((Wizard) secondTask.getCurrentChamp()).getHp());
+    }
+	public void gameOver()
+	{
+		JOptionPane.showMessageDialog(launcher, "The game is over all champions dead");
+		this.secondTaskView.removeAll();
+		this.secondTaskView.revalidate();
+		try {
+			new LauncherController();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

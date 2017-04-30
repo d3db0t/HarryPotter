@@ -111,6 +111,8 @@ public class Tournament implements TaskListener{
 			this.secondTask.setListener(this);
 			this.tournamentListener.startSecondTask();
 		}
+		else
+			this.tournamentListener.gameOver();
 	}
 	
 	
@@ -121,6 +123,8 @@ public class Tournament implements TaskListener{
 			this.thirdTask = new ThirdTask(winners);
 			this.thirdTask.setListener(this);
 		}
+		else 
+			this.tournamentListener.gameOver();
 	}
 	
 	public void onFinishingThirdTask(Champion winner)

@@ -305,7 +305,7 @@ public class FirstTask extends Task{
 	    		w.setHp(w.getHp() - s.getDamageAmount());
 	    		if(!isAlive(c.getChamp()))
 	    		{
-	    			this.taskActionListener.castDamaging(p);
+	    			this.taskActionListener.removeChamp(w, "Dead");
 	    			this.getMap()[x][y] = new EmptyCell();
 	    			removeWizard(c.getChamp());
 	    		}
