@@ -1019,6 +1019,12 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 	{
 		JOptionPane.showMessageDialog(launcher, "You found a collectible");
 	}
+	
+	public void startSecondTask(){
+		firstTaskView.removeAll();
+		firstTaskView.revalidate();
+		new SecondTaskController(launcher, tournament);
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

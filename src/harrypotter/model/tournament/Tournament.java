@@ -109,6 +109,7 @@ public class Tournament implements TaskListener{
 		{
 			this.secondTask= new SecondTask(winners);
 			this.secondTask.setListener(this);
+			this.tournamentListener.startSecondTask();
 		}
 	}
 	
