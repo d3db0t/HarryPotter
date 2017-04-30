@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import harrypotter.model.character.Champion;
+import harrypotter.model.character.Wizard;
+
 public abstract class TaskView extends JPanel
 {
     private JPanel center;
@@ -19,6 +22,7 @@ public abstract class TaskView extends JPanel
     private JPanel south;
     private JPanel east;
     private JPanel west;
+    private JPanel winners;
     private JTextArea champInfo;    
     private JTextArea info;
     private JPanel traitInfo;
@@ -35,6 +39,7 @@ public abstract class TaskView extends JPanel
     	this.south = new JPanel();
     	this.east = new JPanel();
     	this.west = new JPanel(new GridLayout(3,0));
+    	this.winners = new JPanel(new GridLayout(3,0));
     	this.map = new JButton[10][10];
     	this.center.setLayout(new GridLayout(10,10));
         this.champInfo = new JTextArea();
@@ -113,7 +118,17 @@ public abstract class TaskView extends JPanel
     	}
     }
     
-    public ArrayList<ImageIcon> getGifs()
+    
+    
+    public JPanel getWinners() {
+		return winners;
+	}
+
+	public void setWinners(JPanel winners) {
+		this.winners = winners;
+	}
+
+	public ArrayList<ImageIcon> getGifs()
     {
     	return this.gifs;
     }
@@ -218,6 +233,17 @@ public abstract class TaskView extends JPanel
     	this.spellsInfo.add(spells.get(1));
     	this.spellsInfo.add(spells.get(2));
     	
+    }
+    
+    public void addWinners(ArrayList<Champion> c){
+    	//JPanel p = new JPanel(new GridLayout(3,0));
+    	for (int i = 0; i < c.size();i++){
+			Wizard wiz = (Wizard) c.get(i);
+			JButton b = new JButton();
+			b.setText(wiz.getName());
+			winners.add(b);
+		}
+    	east.add(winners);
     }
     
     public void showEast(String i)
