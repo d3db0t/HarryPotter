@@ -1359,6 +1359,12 @@ public Direction returnDirection(String s){
 	{
 	   this.secondTaskView.removeAll();
 	   this.secondTaskView.revalidate();
-	   new ThirdTaskController();
+	   new ThirdTaskController(launcher , this.tournament);
+	}
+
+	@Override
+	public void showWinner(Champion c) {
+		// TODO Auto-generated method stub
+		
 	}
 }

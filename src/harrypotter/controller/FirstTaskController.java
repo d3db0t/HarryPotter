@@ -1344,4 +1344,10 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void showWinner(Champion c) {
+		// TODO Auto-generated method stub
+		
+	}
 }
