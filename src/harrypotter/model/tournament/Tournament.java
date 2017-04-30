@@ -130,7 +130,10 @@ public class Tournament implements TaskListener{
 	
 	public void onFinishingThirdTask(Champion winner)
 	{
-		
+		if(winner != null)
+			this.tournamentListener.showWinner(winner);
+		else
+			this.tournamentListener.gameOver();
 	}
 
 }
