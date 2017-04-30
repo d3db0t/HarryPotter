@@ -384,6 +384,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							try {
 								firstTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
 										returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+								return;
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
@@ -626,6 +627,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 								try {
 									firstTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
 											returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+									return;
 								} catch (NotEnoughIPException e1) {
 									// TODO Auto-generated catch block
 									JOptionPane.showMessageDialog(launcher, "IP is not enough");
@@ -868,6 +870,7 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 							try {
 								firstTask.castRelocatingSpell(rel1, returnDirection(objectd.toLowerCase()), 
 										returnDirection(objectmove.toLowerCase()), Integer.parseInt(range));
+								return;
 							} catch (NotEnoughIPException e1) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(launcher, "IP is not enough");
