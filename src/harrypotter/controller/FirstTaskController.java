@@ -1021,6 +1021,8 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 		firstTaskView.getPotionInfo().revalidate();
 		firstTaskView.getSpellsInfo().removeAll();
 		firstTaskView.getSpellsInfo().revalidate();
+		firstTaskView.getWinners().removeAll();
+		firstTaskView.getWinners().revalidate();
 		for(int i = 0 ; i < 10 ; i++)
 		{
 			for(int j = 0; j < 10 ; j++)
@@ -1079,6 +1081,9 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 			else{
 				bs.get(i).setBackground(Color.RED);
 			}
+		}
+		if (firstTask.getWinners().size() > 0){
+			firstTaskView.addWinners(firstTask.getWinners());
 		}
 		//int wizardtraitcooldown = w.getTraitCooldown();
 		firstTaskView.addChampInfo(house, name, wizardhp, wizardip);
