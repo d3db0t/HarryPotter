@@ -359,7 +359,7 @@ public abstract class Task implements WizardListener{
     			this.allowedMoves = this.allowedMoves - 1;
     		}
     		else
-    			throw new InvalidTargetCellException();
+    		    throw new InvalidTargetCellException("Cannot move to other champion treasure");
     	}
     	else if(new1 instanceof CupCell)
     	{

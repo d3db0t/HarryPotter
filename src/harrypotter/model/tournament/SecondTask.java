@@ -140,6 +140,11 @@ public class SecondTask extends Task {
 		Point p = c.getLocation();
 		int x = (int) p.getX();
     	int y = (int) p.getY();
+    	if(super.getFoundCollectible())
+    	{
+    		this.taskActionListener.showCollectible();
+    		this.setFoundCollectible(false);
+    	}
 		if(this.getMap()[x][y] instanceof TreasureCell)
 		{
 			this.taskActionListener.removeChamp(c, "Winner");
@@ -298,13 +303,20 @@ public class SecondTask extends Task {
     	Cell firstcell    = this.getMap()[fpx][fpy];
     	Cell secondcell   = this.getMap()[spx][spy];
     	
-    	if(! (secondcell instanceof EmptyCell) )
+    	if(! (secondcell instanceof EmptyCell || secondcell instanceof CollectibleCell) )
     		throw new InvalidTargetCellException();
     	
-    	if (secondcell instanceof EmptyCell && 
-    			firstcell instanceof EmptyCell){
+    	if (secondcell instanceof EmptyCell ){
     					
     		w.setLocation(secondpoint);
+    		this.getMap()[spx][spy] = new ChampionCell(super.getCurrentChamp());
+    		this.getMap()[cpx][cpy] = new EmptyCell();
+    	}
+    	else if(secondcell instanceof CollectibleCell)
+    	{
+    		w.setLocation(secondpoint);
+    		w.getInventory().add(((CollectibleCell) secondcell).getCollectible());
+    		this.taskActionListener.showCollectible();
     		this.getMap()[spx][spy] = new ChampionCell(super.getCurrentChamp());
     		this.getMap()[cpx][cpy] = new EmptyCell();
     	}

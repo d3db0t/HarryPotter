@@ -1338,4 +1338,10 @@ public class FirstTaskController implements TaskActionListener , TournamentListe
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void startThirdTask() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -158,35 +158,51 @@ public class SecondTaskController implements TaskActionListener , TournamentList
 		{
 		case"Up": try {
 				secondTask.moveForward();
-			} catch (OutOfBordersException | InvalidTargetCellException | IOException e1) {
+			} catch (OutOfBordersException | IOException e1) {
 				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(launcher, "Invalid Move");
 				e1.printStackTrace();
 			}
+		       catch(InvalidTargetCellException e1)
+		{
+		    	   JOptionPane.showMessageDialog(launcher, e1.getMessage());
+		}
 		    break;
 		case"Down": try {
 			secondTask.moveBackward();
-		} catch (OutOfBordersException | InvalidTargetCellException | IOException e1) {
+		} catch (OutOfBordersException  | IOException e1) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(launcher, "Invalid Move");
 			e1.printStackTrace();
 		}
+	       catch(InvalidTargetCellException e1)
+			{
+			    	   JOptionPane.showMessageDialog(launcher, e1.getMessage());
+			}
 	    break;
 		case"Right": try {
 			secondTask.moveRight();
-		} catch (OutOfBordersException | InvalidTargetCellException | IOException e1) {
+		} catch (OutOfBordersException  | IOException e1) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(launcher, "Invalid Move");
 			e1.printStackTrace();
 		}
+	       catch(InvalidTargetCellException e1)
+			{
+			    	   JOptionPane.showMessageDialog(launcher, e1.getMessage());
+			}
 	    break;
 		case"Left": try {
 			secondTask.moveLeft();
-		} catch (OutOfBordersException | InvalidTargetCellException | IOException e1) {
+		} catch (OutOfBordersException | IOException e1) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(launcher, "Invalid Move");
 			e1.printStackTrace();
 		}
+	       catch(InvalidTargetCellException e1)
+			{
+			    	   JOptionPane.showMessageDialog(launcher, e1.getMessage());
+			}
 	    break;
 		case "Spell1" : String type1 = spellType(w.getSpells().get(0));
 						/*
@@ -1295,7 +1311,7 @@ public Direction returnDirection(String s){
 	                  break;
 	   case "Spell3": this.secondTaskView.showEast(w.getSpells().get(2).toString());
 	                  break;
-	   case "Trait" : this.secondTaskView.showEast(w.getTraitInfo("First"));
+	   case "Trait" : this.secondTaskView.showEast(w.getTraitInfo("Second"));
 	                  break;
 	   case "Potion": for(int i = 0 ; i <w.getInventory().size() ; i++)
 	                  {
@@ -1338,5 +1354,11 @@ public Direction returnDirection(String s){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public void startThirdTask()
+	{
+	   this.secondTaskView.removeAll();
+	   this.secondTaskView.revalidate();
+	   new ThirdTaskController();
 	}
 }

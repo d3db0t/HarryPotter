@@ -362,13 +362,19 @@ public class FirstTask extends Task{
     	Cell secondcell   = this.getMap()[spx][spy];
     	if(!(secondcell instanceof EmptyCell || secondcell instanceof CollectibleCell))
     		throw new InvalidTargetCellException();
-    	if (secondcell instanceof EmptyCell && 
-    			(firstcell instanceof EmptyCell ||
-    					firstcell instanceof ObstacleCell)){
+    	if (secondcell instanceof EmptyCell ){
     		w.setLocation(secondpoint);
     		this.getMap()[spx][spy] = cellofchamp;
     		this.getMap()[cpx][cpy] = new EmptyCell();
     		
+    	}
+    	else if (secondcell instanceof CollectibleCell)
+    	{
+    		w.setLocation(secondpoint);
+    		w.getInventory().add(((CollectibleCell) secondcell).getCollectible());
+    		this.taskActionListener.showCollectible();
+    		this.getMap()[spx][spy] = new ChampionCell(super.getCurrentChamp());
+    		this.getMap()[cpx][cpy] = new EmptyCell();
     	}
     	super.setTraitActivated(true);
 		super.setAllowedMoves(0);
